@@ -1,0 +1,31 @@
+@import "tailwindcss";
+
+@theme {
+  --color-brand-navy-950: #080e1e;
+  --color-brand-navy-900: #0d1833;
+  --color-brand-navy-800: #14244c;
+  --color-brand-navy-700: #1c3369;
+  --color-brand-navy-600: #25448a;
+  --color-brand-navy-50: #f2f5fc;
+
+  --color-brand-orange-500: #ff6b00;
+  --color-brand-orange-600: #e85900;
+  --color-brand-orange-700: #c24500;
+  --color-brand-orange-50: #fff7ed;
+
+  --font-sans: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+:root {
+  font-family: var(--font-sans);
+  color-scheme: light;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background-color: #ffffff;
+  color: #1e293b;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
