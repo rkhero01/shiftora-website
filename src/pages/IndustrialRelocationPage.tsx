@@ -4,6 +4,7 @@ import React, { useEffect } from 'react';
 import { Container } from '../components/common/Container';
 import { Button } from '../components/common/Button';
 import { siteConfig } from '../config/siteConfig';
+import { ServicePhoto } from '../components/common/ServicePhoto';
 
 export const IndustrialRelocationPage: React.FC = () => {
   useEffect(() => {
@@ -23,6 +24,7 @@ export const IndustrialRelocationPage: React.FC = () => {
           <p className="text-lg text-slate-700 mb-8">
             Specialized moving of heavy industrial equipment, machinery, and plant assets with expert rigging and safety protocols.
           </p>
+          <ServicePhoto src="/images/packed-industrial-cargo.jpg" alt="Large packed cargo prepared for industrial transport" />
           <ul className="list-disc list-inside text-slate-600 mb-8">
             <li>Custom crating and palletizing for oversized items</li>
             <li>On‑site rigging and loading experts</li>

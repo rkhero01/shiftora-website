@@ -4,6 +4,7 @@ import React, { useEffect } from 'react';
 import { Container } from '../components/common/Container';
 import { Button } from '../components/common/Button';
 import { siteConfig } from '../config/siteConfig';
+import { ServicePhoto } from '../components/common/ServicePhoto';
 
 export const CarShiftingByCarCarrierPage: React.FC = () => {
   useEffect(() => {
@@ -25,6 +26,7 @@ export const CarShiftingByCarCarrierPage: React.FC = () => {
           <p className="text-lg text-slate-700 mb-8">
             Safe, door‑to‑door transport of cars using enclosed carriers, with insurance and condition inspection.
           </p>
+          <ServicePhoto src="/shiftora-hero-truck.jpg" alt="Shiftora branded transport truck used for relocation logistics" />
           <ul className="list-disc list-inside text-slate-600 mb-8">
             <li>Enclosed hydraulic car carrier loading</li>
             <li>Full insurance coverage during transit</li>

@@ -4,6 +4,7 @@ import React, { useEffect } from 'react';
 import { Container } from '../components/common/Container';
 import { Button } from '../components/common/Button';
 import { siteConfig } from '../config/siteConfig';
+import { ServicePhoto } from '../components/common/ServicePhoto';
 
 export const InternationalRelocationPage: React.FC = () => {
   useEffect(() => {
@@ -21,6 +22,7 @@ export const InternationalRelocationPage: React.FC = () => {
           <p className="text-lg text-slate-700 mb-8">
             Comprehensive moving solutions across borders with customs clearance, secure packaging, and door‑to‑door delivery worldwide.
           </p>
+          <ServicePhoto src="/images/container-palletized-cargo.jpg" alt="Palletized cargo secured inside a freight container" />
           <ul className="list-disc list-inside text-slate-600 mb-8">
             <li>Customs documentation and clearance support</li>
             <li>International freight coordination (air, sea, road)</li>

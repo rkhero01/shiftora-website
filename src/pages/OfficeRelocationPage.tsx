@@ -4,6 +4,7 @@ import React, { useEffect } from 'react';
 import { Container } from '../components/common/Container';
 import { Button } from '../components/common/Button';
 import { siteConfig } from '../config/siteConfig';
+import { ServicePhoto } from '../components/common/ServicePhoto';
 
 export const OfficeRelocationPage: React.FC = () => {
   useEffect(() => {
@@ -21,6 +22,7 @@ export const OfficeRelocationPage: React.FC = () => {
           <p className="text-lg text-slate-700 mb-8">
             Professional relocation of corporate offices with minimal downtime, secure handling of IT equipment, and coordinated setup.
           </p>
+          <ServicePhoto src="/images/stacked-freight-boxes.jpg" alt="Labeled shipment cartons arranged for transport" />
           <ul className="list-disc list-inside text-slate-600 mb-8">
             <li>Pre-move site survey and floor planning</li>
             <li>Secure packing of servers, monitors, and furniture</li>

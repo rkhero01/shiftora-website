@@ -4,6 +4,7 @@ import React, { useEffect } from 'react';
 import { Container } from '../components/common/Container';
 import { Button } from '../components/common/Button';
 import { siteConfig } from '../config/siteConfig';
+import { ServicePhoto } from '../components/common/ServicePhoto';
 
 export const RoadFreightPage: React.FC = () => {
   useEffect(() => {
@@ -23,6 +24,7 @@ export const RoadFreightPage: React.FC = () => {
           <p className="text-lg text-slate-700 mb-8">
             Reliable overland cargo transport for pallets, crates, and bulk goods across the country.
           </p>
+          <ServicePhoto src="/images/truck-loaded-with-cartons.jpg" alt="Transport truck loaded with secured cartons" />
           <ul className="list-disc list-inside text-slate-600 mb-8">
             <li>Door‑to‑door pickup and delivery</li>
             <li>Real‑time GPS tracking of trucks</li>

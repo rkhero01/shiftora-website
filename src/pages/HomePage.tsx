@@ -6,6 +6,7 @@ import { WhyShiftoraSection } from '../components/home/WhyShiftoraSection';
 import { HowItWorksSection } from '../components/home/HowItWorksSection';
 import { ServiceAreasSection } from '../components/home/ServiceAreasSection';
 import { QuoteCtaSection } from '../components/home/QuoteCtaSection';
+import { WorkGallerySection } from '../components/home/WorkGallerySection';
 
 export const HomePage: React.FC = () => {
   return (
@@ -18,6 +19,9 @@ export const HomePage: React.FC = () => {
 
       {/* 3. Services */}
       <ServicesSection />
+
+      {/* Real relocation and freight work photos */}
+      <WorkGallerySection />
 
       {/* 4. Why Choose Shiftora */}
       <WhyShiftoraSection />

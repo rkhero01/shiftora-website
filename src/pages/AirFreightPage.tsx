@@ -4,6 +4,7 @@ import React, { useEffect } from 'react';
 import { Container } from '../components/common/Container';
 import { Button } from '../components/common/Button';
 import { siteConfig } from '../config/siteConfig';
+import { ServicePhoto } from '../components/common/ServicePhoto';
 
 export const AirFreightPage: React.FC = () => {
   useEffect(() => {
@@ -23,6 +24,7 @@ export const AirFreightPage: React.FC = () => {
           <p className="text-lg text-slate-700 mb-8">
             Fast and reliable air freight services for urgent shipments, with door-to-door handling and customs clearance.
           </p>
+          <ServicePhoto src="/images/wrapped-goods-in-transit.jpg" alt="Wrapped and protected goods prepared for freight handling" />
           <ul className="list-disc list-inside text-slate-600 mb-8">
             <li>Express air cargo for time‑critical items</li>
             <li>Secure packaging and lightweight handling</li>

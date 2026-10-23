@@ -4,6 +4,7 @@ import React, { useEffect } from 'react';
 import { Container } from '../components/common/Container';
 import { Button } from '../components/common/Button';
 import { siteConfig } from '../config/siteConfig';
+import { ServicePhoto } from '../components/common/ServicePhoto';
 
 export const SeaFreightPage: React.FC = () => {
   useEffect(() => {
@@ -23,6 +24,7 @@ export const SeaFreightPage: React.FC = () => {
           <p className="text-lg text-slate-700 mb-8">
             Cost‑effective ocean shipping for large shipments, containers, or bulk cargo with full tracking and customs support.
           </p>
+          <ServicePhoto src="/images/freight-container-loading.jpg" alt="Palletized cargo arranged inside a shipping container" />
           <ul className="list-disc list-inside text-slate-600 mb-8">
             <li>Full‑container load (FCL) and less‑than‑container load (LCL) options</li>
             <li>Port‑to‑port and door‑to‑door services</li>

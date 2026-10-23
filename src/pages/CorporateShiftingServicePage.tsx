@@ -4,6 +4,7 @@ import React, { useEffect } from 'react';
 import { Container } from '../components/common/Container';
 import { Button } from '../components/common/Button';
 import { siteConfig } from '../config/siteConfig';
+import { ServicePhoto } from '../components/common/ServicePhoto';
 
 export const CorporateShiftingServicePage: React.FC = () => {
   useEffect(() => {
@@ -21,6 +22,7 @@ export const CorporateShiftingServicePage: React.FC = () => {
           <p className="text-lg text-slate-700 mb-8">
             Structured corporate moves designed to protect equipment, minimize downtime, and ensure a smooth transition.
           </p>
+          <ServicePhoto src="/images/organized-shipping-cartons.jpg" alt="Organized cartons secured for a coordinated business shipment" />
           <div className="flex space-x-4">
             <Button href={siteConfig.contact.phoneRaw} variant="primary" size="md">Call Now</Button>
             <Button href={whatsappLink} variant="secondary" size="md">WhatsApp</Button>
