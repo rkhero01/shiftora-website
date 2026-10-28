@@ -43,7 +43,7 @@ export const Header: React.FC = () => {
       {/* Main Navigation Bar */}
       <Container className="py-3.5 flex items-center justify-between">
         {/* Brand Logo */}
-        <a href="/" className="flex items-center gap-2.5 group" id="brand-logo-link">
+        <Link to="/" className="flex items-center gap-2.5 group" id="brand-logo-link">
           <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-slate-950 via-slate-900 to-slate-800 flex items-center justify-center shadow-sm group-hover:shadow transition-shadow">
             <div className="relative flex items-center justify-center">
               <span className="text-white font-extrabold text-xl tracking-tight">S</span>
@@ -58,7 +58,7 @@ export const Header: React.FC = () => {
               Packers &amp; Movers
             </span>
           </div>
-        </a>
+        </Link>
 
         {/* Desktop Nav Links */}
         <nav className="hidden lg:flex items-center gap-7" aria-label="Main Navigation">

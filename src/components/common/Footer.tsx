@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Phone, Mail, Clock, MapPin, Shield, CheckCircle, MessageCircle } from 'lucide-react';
 import { siteConfig } from '../../config/siteConfig';
 import { Container } from './Container';
@@ -37,16 +38,16 @@ export const Footer: React.FC = () => {
               Our Services
             </h3>
             <ul className="space-y-2.5 text-sm">
-              <li><a href="/services/residential-relocation" className="hover:text-amber-400 transition-colors inline-flex items-center gap-1.5 text-slate-400"><CheckCircle className="w-3.5 h-3.5 text-slate-600" />Residential Relocation</a></li>
-              <li><a href="/services/corporate-shifting-service" className="hover:text-amber-400 transition-colors inline-flex items-center gap-1.5 text-slate-400"><CheckCircle className="w-3.5 h-3.5 text-slate-600" />Corporate Shifting Service</a></li>
-              <li><a href="/services/office-relocation" className="hover:text-amber-400 transition-colors inline-flex items-center gap-1.5 text-slate-400"><CheckCircle className="w-3.5 h-3.5 text-slate-600" />Office Relocation</a></li>
-              <li><a href="/services/door-to-door-relocation" className="hover:text-amber-400 transition-colors inline-flex items-center gap-1.5 text-slate-400"><CheckCircle className="w-3.5 h-3.5 text-slate-600" />Door To Door Relocation</a></li>
-              <li><a href="/services/international-relocation" className="hover:text-amber-400 transition-colors inline-flex items-center gap-1.5 text-slate-400"><CheckCircle className="w-3.5 h-3.5 text-slate-600" />International Relocation</a></li>
-              <li><a href="/services/car-shifting-by-car-carrier" className="hover:text-amber-400 transition-colors inline-flex items-center gap-1.5 text-slate-400"><CheckCircle className="w-3.5 h-3.5 text-slate-600" />Car Shifting By Car Carrier</a></li>
-              <li><a href="/services/industrial-relocation" className="hover:text-amber-400 transition-colors inline-flex items-center gap-1.5 text-slate-400"><CheckCircle className="w-3.5 h-3.5 text-slate-600" />Industrial Relocation</a></li>
-              <li><a href="/services/air-freight" className="hover:text-amber-400 transition-colors inline-flex items-center gap-1.5 text-slate-400"><CheckCircle className="w-3.5 h-3.5 text-slate-600" />Air Freight</a></li>
-              <li><a href="/services/sea-freight" className="hover:text-amber-400 transition-colors inline-flex items-center gap-1.5 text-slate-400"><CheckCircle className="w-3.5 h-3.5 text-slate-600" />Sea Freight</a></li>
-              <li><a href="/services/road-freight" className="hover:text-amber-400 transition-colors inline-flex items-center gap-1.5 text-slate-400"><CheckCircle className="w-3.5 h-3.5 text-slate-600" />Road Freight</a></li>
+              <li><Link to="/services/residential-relocation" className="hover:text-amber-400 transition-colors inline-flex items-center gap-1.5 text-slate-400"><CheckCircle className="w-3.5 h-3.5 text-slate-600" />Residential Relocation</Link></li>
+              <li><Link to="/services/corporate-shifting-service" className="hover:text-amber-400 transition-colors inline-flex items-center gap-1.5 text-slate-400"><CheckCircle className="w-3.5 h-3.5 text-slate-600" />Corporate Shifting Service</Link></li>
+              <li><Link to="/services/office-relocation" className="hover:text-amber-400 transition-colors inline-flex items-center gap-1.5 text-slate-400"><CheckCircle className="w-3.5 h-3.5 text-slate-600" />Office Relocation</Link></li>
+              <li><Link to="/services/door-to-door-relocation" className="hover:text-amber-400 transition-colors inline-flex items-center gap-1.5 text-slate-400"><CheckCircle className="w-3.5 h-3.5 text-slate-600" />Door To Door Relocation</Link></li>
+              <li><Link to="/services/international-relocation" className="hover:text-amber-400 transition-colors inline-flex items-center gap-1.5 text-slate-400"><CheckCircle className="w-3.5 h-3.5 text-slate-600" />International Relocation</Link></li>
+              <li><Link to="/services/car-shifting-by-car-carrier" className="hover:text-amber-400 transition-colors inline-flex items-center gap-1.5 text-slate-400"><CheckCircle className="w-3.5 h-3.5 text-slate-600" />Car Shifting By Car Carrier</Link></li>
+              <li><Link to="/services/industrial-relocation" className="hover:text-amber-400 transition-colors inline-flex items-center gap-1.5 text-slate-400"><CheckCircle className="w-3.5 h-3.5 text-slate-600" />Industrial Relocation</Link></li>
+              <li><Link to="/services/air-freight" className="hover:text-amber-400 transition-colors inline-flex items-center gap-1.5 text-slate-400"><CheckCircle className="w-3.5 h-3.5 text-slate-600" />Air Freight</Link></li>
+              <li><Link to="/services/sea-freight" className="hover:text-amber-400 transition-colors inline-flex items-center gap-1.5 text-slate-400"><CheckCircle className="w-3.5 h-3.5 text-slate-600" />Sea Freight</Link></li>
+              <li><Link to="/services/road-freight" className="hover:text-amber-400 transition-colors inline-flex items-center gap-1.5 text-slate-400"><CheckCircle className="w-3.5 h-3.5 text-slate-600" />Road Freight</Link></li>
             </ul>
           </div>
 

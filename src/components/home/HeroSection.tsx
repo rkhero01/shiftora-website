@@ -3,6 +3,7 @@ import { ArrowRight, Phone, ShieldCheck, CheckCircle2, Clock, MapPin, Layers } f
 import { siteConfig } from '../../config/siteConfig';
 import { Container } from '../common/Container';
 import { Button } from '../common/Button';
+import { getAssetUrl } from '../../utils/assetUrl';
 
 export const HeroSection: React.FC = () => {
   return (
@@ -13,7 +14,7 @@ export const HeroSection: React.FC = () => {
       {/* Full-width background image with layered dark overlay */}
       <div className="absolute inset-0 z-0">
         <img
-          src="/shiftora-hero-truck.jpg"
+          src={getAssetUrl('/shiftora-hero-truck.jpg')}
           alt=""
           aria-hidden="true"
           className="w-full h-full object-cover object-center"
@@ -98,7 +99,7 @@ export const HeroSection: React.FC = () => {
               {/* Card image strip */}
               <div className="relative aspect-[4/3] overflow-hidden">
                 <img
-                  src="/images/loaded-moving-truck.jpg"
+                  src={getAssetUrl('/images/loaded-moving-truck.jpg')}
                   alt="Shiftora relocation – packed cartons and furniture loaded in a transport truck"
                   className="w-full h-full object-cover object-center"
                   loading="eager"

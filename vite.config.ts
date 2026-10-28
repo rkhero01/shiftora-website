@@ -1,11 +1,52 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import tailwindcss from '@tailwindcss/vite'
+import { copyFileSync, mkdirSync } from 'node:fs'
+import { resolve } from 'node:path'
+
+const serviceRoutes = [
+  'services/residential-relocation',
+  'services/corporate-shifting-service',
+  'services/office-relocation',
+  'services/door-to-door-relocation',
+  'services/international-relocation',
+  'services/car-shifting-by-car-carrier',
+  'services/industrial-relocation',
+  'services/air-freight',
+  'services/sea-freight',
+  'services/road-freight',
+]
+
+function githubPagesSpa() {
+  return {
+    name: 'github-pages-spa',
+    closeBundle() {
+      try {
+        const distDir = resolve(__dirname, 'dist')
+        const indexHtml = resolve(distDir, 'index.html')
+
+        // 1. Create 404.html for any unmapped route fallback
+        copyFileSync(indexHtml, resolve(distDir, '404.html'))
+
+        // 2. Pre-generate directory index.html for all 10 service routes for instant HTTP 200 on refresh
+        for (const route of serviceRoutes) {
+          const targetDir = resolve(distDir, route)
+          mkdirSync(targetDir, { recursive: true })
+          copyFileSync(indexHtml, resolve(targetDir, 'index.html'))
+        }
+      } catch (err) {
+        console.error('Failed to generate GitHub Pages SPA fallbacks:', err)
+      }
+    },
+  }
+}
 
 export default defineConfig({
+  base: '/shiftora-website/',
   plugins: [
     react(),
     tailwindcss(),
+    githubPagesSpa(),
   ],
   server: {
     proxy: {
@@ -16,5 +57,3 @@ export default defineConfig({
     },
   },
 })
-
-

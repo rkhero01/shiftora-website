@@ -17,7 +17,7 @@ import { RoadFreightPage } from './pages/RoadFreightPage';
 
 export const App: React.FC = () => {
   return (
-    <Router>
+    <Router basename={import.meta.env.BASE_URL}>
       <div className="min-h-screen flex flex-col bg-white text-slate-900 antialiased selection:bg-amber-100 selection:text-amber-900">
         <Header />
         <div className="flex-1">

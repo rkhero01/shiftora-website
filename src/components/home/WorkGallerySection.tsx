@@ -1,6 +1,7 @@
 import React from 'react';
 import { Container } from '../common/Container';
 import { Camera } from 'lucide-react';
+import { getAssetUrl } from '../../utils/assetUrl';
 
 /**
  * All image paths are verified against public/images/ – every file exists.
@@ -76,7 +77,7 @@ export const WorkGallerySection: React.FC = () => (
             {/* Photo */}
             <div className="aspect-[4/3] overflow-hidden">
               <img
-                src={photo.src}
+                src={getAssetUrl(photo.src)}
                 alt={photo.alt}
                 loading="lazy"
                 decoding="async"

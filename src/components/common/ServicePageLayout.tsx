@@ -1,7 +1,9 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { ArrowRight, Phone, MessageCircle, CheckCircle2, ShieldCheck, Clock, Award, Headphones } from 'lucide-react';
 import { Container } from './Container';
 import { siteConfig } from '../../config/siteConfig';
+import { getAssetUrl } from '../../utils/assetUrl';
 
 /* ── Types ──────────────────────────────────────────────────────── */
 export interface ServiceFeature {
@@ -74,7 +76,7 @@ export const ServicePageLayout: React.FC<ServicePageLayoutProps> = ({
         {/* bg image with dark overlay */}
         <div className="absolute inset-0 z-0">
           <img
-            src={heroImage}
+            src={getAssetUrl(heroImage)}
             alt={heroImageAlt}
             className="w-full h-full object-cover object-center"
             loading="eager"
@@ -197,7 +199,7 @@ export const ServicePageLayout: React.FC<ServicePageLayoutProps> = ({
           <Container>
             <figure className="overflow-hidden rounded-2xl border border-white/10 shadow-2xl">
               <img
-                src={galleryImage}
+                src={getAssetUrl(galleryImage)}
                 alt={galleryImageAlt ?? ''}
                 className="w-full max-h-[480px] object-cover object-center"
                 loading="lazy"
@@ -272,13 +274,13 @@ export const ServicePageLayout: React.FC<ServicePageLayoutProps> = ({
                   <MessageCircle className="w-4 h-4" />
                   WhatsApp Us
                 </a>
-                <a
-                  href="/#get-quote"
+                <Link
+                  to="/#get-quote"
                   className="inline-flex items-center gap-2 bg-white/10 hover:bg-white/20 border border-white/20 text-white font-semibold text-base px-8 py-3.5 rounded-lg transition-all duration-200"
                   id="service-cta-quote-form-btn"
                 >
                   Online Quote Form &rarr;
-                </a>
+                </Link>
               </div>
             </div>
           </div>
