@@ -1,44 +1,97 @@
-import React, { useEffect } from 'react';
-
-
-import { Container } from '../components/common/Container';
-import { Button } from '../components/common/Button';
-import { siteConfig } from '../config/siteConfig';
-import { ServicePhoto } from '../components/common/ServicePhoto';
+import React from 'react';
+import {
+  Factory,
+  Cog,
+  ShieldAlert,
+  Truck,
+  HardHat,
+  Scale,
+} from 'lucide-react';
+import { ServicePageLayout } from '../components/common/ServicePageLayout';
 
 export const IndustrialRelocationPage: React.FC = () => {
-  useEffect(() => {
-    document.title = 'Industrial Relocation | Shiftora';
-  }, []);
-
-  const whatsappLink =
-    'https://wa.me/917428614678?text=' +
-    encodeURIComponent('I am interested in Industrial Relocation');
-
   return (
-    <>
-      
-      <main className="flex-1 py-12 bg-white text-slate-900">
-        <Container className="max-w-4xl">
-          <h1 className="text-4xl font-extrabold text-slate-900 mb-6">Industrial Relocation</h1>
-          <p className="text-lg text-slate-700 mb-8">
-            Specialized moving of heavy industrial equipment, machinery, and plant assets with expert rigging and safety protocols.
-          </p>
-          <ServicePhoto src="/images/packed-industrial-cargo.jpg" alt="Large packed cargo prepared for industrial transport" />
-          <ul className="list-disc list-inside text-slate-600 mb-8">
-            <li>Custom crating and palletizing for oversized items</li>
-            <li>On‑site rigging and loading experts</li>
-            <li>Secure transport in reinforced trucks</li>
-            <li>Re‑installation and calibration assistance</li>
-          </ul>
-          <div className="flex gap-4 mb-8">
-            <Button href={siteConfig.contact.phoneRaw} variant="primary" size="md">Call Now</Button>
-            <Button href={whatsappLink} variant="outline" size="md">WhatsApp</Button>
-            <Button href="#get-quote" variant="secondary" size="md">Get a Free Quote</Button>
-          </div>
-        </Container>
-      </main>
-      
-    </>
+    <ServicePageLayout
+      pageTitle="Industrial Relocation Services | Shiftora Packers & Movers"
+      categoryLabel="Heavy Plant & Machinery Shifting"
+      heading="Heavy Machinery & Plant"
+      headingAccent="Industrial Relocation"
+      subheading="Engineered heavy machinery shifting, factory transfers, manufacturing line decommissioning, hydraulic crane rigging, and multi-axle trailer transport across India with strict safety protocols."
+      heroImage="/images/packed-industrial-cargo.jpg"
+      heroImageAlt="Large packed industrial machinery cargo prepared for transport"
+      galleryImage="/images/cargo-loading-team.jpg"
+      galleryImageAlt="Shiftora cargo handling team coordinating industrial equipment loading"
+      whatsappMessage="Hi Shiftora, I would like to get a quote for Industrial Relocation."
+      highlights={[
+        'Hydraulic crane lifting, forklift rigging & machinery skidding',
+        'Low-bed, semi-lowbed & multi-axle trailers for Over-Dimensional Cargo (ODC)',
+        'Machinery de-anchoring, anti-rust greasing & heavy-duty shrink barrier wraps',
+        'Certified riggers, route engineering surveys & government permit approvals',
+      ]}
+      features={[
+        {
+          icon: <Factory className="w-6 h-6" />,
+          title: 'Complete Plant & Factory Moves',
+          description:
+            'Turnkey factory relocation spanning production lines, testing laboratories, raw material stores, and maintenance workshops.',
+        },
+        {
+          icon: <Cog className="w-6 h-6" />,
+          title: 'Machinery Decommissioning & Rigging',
+          description:
+            'Systematic disconnection of electrical and pneumatic lines, de-anchoring from foundation plinths, and precision leveling.',
+        },
+        {
+          icon: <Truck className="w-6 h-6" />,
+          title: 'Multi-Axle & Low-Bed Trailers',
+          description:
+            'Heavy-haul fleet capable of handling over-dimensional cargo (ODC), CNC machines, stamping presses, and transformers.',
+        },
+        {
+          icon: <HardHat className="w-6 h-6" />,
+          title: 'Certified Riggers & Safety Protocols',
+          description:
+            'Strict adherence to industrial safety standards with certified crane operators, personal protective equipment, and risk management.',
+        },
+        {
+          icon: <Scale className="w-6 h-6" />,
+          title: 'Route Feasibility & Bridge Permits',
+          description:
+            'Pre-transit civil route surveys checking overhead bridge clearances, toll bypasses, and state authority highway permits.',
+        },
+        {
+          icon: <ShieldAlert className="w-6 h-6" />,
+          title: 'High-Value Industrial Marine Cover',
+          description:
+            'Comprehensive industrial transit and erection-all-risks (EAR) insurance for total asset protection during transit and rigging.',
+        },
+      ]}
+      processSteps={[
+        {
+          number: '01',
+          title: 'Engineering Site Survey',
+          description:
+            'Assessing machine weight, dimensions, center of gravity, floor load limits, and rigging access points.',
+        },
+        {
+          number: '02',
+          title: 'De-Anchoring & Protective Packaging',
+          description:
+            'Electrical isolation, fluid draining, protective barrier vacuum wrapping, and heavy timber skidding.',
+        },
+        {
+          number: '03',
+          title: 'Crane Rigging & Multi-Axle Transit',
+          description:
+            'Precision crane loading onto specialized low-bed trailers, secure multi-chain tie-downs, and escorted highway transit.',
+        },
+        {
+          number: '04',
+          title: 'Offloading & Foundation Positioning',
+          description:
+            'Crane offloading at destination facility, skidding onto foundation plinths, optical alignment, and final handover.',
+        },
+      ]}
+    />
   );
 };

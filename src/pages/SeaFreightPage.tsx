@@ -1,44 +1,97 @@
-import React, { useEffect } from 'react';
-
-
-import { Container } from '../components/common/Container';
-import { Button } from '../components/common/Button';
-import { siteConfig } from '../config/siteConfig';
-import { ServicePhoto } from '../components/common/ServicePhoto';
+import React from 'react';
+import {
+  Anchor,
+  Box,
+  FileText,
+  ShieldCheck,
+  Ship,
+  TrendingDown,
+} from 'lucide-react';
+import { ServicePageLayout } from '../components/common/ServicePageLayout';
 
 export const SeaFreightPage: React.FC = () => {
-  useEffect(() => {
-    document.title = 'Sea Freight | Shiftora';
-  }, []);
-
-  const whatsappLink =
-    'https://wa.me/917428614678?text=' +
-    encodeURIComponent('I am interested in Sea Freight');
-
   return (
-    <>
-      
-      <main className="flex-1 py-12 bg-white text-slate-900">
-        <Container className="max-w-4xl">
-          <h1 className="text-4xl font-extrabold text-slate-900 mb-6">Sea Freight</h1>
-          <p className="text-lg text-slate-700 mb-8">
-            Cost‑effective ocean shipping for large shipments, containers, or bulk cargo with full tracking and customs support.
-          </p>
-          <ServicePhoto src="/images/freight-container-loading.jpg" alt="Palletized cargo arranged inside a shipping container" />
-          <ul className="list-disc list-inside text-slate-600 mb-8">
-            <li>Full‑container load (FCL) and less‑than‑container load (LCL) options</li>
-            <li>Port‑to‑port and door‑to‑door services</li>
-            <li>Customs clearance and documentation handling</li>
-            <li>Real‑time vessel tracking and ETA notifications</li>
-          </ul>
-          <div className="flex gap-4 mb-8">
-            <Button href={siteConfig.contact.phoneRaw} variant="primary" size="md">Call Now</Button>
-            <Button href={whatsappLink} variant="outline" size="md">WhatsApp</Button>
-            <Button href="#get-quote" variant="secondary" size="md">Get a Free Quote</Button>
-          </div>
-        </Container>
-      </main>
-      
-    </>
+    <ServicePageLayout
+      pageTitle="Sea Freight Services | Shiftora Packers & Movers"
+      categoryLabel="Ocean Maritime Logistics"
+      heading="Cost-Effective Ocean Cargo &"
+      headingAccent="Container Shipping"
+      subheading="Full Container Load (FCL) and Less than Container Load (LCL) ocean freight services connecting major Indian ports with worldwide shipping lanes, port clearance, and marine cargo insurance."
+      heroImage="/images/freight-container-loading.jpg"
+      heroImageAlt="Palletized cargo arranged inside a maritime shipping container"
+      galleryImage="/images/container-shipment-boxes.jpg"
+      galleryImageAlt="Organized cartons packed for maritime sea freight transport"
+      whatsappMessage="Hi Shiftora, I would like to get a quote for Sea Freight shipping."
+      highlights={[
+        'Full Container Load (20ft, 40ft, 40ft HC) and cost-effective LCL consolidation',
+        'Direct port handling at Nhava Sheva (JNPT), Mundra, Chennai, and Kolkata',
+        'Customs bill of lading (B/L) processing, port documentation & fumigation certificates',
+        'Industrial desiccant bags & anti-moisture inner lining preventing sea-sweat damage',
+      ]}
+      features={[
+        {
+          icon: <Ship className="w-6 h-6" />,
+          title: 'Full Container Load (FCL)',
+          description:
+            'Dedicated 20-foot and 40-foot containers exclusively reserved for your cargo, eliminating multi-shipper handling risks.',
+        },
+        {
+          icon: <TrendingDown className="w-6 h-6" />,
+          title: 'LCL Shared Groupage Consolidation',
+          description:
+            'Cost-efficient ocean transit for partial volumes where you only pay for the exact cubic meters (CBM) your cargo occupies.',
+        },
+        {
+          icon: <Box className="w-6 h-6" />,
+          title: 'Marine Moisture & Rust Defense',
+          description:
+            'Heavy-gauge container liners, vacuum barrier packaging, and silica desiccants safeguard against saltwater humidity.',
+        },
+        {
+          icon: <FileText className="w-6 h-6" />,
+          title: 'Port Customs & Terminal Clearance',
+          description:
+            'Experienced customs house agents (CHA) oversee export inspection, container stuffing, and terminal gate entry.',
+        },
+        {
+          icon: <Anchor className="w-6 h-6" />,
+          title: 'Global Port Network Connections',
+          description:
+            'Reliable vessel schedules across Europe, the Persian Gulf, US East & West Coasts, Southeast Asia, and Africa.',
+        },
+        {
+          icon: <ShieldCheck className="w-6 h-6" />,
+          title: 'Institute Cargo Clauses (A) Insurance',
+          description:
+            'All-risk marine cargo policy covering general average, water ingress, vessel distress, and physical transit loss.',
+        },
+      ]}
+      processSteps={[
+        {
+          number: '01',
+          title: 'Volume Assessment & Container Selection',
+          description:
+            'Calculating cargo CBM and total gross weight to recommend between FCL dedicated container or LCL consolidation.',
+        },
+        {
+          number: '02',
+          title: 'Export Packing & Palletization',
+          description:
+            'Pallet wrapping, strapping, weatherproofing, and fumigation stamp compliance prior to port transport.',
+        },
+        {
+          number: '03',
+          title: 'Customs Stuffing & Vessel Loading',
+          description:
+            'Container loading at CFS terminal, customs clearance seal applied, and gantry crane loading onto the container ship.',
+        },
+        {
+          number: '04',
+          title: 'Ocean Voyage & Port Clearance',
+          description:
+            'Real-time vessel tracking, destination customs clearance, and container drayage to the final warehouse or facility.',
+        },
+      ]}
+    />
   );
 };

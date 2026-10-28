@@ -1,5 +1,5 @@
 import React from 'react';
-import { ArrowRight, Phone, MessageCircle, CheckCircle2 } from 'lucide-react';
+import { ArrowRight, Phone, MessageCircle, CheckCircle2, ShieldCheck, Clock, Award, Headphones } from 'lucide-react';
 import { Container } from './Container';
 import { siteConfig } from '../../config/siteConfig';
 
@@ -137,6 +137,30 @@ export const ServicePageLayout: React.FC<ServicePageLayoutProps> = ({
         </Container>
       </section>
 
+      {/* ── Trust Metrics Bar ────────────────────────────────────────── */}
+      <section className="py-6 bg-[#060e1b] border-b border-white/8">
+        <Container>
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 text-center">
+            <div className="flex items-center justify-center gap-2.5 p-3 rounded-xl bg-white/[0.02] border border-white/5">
+              <ShieldCheck className="w-5 h-5 text-[#FF641A] shrink-0" />
+              <span className="text-xs sm:text-sm font-semibold text-white/80">100% Verified Crew</span>
+            </div>
+            <div className="flex items-center justify-center gap-2.5 p-3 rounded-xl bg-white/[0.02] border border-white/5">
+              <Clock className="w-5 h-5 text-[#4F8FF7] shrink-0" />
+              <span className="text-xs sm:text-sm font-semibold text-white/80">On-Time Transit</span>
+            </div>
+            <div className="flex items-center justify-center gap-2.5 p-3 rounded-xl bg-white/[0.02] border border-white/5">
+              <Award className="w-5 h-5 text-[#FF641A] shrink-0" />
+              <span className="text-xs sm:text-sm font-semibold text-white/80">Zero Hidden Costs</span>
+            </div>
+            <div className="flex items-center justify-center gap-2.5 p-3 rounded-xl bg-white/[0.02] border border-white/5">
+              <Headphones className="w-5 h-5 text-[#4F8FF7] shrink-0" />
+              <span className="text-xs sm:text-sm font-semibold text-white/80">24/7 Dedicated Support</span>
+            </div>
+          </div>
+        </Container>
+      </section>
+
       {/* ── Features Grid ──────────────────────────────────────────── */}
       <section className="py-20 border-b border-white/8">
         <Container>
@@ -247,6 +271,13 @@ export const ServicePageLayout: React.FC<ServicePageLayoutProps> = ({
                 >
                   <MessageCircle className="w-4 h-4" />
                   WhatsApp Us
+                </a>
+                <a
+                  href="/#get-quote"
+                  className="inline-flex items-center gap-2 bg-white/10 hover:bg-white/20 border border-white/20 text-white font-semibold text-base px-8 py-3.5 rounded-lg transition-all duration-200"
+                  id="service-cta-quote-form-btn"
+                >
+                  Online Quote Form &rarr;
                 </a>
               </div>
             </div>

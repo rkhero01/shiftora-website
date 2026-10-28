@@ -1,52 +1,97 @@
-import React, { useEffect } from 'react';
-
-
-import { Container } from '../components/common/Container';
-import { Button } from '../components/common/Button';
-import { siteConfig } from '../config/siteConfig';
-import { ServicePhoto } from '../components/common/ServicePhoto';
+import React from 'react';
+import {
+  Car,
+  ShieldCheck,
+  ClipboardList,
+  Lock,
+  Truck,
+  CheckCircle,
+} from 'lucide-react';
+import { ServicePageLayout } from '../components/common/ServicePageLayout';
 
 export const CarShiftingByCarCarrierPage: React.FC = () => {
-  useEffect(() => {
-    document.title = 'Car Shifting By Car Carrier | Shiftora';
-  }, []);
-
-  const whatsappLink =
-    'https://wa.me/917428614678?text=' +
-    encodeURIComponent('I am interested in Car Shifting By Car Carrier');
-
   return (
-    <>
-      
-      <main className="flex-1 py-12 bg-white text-slate-900">
-        <Container className="max-w-4xl">
-          <h1 className="text-4xl font-extrabold text-slate-900 mb-6">
-            Car Shifting By Car Carrier
-          </h1>
-          <p className="text-lg text-slate-700 mb-8">
-            Safe, door‑to‑door transport of cars using enclosed carriers, with insurance and condition inspection.
-          </p>
-          <ServicePhoto src="/shiftora-hero-truck.jpg" alt="Shiftora branded transport truck used for relocation logistics" />
-          <ul className="list-disc list-inside text-slate-600 mb-8">
-            <li>Enclosed hydraulic car carrier loading</li>
-            <li>Full insurance coverage during transit</li>
-            <li>Pre‑ and post‑transport condition reports</li>
-            <li>Flexible timing for pickup and delivery</li>
-          </ul>
-          <div className="flex gap-4 mb-8">
-            <Button href={siteConfig.contact.phoneRaw} variant="primary" size="md">
-              Call Now
-            </Button>
-            <Button href={whatsappLink} variant="outline" size="md">
-              WhatsApp
-            </Button>
-            <Button href="#get-quote" variant="secondary" size="md">
-              Get a Free Quote
-            </Button>
-          </div>
-        </Container>
-      </main>
-      
-    </>
+    <ServicePageLayout
+      pageTitle="Car Shifting by Car Carrier | Shiftora Packers & Movers"
+      categoryLabel="Specialized Automobile Transit"
+      heading="Enclosed & Hydraulic Ramp"
+      headingAccent="Car Carrier Transport"
+      subheading="Transport your sedan, SUV, electric vehicle, or luxury car across India in fully covered, multi-deck car carriers featuring hydraulic lift ramps, custom wheel locks, and end-to-end transit insurance."
+      heroImage="/shiftora-hero-truck.jpg"
+      heroImageAlt="Shiftora heavy transport vehicle and enclosed logistics carrier"
+      galleryImage="/images/truck-loaded-with-cartons.jpg"
+      galleryImageAlt="Secured highway vehicle carrier prepared for long-distance transit"
+      whatsappMessage="Hi Shiftora, I would like to get a quote for Car Shifting by Car Carrier."
+      highlights={[
+        'Covered multi-car carriers protecting against stones, dust, and weather',
+        'Hydraulic ramps with shallow entry angles to prevent underbody scraping',
+        'Detailed 360° digital condition report with photographic odometer logging',
+        'Four-point high-tensile wheel tie-down straps on every vehicle',
+      ]}
+      features={[
+        {
+          icon: <Truck className="w-6 h-6" />,
+          title: 'Covered Multi-Vehicle Carriers',
+          description:
+            'Enclosed trailers prevent stone chip hits, rain damage, bird drops, and sun exposure during long highway journeys.',
+        },
+        {
+          icon: <Car className="w-6 h-6" />,
+          title: 'Sedans, SUVs & Luxury Cars',
+          description:
+            'Engineered tie-down clearances accommodating low-ground-clearance sports cars, heavy luxury 4x4s, and electric vehicles.',
+        },
+        {
+          icon: <ClipboardList className="w-6 h-6" />,
+          title: '360° Inspection Sign-Off',
+          description:
+            'Itemized car condition report recording odometer reading, body scratches, and fuel level before release and at handover.',
+        },
+        {
+          icon: <Lock className="w-6 h-6" />,
+          title: 'Four-Point Wheel Restraints',
+          description:
+            'Heavy-duty ratcheted wheel chocks and non-abrasive tire webbing secure each wheel without pulling on vehicle suspension.',
+        },
+        {
+          icon: <CheckCircle className="w-6 h-6" />,
+          title: 'Doorstep Pickup & Delivery',
+          description:
+            'Convenient home pickup and destination delivery with certified driver handoff or flatbed transfer if streets are narrow.',
+        },
+        {
+          icon: <ShieldCheck className="w-6 h-6" />,
+          title: 'Dedicated Vehicle Transit Insurance',
+          description:
+            'Comprehensive automobile transit policy covering transit collision, overturning, or physical damage for full peace of mind.',
+        },
+      ]}
+      processSteps={[
+        {
+          number: '01',
+          title: 'Booking & Vehicle Audit',
+          description:
+            'Schedule pickup time, conduct pre-transport digital photo inspection, and record existing condition details.',
+        },
+        {
+          number: '02',
+          title: 'Hydraulic Ramp Loading',
+          description:
+            'Carefully driven onto the carrier ramp and positioned; tires locked into steel channel chocks with ratchet straps.',
+        },
+        {
+          number: '03',
+          title: 'Covered Interstate Transit',
+          description:
+            'Direct highway transport with scheduled driver rotations, checkpoint inspections, and GPS location tracking.',
+        },
+        {
+          number: '04',
+          title: 'Destination Unloading & Handover',
+          description:
+            'Unloaded via ramp at destination, joint physical inspection with the customer against original condition report, and keys handover.',
+        },
+      ]}
+    />
   );
 };

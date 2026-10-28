@@ -1,42 +1,97 @@
-import React, { useEffect } from 'react';
-
-
-import { Container } from '../components/common/Container';
-import { Button } from '../components/common/Button';
-import { siteConfig } from '../config/siteConfig';
-import { ServicePhoto } from '../components/common/ServicePhoto';
+import React from 'react';
+import {
+  Monitor,
+  CheckSquare,
+  Briefcase,
+  Sliders,
+  Sparkles,
+  Shield,
+} from 'lucide-react';
+import { ServicePageLayout } from '../components/common/ServicePageLayout';
 
 export const OfficeRelocationPage: React.FC = () => {
-  useEffect(() => {
-    document.title = 'Office Relocation | Shiftora';
-  }, []);
-
-  const whatsappLink = 'https://wa.me/917428614678?text=' + encodeURIComponent('I am interested in Office Relocation');
-
   return (
-    <>
-      
-      <main className="flex-1 py-12 bg-white text-slate-900">
-        <Container className="max-w-4xl">
-          <h1 className="text-4xl font-extrabold text-slate-900 mb-6">Office Relocation</h1>
-          <p className="text-lg text-slate-700 mb-8">
-            Professional relocation of corporate offices with minimal downtime, secure handling of IT equipment, and coordinated setup.
-          </p>
-          <ServicePhoto src="/images/stacked-freight-boxes.jpg" alt="Labeled shipment cartons arranged for transport" />
-          <ul className="list-disc list-inside text-slate-600 mb-8">
-            <li>Pre-move site survey and floor planning</li>
-            <li>Secure packing of servers, monitors, and furniture</li>
-            <li>Dedicated move crew with overnight options</li>
-            <li>Post-move setup and unpacking assistance</li>
-          </ul>
-          <div className="flex gap-4 mb-8">
-            <Button href={siteConfig.contact.phoneRaw} variant="primary" size="md">Call Now</Button>
-            <Button href={whatsappLink} variant="outline" size="md">WhatsApp</Button>
-            <Button href="#get-quote" variant="secondary" size="md">Get a Free Quote</Button>
-          </div>
-        </Container>
-      </main>
-      
-    </>
+    <ServicePageLayout
+      pageTitle="Office Relocation Services | Shiftora Packers & Movers"
+      categoryLabel="Commercial Workplace Moves"
+      heading="Seamless Office Moves With"
+      headingAccent="Minimal Disruption"
+      subheading="From agile startups to multi-story headquarters, Shiftora executes structured office relocations covering ergonomic furniture, conference audio-visual systems, pantry hardware, and departmental inventories."
+      heroImage="/images/stacked-freight-boxes.jpg"
+      heroImageAlt="Labeled shipment cartons organized for office relocation transport"
+      galleryImage="/images/container-shipment-boxes.jpg"
+      galleryImageAlt="Shiftora shipping container loaded with secure office cartons and equipment"
+      whatsappMessage="Hi Shiftora, I would like to get a quote for Office Relocation."
+      highlights={[
+        'Floor-plan mapping with color-coded desk assignment labels',
+        'Anti-static bubble cushioning for desktop PCs, printers & monitors',
+        'Safe packaging for conference AV gear and projector setups',
+        'Swift turn-around designed around your work calendar',
+      ]}
+      features={[
+        {
+          icon: <Monitor className="w-6 h-6" />,
+          title: 'Workstation & PC Packaging',
+          description:
+            'Dedicated CPU boxes, padded keyboard bags, monitor corner guards, and labeled peripheral zip-pouches for every employee.',
+        },
+        {
+          icon: <CheckSquare className="w-6 h-6" />,
+          title: 'Floor-Plan Inventory Mapping',
+          description:
+            'Color-coded stickers mapped against architectural layouts ensure cartons arrive precisely at the designated desk in the new office.',
+        },
+        {
+          icon: <Briefcase className="w-6 h-6" />,
+          title: 'Executive Cabin & Boardroom Care',
+          description:
+            'High-grade furniture blankets and corner cushions protect premium solid wood executive desks, leather chairs, and conference tables.',
+        },
+        {
+          icon: <Sliders className="w-6 h-6" />,
+          title: 'Modular Panel & Shelf Deconstruction',
+          description:
+            'Trained assemblers dismantle filing cabinets, compactors, whiteboards, and modular glass partitions with zero damage.',
+        },
+        {
+          icon: <Sparkles className="w-6 h-6" />,
+          title: 'Debris Removal & Clean Handover',
+          description:
+            'After unpacking at the destination, our crew clears away all carton scraps, stretch wraps, and tapes for a pristine handover.',
+        },
+        {
+          icon: <Shield className="w-6 h-6" />,
+          title: 'All-Risk Commercial Moving Cover',
+          description:
+            'Full transit protection policy covering physical loss or impact damage during transport, loading, and unloading.',
+        },
+      ]}
+      processSteps={[
+        {
+          number: '01',
+          title: 'Site Survey & Layout Consultation',
+          description:
+            'Detailed review of current inventory, elevator dimensions, parking docks, and target floor plan assignments.',
+        },
+        {
+          number: '02',
+          title: 'Pre-Move Labeling & Material Supply',
+          description:
+            'Color-coded labeling kits, crate drops, and personal item packing boxes delivered to staff ahead of moving day.',
+        },
+        {
+          number: '03',
+          title: 'Systematic Loading & Transfer',
+          description:
+            'Loading grouped by department onto closed-container transport trucks with tied-down security locks.',
+        },
+        {
+          number: '04',
+          title: 'Placement, Assembly & Debris Clearance',
+          description:
+            'Items delivered to respective desks and zones, furniture assembled, and packing waste promptly cleared.',
+        },
+      ]}
+    />
   );
 };
