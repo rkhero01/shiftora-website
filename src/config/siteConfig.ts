@@ -107,9 +107,9 @@ export const siteConfig: SiteConfig = {
   navigation: [
     { label: 'Home', href: '/' },
     { label: 'Services', href: '#services' },
-    { label: 'Why Shiftora', href: '#why-us' },
-    { label: 'How It Works', href: '#how-it-works' },
-    { label: 'Service Areas', href: '#service-areas' },
-    { label: 'Get Quote', href: '#get-quote' },
+    { label: 'Why Shiftora', href: '/#why-us' },
+    { label: 'How It Works', href: '/#how-it-works' },
+    { label: 'Service Areas', href: '/#service-areas' },
+    { label: 'Get Quote', href: '/#get-quote' },
   ],
 };

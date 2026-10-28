@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import { HeroSection } from '../components/home/HeroSection';
 import { TrustStrip } from '../components/home/TrustStrip';
 import { ServicesSection } from '../components/home/ServicesSection';
@@ -9,6 +10,17 @@ import { QuoteCtaSection } from '../components/home/QuoteCtaSection';
 import { WorkGallerySection } from '../components/home/WorkGallerySection';
 
 export const HomePage: React.FC = () => {
+  const location = useLocation();
+
+  useEffect(() => {
+    if (location.hash) {
+      const element = document.getElementById(location.hash.substring(1));
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+  }, [location]);
+
   return (
     <main>
       {/* 1. Hero */}

@@ -7,6 +7,9 @@ import { Link } from 'react-router-dom';
 
 export const Header: React.FC = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const closeMobileMenu = () => {
+    setMobileMenuOpen(false);
+  };
 
   return (
     <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-slate-100 shadow-xs">
@@ -59,8 +62,13 @@ export const Header: React.FC = () => {
 
         {/* Desktop Nav Links */}
         <nav className="hidden lg:flex items-center gap-7" aria-label="Main Navigation">
-          {siteConfig.navigation.map((item) =>
-            item.label === 'Services' ? (
+          {siteConfig.navigation.map((item) => {
+            const linkProps = {
+              to: item.href,
+              className: `text-sm font-medium ${item.href.includes('#') ? 'text-amber-600 hover:text-amber-700' : 'text-slate-700 hover:text-amber-600'} transition-colors`,
+              onClick: closeMobileMenu,
+            };
+            return item.label === 'Services' ? (
               <div className="relative group" key={item.label}>
                 <Link
                   to={item.href}
@@ -84,15 +92,11 @@ export const Header: React.FC = () => {
                 </div>
               </div>
             ) : (
-              <Link
-                key={item.label}
-                to={item.href}
-                className="text-sm font-medium text-slate-700 hover:text-amber-600 transition-colors"
-              >
+              <Link {...linkProps} key={item.label}>
                 {item.label}
               </Link>
-            )
-          )}
+            );
+          })}
         </nav>
 
         {/* Desktop CTAs */}
@@ -122,9 +126,13 @@ export const Header: React.FC = () => {
         {/* Mobile menu toggle */}
         <button
           type="button"
-          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+          onClick={() => {
+            setMobileMenuOpen(!mobileMenuOpen);
+          }}
           className="lg:hidden p-2 rounded-lg text-slate-700 hover:bg-slate-100 focus:outline-none focus:ring-2 focus:ring-amber-500"
           aria-label={mobileMenuOpen ? 'Close Menu' : 'Open Menu'}
+          aria-expanded={mobileMenuOpen}
+          aria-controls="mobile-navigation-drawer"
           id="mobile-menu-toggle-btn"
         >
           {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -133,18 +141,36 @@ export const Header: React.FC = () => {
 
       {/* Mobile Navigation Drawer */}
       {mobileMenuOpen && (
-        <div className="lg:hidden border-t border-slate-200 bg-white px-4 pt-3 pb-6 shadow-xl animate-in slide-in-from-top-2 duration-200">
+        <div className="lg:hidden border-t border-slate-200 bg-white px-4 pt-3 pb-6 shadow-xl max-h-screen overflow-y-auto animate-in slide-in-from-top-2 duration-200">
           <nav className="flex flex-col gap-2 pb-4 border-b border-slate-100">
-            {siteConfig.navigation.map((item) => (
-              <Link
-                key={item.label}
-                to={item.href}
-                onClick={() => setMobileMenuOpen(false)}
-                className="py-2 px-3 text-base font-medium text-slate-800 rounded-md hover:bg-slate-50 hover:text-amber-600"
-              >
-                {item.label}
-              </Link>
-            ))}
+            {siteConfig.navigation.map((item) => {
+              if (item.label === 'Services') {
+                return (
+                  <div key="services-submenu" className="flex flex-col">
+                    <Link to="/services/residential-relocation" onClick={() => setMobileMenuOpen(false)} className="py-2 px-3 text-base font-medium text-slate-800 rounded-md hover:bg-slate-50 hover:text-amber-600">Residential Relocation</Link>
+                    <Link to="/services/corporate-shifting-service" onClick={() => setMobileMenuOpen(false)} className="py-2 px-3 text-base font-medium text-slate-800 rounded-md hover:bg-slate-50 hover:text-amber-600">Corporate Shifting Service</Link>
+                    <Link to="/services/office-relocation" onClick={() => setMobileMenuOpen(false)} className="py-2 px-3 text-base font-medium text-slate-800 rounded-md hover:bg-slate-50 hover:text-amber-600">Office Relocation</Link>
+                    <Link to="/services/door-to-door-relocation" onClick={() => setMobileMenuOpen(false)} className="py-2 px-3 text-base font-medium text-slate-800 rounded-md hover:bg-slate-50 hover:text-amber-600">Door To Door Relocation</Link>
+                    <Link to="/services/international-relocation" onClick={() => setMobileMenuOpen(false)} className="py-2 px-3 text-base font-medium text-slate-800 rounded-md hover:bg-slate-50 hover:text-amber-600">International Relocation</Link>
+                    <Link to="/services/car-shifting-by-car-carrier" onClick={() => setMobileMenuOpen(false)} className="py-2 px-3 text-base font-medium text-slate-800 rounded-md hover:bg-slate-50 hover:text-amber-600">Car Shifting By Car Carrier</Link>
+                    <Link to="/services/industrial-relocation" onClick={() => setMobileMenuOpen(false)} className="py-2 px-3 text-base font-medium text-slate-800 rounded-md hover:bg-slate-50 hover:text-amber-600">Industrial Relocation</Link>
+                    <Link to="/services/air-freight" onClick={() => setMobileMenuOpen(false)} className="py-2 px-3 text-base font-medium text-slate-800 rounded-md hover:bg-slate-50 hover:text-amber-600">Air Freight</Link>
+                    <Link to="/services/sea-freight" onClick={() => setMobileMenuOpen(false)} className="py-2 px-3 text-base font-medium text-slate-800 rounded-md hover:bg-slate-50 hover:text-amber-600">Sea Freight</Link>
+                    <Link to="/services/road-freight" onClick={() => setMobileMenuOpen(false)} className="py-2 px-3 text-base font-medium text-slate-800 rounded-md hover:bg-slate-50 hover:text-amber-600">Road Freight</Link>
+                  </div>
+                );
+              }
+              return (
+                <Link
+                  key={item.label}
+                  to={item.href}
+                  onClick={closeMobileMenu}
+                  className="py-2 px-3 text-base font-medium text-slate-800 rounded-md hover:bg-slate-50 hover:text-amber-600"
+                >
+                  {item.label}
+                </Link>
+              );
+            })}
           </nav>
 
           <div className="pt-4 flex flex-col gap-3">
