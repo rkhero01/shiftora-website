@@ -16,8 +16,10 @@ import { SeaFreightPage } from './pages/SeaFreightPage';
 import { RoadFreightPage } from './pages/RoadFreightPage';
 
 export const App: React.FC = () => {
+  const basename = import.meta.env.BASE_URL.replace(/\/$/, '') || '/';
+
   return (
-    <Router basename={import.meta.env.BASE_URL}>
+    <Router basename={basename}>
       <div className="min-h-screen flex flex-col bg-white text-slate-900 antialiased selection:bg-amber-100 selection:text-amber-900">
         <Header />
         <div className="flex-1">
@@ -33,6 +35,7 @@ export const App: React.FC = () => {
             <Route path="/services/air-freight" element={<AirFreightPage />} />
             <Route path="/services/sea-freight" element={<SeaFreightPage />} />
             <Route path="/services/road-freight" element={<RoadFreightPage />} />
+            <Route path="*" element={<HomePage />} />
           </Routes>
         </div>
         <Footer />

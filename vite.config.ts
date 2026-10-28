@@ -28,11 +28,12 @@ function githubPagesSpa() {
         // 1. Create 404.html for any unmapped route fallback
         copyFileSync(indexHtml, resolve(distDir, '404.html'))
 
-        // 2. Pre-generate directory index.html for all 10 service routes for instant HTTP 200 on refresh
+        // 2. Pre-generate directory index.html and route.html for all 10 service routes
         for (const route of serviceRoutes) {
           const targetDir = resolve(distDir, route)
           mkdirSync(targetDir, { recursive: true })
           copyFileSync(indexHtml, resolve(targetDir, 'index.html'))
+          copyFileSync(indexHtml, resolve(distDir, `${route}.html`))
         }
       } catch (err) {
         console.error('Failed to generate GitHub Pages SPA fallbacks:', err)
