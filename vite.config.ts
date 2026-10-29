@@ -43,7 +43,7 @@ function githubPagesSpa() {
 }
 
 export default defineConfig({
-  base: '/shiftora-website/',
+  base: '/',
   plugins: [
     react(),
     tailwindcss(),
