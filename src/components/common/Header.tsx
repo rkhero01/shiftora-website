@@ -75,7 +75,7 @@ export const Header: React.FC = () => {
           onClick={closeMobileMenu}
         >
           <img
-            src="/images/shiftora-logo.png"
+            src="/Images/shiftora-logo.png"
             alt="Shiftora Packers & Movers"
             className="h-11 sm:h-12 w-auto max-w-[190px] sm:max-w-[220px] object-contain"
           />
