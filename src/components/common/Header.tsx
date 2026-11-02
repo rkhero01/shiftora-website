@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import {
   Phone,
   ArrowRight,
@@ -10,10 +10,10 @@ import {
 import { siteConfig } from '../../config/siteConfig';
 import { Container } from './Container';
 import { Button } from './Button';
-import { Link } from 'react-router-dom';
+import { Link, NavLink, useLocation } from 'react-router-dom';
 import { Logo } from './Logo';
 
-const serviceLinks = [
+export const serviceLinks = [
   { label: 'Residential Relocation', href: '/services/residential-relocation' },
   { label: 'Corporate Shifting Service', href: '/services/corporate-shifting-service' },
   { label: 'Office Relocation', href: '/services/office-relocation' },
@@ -28,10 +28,42 @@ const serviceLinks = [
 
 export const Header: React.FC = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [servicesDropdownOpen, setServicesDropdownOpen] = useState(false);
+  const [mobileServicesOpen, setMobileServicesOpen] = useState(true);
+  const dropdownRef = useRef<HTMLDivElement>(null);
+  const location = useLocation();
 
   const closeMobileMenu = () => {
     setMobileMenuOpen(false);
   };
+
+  // Close menus whenever route changes
+  useEffect(() => {
+    setServicesDropdownOpen(false);
+    setMobileMenuOpen(false);
+  }, [location.pathname, location.hash]);
+
+  // Close desktop dropdown on outside click or Escape key
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setServicesDropdownOpen(false);
+      }
+    };
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        setServicesDropdownOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    document.addEventListener('keydown', handleKeyDown);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener('keydown', handleKeyDown);
+    };
+  }, []);
+
+  const isServiceActive = location.pathname.startsWith('/services/');
 
   return (
     <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-slate-200 shadow-sm">
@@ -84,28 +116,62 @@ export const Header: React.FC = () => {
         >
           {siteConfig.navigation.map((item) =>
             item.label === 'Services' ? (
-              <div className="relative group" key={item.label}>
-                <Link
-                  to={item.href}
-                  className="inline-flex items-center gap-1 text-sm font-semibold text-slate-700 hover:text-amber-600 transition-colors py-3"
+              <div
+                className="relative"
+                key={item.label}
+                ref={dropdownRef}
+                onMouseEnter={() => setServicesDropdownOpen(true)}
+                onMouseLeave={() => setServicesDropdownOpen(false)}
+              >
+                <button
+                  type="button"
+                  onClick={() => setServicesDropdownOpen((prev) => !prev)}
+                  aria-expanded={servicesDropdownOpen}
+                  aria-haspopup="true"
+                  id="desktop-services-dropdown-btn"
+                  className={`inline-flex items-center gap-1 text-sm font-semibold transition-colors py-3 cursor-pointer focus:outline-none ${
+                    isServiceActive || servicesDropdownOpen
+                      ? 'text-amber-600'
+                      : 'text-slate-700 hover:text-amber-600'
+                  }`}
                 >
                   <span>Services</span>
-                  <ChevronDown className="w-4 h-4 text-slate-500 group-hover:text-amber-600 group-hover:rotate-180 transition-transform duration-200" />
-                </Link>
+                  <ChevronDown
+                    className={`w-4 h-4 transition-transform duration-200 ${
+                      servicesDropdownOpen ? 'rotate-180 text-amber-600' : 'text-slate-500'
+                    }`}
+                  />
+                </button>
 
-                {/* Dropdown Menu (pt-1 acts as an invisible hover bridge) */}
-                <div className="absolute left-0 top-full pt-1 w-64 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+                {/* Dropdown Menu */}
+                <div
+                  className={`absolute left-0 top-full pt-1 w-64 transition-all duration-200 z-50 ${
+                    servicesDropdownOpen
+                      ? 'opacity-100 visible translate-y-0 pointer-events-auto'
+                      : 'opacity-0 invisible -translate-y-1 pointer-events-none'
+                  }`}
+                >
                   <div className="bg-white border border-slate-200 rounded-xl shadow-xl overflow-hidden">
-                    <ul className="py-2 max-h-[75vh] overflow-y-auto">
+                    <ul className="py-2 max-h-[75vh] overflow-y-auto" role="menu">
                       {serviceLinks.map((service) => (
-                        <li key={service.href}>
-                          <Link
+                        <li key={service.href} role="none">
+                          <NavLink
                             to={service.href}
-                            onClick={closeMobileMenu}
-                            className="block px-4 py-2.5 text-sm font-medium text-slate-700 hover:bg-amber-50 hover:text-amber-700 transition-colors"
+                            role="menuitem"
+                            onClick={() => {
+                              setServicesDropdownOpen(false);
+                              closeMobileMenu();
+                            }}
+                            className={({ isActive }) =>
+                              `block px-4 py-2.5 text-sm font-medium transition-colors ${
+                                isActive
+                                  ? 'bg-amber-50 text-amber-700 font-semibold'
+                                  : 'text-slate-700 hover:bg-amber-50 hover:text-amber-700'
+                              }`
+                            }
                           >
                             {service.label}
-                          </Link>
+                          </NavLink>
                         </li>
                       ))}
                     </ul>
@@ -191,19 +257,40 @@ export const Header: React.FC = () => {
             {siteConfig.navigation.map((item) =>
               item.label === 'Services' ? (
                 <div key="services-submenu" className="flex flex-col py-1">
-                  <span className="px-3 pt-2 pb-1 text-xs font-bold uppercase tracking-wider text-amber-600">
-                    Our 10 Relocation &amp; Freight Services
-                  </span>
-                  {serviceLinks.map((service) => (
-                    <Link
-                      key={service.href}
-                      to={service.href}
-                      onClick={closeMobileMenu}
-                      className="py-2 px-3 text-sm font-medium text-slate-700 rounded-md hover:bg-amber-50 hover:text-amber-700 transition-colors"
-                    >
-                      {service.label}
-                    </Link>
-                  ))}
+                  <button
+                    type="button"
+                    onClick={() => setMobileServicesOpen((prev) => !prev)}
+                    aria-expanded={mobileServicesOpen}
+                    className="flex items-center justify-between px-3 py-2 text-base font-semibold text-slate-800 rounded-md hover:bg-amber-50 hover:text-amber-700 transition-colors"
+                  >
+                    <span>Services</span>
+                    <ChevronDown
+                      className={`w-4 h-4 text-amber-600 transition-transform duration-200 ${
+                        mobileServicesOpen ? 'rotate-180' : ''
+                      }`}
+                    />
+                  </button>
+
+                  {mobileServicesOpen && (
+                    <div className="flex flex-col pl-3 mt-1 border-l-2 border-amber-200 space-y-0.5">
+                      {serviceLinks.map((service) => (
+                        <NavLink
+                          key={service.href}
+                          to={service.href}
+                          onClick={closeMobileMenu}
+                          className={({ isActive }) =>
+                            `py-2 px-3 text-sm font-medium rounded-md transition-colors ${
+                              isActive
+                                ? 'bg-amber-50 text-amber-700 font-semibold'
+                                : 'text-slate-700 hover:bg-amber-50 hover:text-amber-700'
+                            }`
+                          }
+                        >
+                          {service.label}
+                        </NavLink>
+                      ))}
+                    </div>
+                  )}
                 </div>
               ) : (
                 <Link

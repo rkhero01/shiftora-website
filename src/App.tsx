@@ -16,7 +16,10 @@ import { SeaFreightPage } from './pages/SeaFreightPage';
 import { RoadFreightPage } from './pages/RoadFreightPage';
 
 export const App: React.FC = () => {
-  const basename = import.meta.env.BASE_URL.replace(/\/$/, '') || '/';
+  const basename =
+    typeof window !== 'undefined' && window.location.pathname.startsWith('/shiftora-website')
+      ? '/shiftora-website'
+      : import.meta.env.BASE_URL.replace(/\/$/, '') || '/';
 
   return (
     <Router basename={basename}>
@@ -26,15 +29,25 @@ export const App: React.FC = () => {
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/services/residential-relocation" element={<ResidentialRelocationPage />} />
+            <Route path="/services/residential-relocation.html" element={<ResidentialRelocationPage />} />
             <Route path="/services/corporate-shifting-service" element={<CorporateShiftingServicePage />} />
+            <Route path="/services/corporate-shifting-service.html" element={<CorporateShiftingServicePage />} />
             <Route path="/services/office-relocation" element={<OfficeRelocationPage />} />
+            <Route path="/services/office-relocation.html" element={<OfficeRelocationPage />} />
             <Route path="/services/door-to-door-relocation" element={<DoorToDoorRelocationPage />} />
+            <Route path="/services/door-to-door-relocation.html" element={<DoorToDoorRelocationPage />} />
             <Route path="/services/international-relocation" element={<InternationalRelocationPage />} />
+            <Route path="/services/international-relocation.html" element={<InternationalRelocationPage />} />
             <Route path="/services/car-shifting-by-car-carrier" element={<CarShiftingByCarCarrierPage />} />
+            <Route path="/services/car-shifting-by-car-carrier.html" element={<CarShiftingByCarCarrierPage />} />
             <Route path="/services/industrial-relocation" element={<IndustrialRelocationPage />} />
+            <Route path="/services/industrial-relocation.html" element={<IndustrialRelocationPage />} />
             <Route path="/services/air-freight" element={<AirFreightPage />} />
+            <Route path="/services/air-freight.html" element={<AirFreightPage />} />
             <Route path="/services/sea-freight" element={<SeaFreightPage />} />
+            <Route path="/services/sea-freight.html" element={<SeaFreightPage />} />
             <Route path="/services/road-freight" element={<RoadFreightPage />} />
+            <Route path="/services/road-freight.html" element={<RoadFreightPage />} />
             <Route path="*" element={<HomePage />} />
           </Routes>
         </div>
