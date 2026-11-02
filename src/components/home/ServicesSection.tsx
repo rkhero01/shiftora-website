@@ -2,10 +2,14 @@ import React from 'react';
 import {
   Home,
   Building2,
-  Compass,
+  Briefcase,
+  KeyRound,
+  Globe,
+  Car,
+  Factory,
+  Plane,
+  Ship,
   Truck,
-  Package,
-  Warehouse,
   CheckCircle2,
   ArrowRight,
 } from 'lucide-react';
@@ -20,14 +24,21 @@ export const ServicesSection: React.FC = () => {
         return <Home className="w-6 h-6 text-amber-600" />;
       case 'Building2':
         return <Building2 className="w-6 h-6 text-amber-600" />;
-      case 'Compass':
-        return <Compass className="w-6 h-6 text-amber-600" />;
+      case 'Briefcase':
+        return <Briefcase className="w-6 h-6 text-amber-600" />;
+      case 'KeyRound':
+        return <KeyRound className="w-6 h-6 text-amber-600" />;
+      case 'Globe':
+        return <Globe className="w-6 h-6 text-amber-600" />;
+      case 'Car':
+        return <Car className="w-6 h-6 text-amber-600" />;
+      case 'Factory':
+        return <Factory className="w-6 h-6 text-amber-600" />;
+      case 'Plane':
+        return <Plane className="w-6 h-6 text-amber-600" />;
+      case 'Ship':
+        return <Ship className="w-6 h-6 text-amber-600" />;
       case 'Truck':
-        return <Truck className="w-6 h-6 text-amber-600" />;
-      case 'Package':
-        return <Package className="w-6 h-6 text-amber-600" />;
-      case 'Warehouse':
-        return <Warehouse className="w-6 h-6 text-amber-600" />;
       default:
         return <Truck className="w-6 h-6 text-amber-600" />;
     }
@@ -39,34 +50,22 @@ export const ServicesSection: React.FC = () => {
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-16">
           <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-100 text-slate-800 text-xs font-semibold uppercase tracking-wider mb-3">
-            Our Relocation Services
+            Our Relocation &amp; Freight Services
           </div>
           <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
-            Comprehensive Moving Solutions
+            Comprehensive Moving &amp; Logistics Solutions
           </h2>
           <p className="mt-3 text-base text-slate-600 leading-relaxed">
-            Toter manages each relocation with specialized packing materials, calibrated transport,
-            and dedicated logistics coordination tailored to your inventory.
+            TOTER Packers &amp; Movers manages each relocation and cargo shipment with specialized
+            multi-layer packing materials, calibrated transport, and dedicated coordination tailored
+            to your requirements.
           </p>
         </div>
 
-          {/* 6 Responsive Service Cards Grid (1 col mobile, 2 col tablet, 3 col desktop) */}
+        {/* All 10 Responsive Service Cards Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {siteConfig.services.map((service) => {
-            // Map known service titles to their exact route paths; fallback to home if unknown
-            const routeMap: Record<string, string> = {
-              'Residential Relocation': '/services/residential-relocation',
-              'Corporate Shifting Service': '/services/corporate-shifting-service',
-              'Office Relocation': '/services/office-relocation',
-              'Door To Door Relocation': '/services/door-to-door-relocation',
-              'International Relocation': '/services/international-relocation',
-              'Car Shifting By Car Carrier': '/services/car-shifting-by-car-carrier',
-              'Industrial Relocation': '/services/industrial-relocation',
-              'Air Freight': '/services/air-freight',
-              'Sea Freight': '/services/sea-freight',
-              'Road Freight': '/services/road-freight',
-            };
-            const serviceUrl = routeMap[service.title] ?? '#';
+            const serviceUrl = service.href ?? `/services/${service.id}`;
             return (
               <Link
                 key={service.id}
@@ -102,18 +101,14 @@ export const ServicesSection: React.FC = () => {
 
                 {/* Action Link */}
                 <div className="pt-6 mt-6 border-t border-slate-100 flex items-center justify-between">
-                  <a
-                    href="#get-quote"
-                    className="text-xs font-semibold text-slate-900 group-hover:text-amber-600 flex items-center gap-1.5 transition-colors"
-                  >
-                    <span>Request Service Quote</span>
+                  <span className="text-xs font-semibold text-slate-900 group-hover:text-amber-600 flex items-center gap-1.5 transition-colors">
+                    <span>Explore Service &amp; Get Quote</span>
                     <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                  </a>
+                  </span>
                 </div>
               </Link>
             );
           })}
-
         </div>
       </Container>
     </section>

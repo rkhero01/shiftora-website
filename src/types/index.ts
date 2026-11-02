@@ -21,6 +21,7 @@ export interface ServiceArea {
 export interface ServiceOffering {
   id: string;
   title: string;
+  href?: string;
   shortDescription: string;
   iconName: string;
   features: string[];

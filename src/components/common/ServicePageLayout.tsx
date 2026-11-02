@@ -63,6 +63,7 @@ export const ServicePageLayout: React.FC<ServicePageLayoutProps> = ({
 }) => {
   React.useEffect(() => {
     document.title = pageTitle;
+    window.scrollTo(0, 0);
   }, [pageTitle]);
 
   const whatsappUrl =
@@ -237,6 +238,32 @@ export const ServicePageLayout: React.FC<ServicePageLayoutProps> = ({
                 </div>
               ))}
             </div>
+          </div>
+        </Container>
+      </section>
+
+      {/* ── All 10 Relocation & Freight Services Directory ──────────── */}
+      <section className="py-16 border-b border-white/8 bg-[#060e1b]">
+        <Container>
+          <div className="text-center max-w-2xl mx-auto mb-10">
+            <span className="inline-block text-xs font-semibold uppercase tracking-widest text-[#FF641A] mb-2">
+              Complete Service Portfolio
+            </span>
+            <h2 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
+              Explore All 10 <span className="text-[#4F8FF7]">TOTER Services</span>
+            </h2>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3">
+            {siteConfig.services.map((service) => (
+              <Link
+                key={service.id}
+                to={service.href ?? `/services/${service.id}`}
+                className="flex items-center justify-between gap-2 px-4 py-3 rounded-xl bg-white/5 hover:bg-[#FF641A]/15 border border-white/10 hover:border-[#FF641A]/40 text-xs sm:text-sm font-semibold text-white/85 hover:text-white transition-all"
+              >
+                <span>{service.title}</span>
+                <ArrowRight className="w-3.5 h-3.5 text-[#FF641A] shrink-0" />
+              </Link>
+            ))}
           </div>
         </Container>
       </section>

@@ -28,52 +28,94 @@ export const siteConfig: SiteConfig = {
 
   services: [
     {
-      id: 'household-shifting',
-      title: 'Household Shifting',
+      id: 'residential-relocation',
+      title: 'Residential Relocation',
+      href: '/services/residential-relocation',
       shortDescription:
         'Complete home relocation covering delicate glassware, large furniture disassembly, shock-absorbing wrapping, and room-wise unpacking.',
       iconName: 'Home',
-      features: ['Multi-layer carton packing', 'Furniture wrapping & disassembly', 'Door-to-door transit care'],
+      features: ['Multi-layer carton packing', 'Furniture wrapping & disassembly', 'Room-by-room unloading & setup'],
+    },
+    {
+      id: 'corporate-shifting-service',
+      title: 'Corporate Shifting Service',
+      href: '/services/corporate-shifting-service',
+      shortDescription:
+        'Zero-downtime enterprise and branch moves engineered to transfer executive cabins, IT server racks, and departmental assets on schedule.',
+      iconName: 'Building2',
+      features: ['IT & server flight-case packing', 'Serialized employee desk tagging', 'Weekend & after-hours execution'],
     },
     {
       id: 'office-relocation',
       title: 'Office Relocation',
+      href: '/services/office-relocation',
       shortDescription:
-        'Structured corporate transitions designed to protect servers, monitors, workstations, and files while minimizing work hours interruption.',
-      iconName: 'Building2',
-      features: ['IT equipment labeling', 'Weekend & overnight moving slots', 'Desk setup coordination'],
+        'Structured workplace relocations designed to protect desktop PCs, monitors, modular workstations, and files with minimal disruption.',
+      iconName: 'Briefcase',
+      features: ['Floor-plan inventory mapping', 'Workstation dismantling & setup', 'Debris removal & clean handover'],
     },
     {
-      id: 'domestic-moving',
-      title: 'Domestic Moving',
+      id: 'door-to-door-relocation',
+      title: 'Door-to-Door Relocation',
+      href: '/services/door-to-door-relocation',
       shortDescription:
-        'Scheduled intercity shifting linking major regional hubs with dedicated transit containers and progress status milestones.',
-      iconName: 'Compass',
-      features: ['Direct interstate freight routes', 'Pre-transit inventory audit', 'Transit checkpoint updates'],
+        'Turnkey origin-to-destination moving from packing the first glass at your old home to setting up every room at your new address.',
+      iconName: 'KeyRound',
+      features: ['Zero third-party handoffs', 'Sealed dedicated container trucks', 'Single move coordinator'],
     },
     {
-      id: 'car-bike-transportation',
-      title: 'Car and Bike Transportation',
+      id: 'international-relocation',
+      title: 'International Relocation',
+      href: '/services/international-relocation',
       shortDescription:
-        'Safe vehicle transport via enclosed hydraulic car haulers and specialized two-wheeler crates with wheel-locking clamps.',
+        'Cross-border global relocations with ISPM-15 export wooden crating, customs clearance documentation, and worldwide door delivery.',
+      iconName: 'Globe',
+      features: ['ISPM-15 export wooden crating', 'Customs & documentation advisory', 'FCL, LCL & air cargo options'],
+    },
+    {
+      id: 'car-shifting-by-car-carrier',
+      title: 'Car Shifting by Car Carrier',
+      href: '/services/car-shifting-by-car-carrier',
+      shortDescription:
+        'Safe automobile transport via enclosed hydraulic car haulers with 360° inspection sign-off and four-point wheel restraints.',
+      iconName: 'Car',
+      features: ['Hydraulic ramp loading', '360° digital condition report', 'Four-point wheel tie-down locks'],
+    },
+    {
+      id: 'industrial-relocation',
+      title: 'Industrial Relocation',
+      href: '/services/industrial-relocation',
+      shortDescription:
+        'Heavy plant and machinery shifting, factory transfers, hydraulic crane rigging, and multi-axle trailer transport across India.',
+      iconName: 'Factory',
+      features: ['Hydraulic crane & rigging crew', 'Low-bed & multi-axle trailers', 'Route surveys & ODC permits'],
+    },
+    {
+      id: 'air-freight',
+      title: 'Air Freight',
+      href: '/services/air-freight',
+      shortDescription:
+        'Express domestic and international aviation cargo with priority airline space allocation, IATA packaging, and AWB tracking.',
+      iconName: 'Plane',
+      features: ['Next-Flight-Out (NFO) express', 'IATA-compliant cargo packing', 'Airport-to-door delivery'],
+    },
+    {
+      id: 'sea-freight',
+      title: 'Sea Freight',
+      href: '/services/sea-freight',
+      shortDescription:
+        'Cost-effective Full Container Load (FCL) and shared LCL ocean shipping connecting major Indian ports with global shipping lanes.',
+      iconName: 'Ship',
+      features: ['20ft & 40ft FCL / LCL groupage', 'Port customs & B/L clearance', 'Anti-moisture marine packaging'],
+    },
+    {
+      id: 'road-freight',
+      title: 'Road Freight',
+      href: '/services/road-freight',
+      shortDescription:
+        'Pan-India dedicated Full Truckload (FTL) and Part Truckload (PTL) highway container transport with live GPS tracking.',
       iconName: 'Truck',
-      features: ['Hydraulic ramp loading', 'Condition inspection sign-off', 'Secure tie-down harnesses'],
-    },
-    {
-      id: 'packing-unpacking',
-      title: 'Packing and Unpacking',
-      shortDescription:
-        'Specialized packing labor using heavy-gauge bubble wrap, corrugated sheets, edge guards, and optional post-move unpacking.',
-      iconName: 'Package',
-      features: ['Fragile item boxing', 'Numbered box inventory', 'Debris & box removal options'],
-    },
-    {
-      id: 'storage-solutions',
-      title: 'Storage Solutions',
-      shortDescription:
-        'Secure short-term and long-term warehousing units protected with 24/7 CCTV, pest management, and clean palletized stacking.',
-      iconName: 'Warehouse',
-      features: ['24/7 monitored facility', 'Flexible monthly leasing', 'Clean moisture-controlled units'],
+      features: ['14ft to 32ft closed containers', 'E-Way bill & GST compliance', 'Live GPS checkpoint tracking'],
     },
   ],
 
@@ -106,7 +148,7 @@ export const siteConfig: SiteConfig = {
 
   navigation: [
     { label: 'Home', href: '/' },
-    { label: 'Services', href: '#services' },
+    { label: 'Services', href: '/#services' },
     { label: 'Why Toter', href: '/#why-us' },
     { label: 'How It Works', href: '/#how-it-works' },
     { label: 'Service Areas', href: '/#service-areas' },
