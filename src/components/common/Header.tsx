@@ -130,6 +130,13 @@ export const Header: React.FC = () => {
       {/* Mobile Navigation Drawer */}
       {mobileMenuOpen && (
         <div className="lg:hidden border-t border-slate-200 bg-white px-4 pt-3 pb-6 shadow-xl max-h-screen overflow-y-auto animate-in slide-in-from-top-2 duration-200">
+          {/* Mobile Drawer Brand Logo */}
+          <div className="pb-3 mb-2 border-b border-slate-100 flex items-center justify-between">
+            <Link to="/" onClick={closeMobileMenu} aria-label="Toter Packers and Movers Home">
+              <Logo size="sm" theme="light" />
+            </Link>
+          </div>
+
           <nav className="flex flex-col gap-2 pb-4 border-b border-slate-100">
             {siteConfig.navigation.map((item) => {
               if (item.label === 'Services') {

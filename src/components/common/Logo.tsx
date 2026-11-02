@@ -1,9 +1,10 @@
 import React from 'react';
+import { getAssetUrl } from '../../utils/assetUrl';
 
 interface LogoProps {
   className?: string;
   size?: 'sm' | 'md' | 'lg';
-  theme?: 'dark' | 'light'; // dark means dark bg (white/orange text), light means light bg (navy/orange text)
+  theme?: 'dark' | 'light'; // dark = for dark backgrounds (white text), light = for light backgrounds (navy text)
 }
 
 export const Logo: React.FC<LogoProps> = ({
@@ -13,60 +14,51 @@ export const Logo: React.FC<LogoProps> = ({
 }) => {
   // Dimension scales
   const dimensions = {
-    sm: { icon: 'w-7 h-7', text: 'text-lg', sub: 'text-[9px]' },
-    md: { icon: 'w-9 h-9', text: 'text-2xl', sub: 'text-[10px]' },
-    lg: { icon: 'w-11 h-11', text: 'text-3xl', sub: 'text-xs' },
+    sm: {
+      image: 'w-8 h-8 sm:w-9 sm:h-9',
+      title: 'text-xl sm:text-2xl',
+      subtitle: 'text-[9px] sm:text-[10px]',
+      gap: 'gap-2 sm:gap-2.5',
+    },
+    md: {
+      image: 'w-10 h-10 sm:w-12 sm:h-12',
+      title: 'text-2xl sm:text-3xl',
+      subtitle: 'text-[10px] sm:text-[11px]',
+      gap: 'gap-2.5 sm:gap-3',
+    },
+    lg: {
+      image: 'w-12 h-12 sm:w-14 sm:h-14',
+      title: 'text-3xl sm:text-4xl',
+      subtitle: 'text-xs sm:text-sm',
+      gap: 'gap-3 sm:gap-3.5',
+    },
   };
 
   const currentDim = dimensions[size];
   const mainTextColor = theme === 'dark' ? 'text-white' : 'text-slate-900';
-  const subTextColor = theme === 'dark' ? 'text-slate-400' : 'text-slate-500';
+  const subTextColor = theme === 'dark' ? 'text-slate-300' : 'text-slate-600';
 
   return (
-    <div className={`inline-flex items-center gap-2.5 select-none ${className}`}>
-      {/* Dynamic Stylized T Arrow / Fast Movement Transport Symbol */}
-      <div
-        className={`${currentDim.icon} rounded-xl bg-gradient-to-br from-slate-950 via-slate-900 to-[#0b1329] p-1.5 flex items-center justify-center shadow-md border border-white/10 shrink-0 relative overflow-hidden group-hover:border-orange-500/50 transition-colors`}
-      >
-        {/* Ambient glow */}
-        <div className="absolute inset-0 bg-gradient-to-tr from-orange-600/20 to-transparent pointer-events-none" />
-        <svg
-          viewBox="0 0 32 32"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-          className="w-full h-full drop-shadow-sm"
-        >
-          {/* Top dynamic crossbar with arrow chevron notch */}
-          <path
-            d="M5 8.5L25.5 8.5L23.5 13.5L8.5 13.5L5 8.5Z"
-            fill="#ff6b00"
-          />
-          {/* Vertical swift stem */}
-          <path
-            d="M17.5 13.5L12 26.5H7.5L13 13.5H17.5Z"
-            fill="#ffffff"
-          />
-          {/* Forward movement chevron accent */}
-          <path
-            d="M27.5 11L21.5 21L19 18.5L23.5 11H27.5Z"
-            fill="#ff8533"
-          />
-          {/* Speed dot */}
-          <circle cx="23.5" cy="24.5" r="2" fill="#ff6b00" />
-        </svg>
-      </div>
+    <div className={`inline-flex items-center ${currentDim.gap} select-none group ${className}`}>
+      {/* Official Toter Moving Logistics Symbol */}
+      <img
+        src={getAssetUrl('/images/dynamic-t-logistics-logo.png')}
+        alt="Toter Logo Symbol"
+        className={`${currentDim.image} object-contain rounded-full shrink-0 group-hover:scale-105 transition-transform duration-200 drop-shadow-sm`}
+        loading="eager"
+      />
 
-      {/* Brand Wordmark: Bold, Sporty, Italic Uppercase with Orange Accent */}
-      <div className="flex flex-col leading-none">
+      {/* Brand Text: Bold modern TOTER with PACKERS & MOVERS subtitle */}
+      <div className="flex flex-col justify-center leading-none">
         <span
-          className={`${currentDim.text} font-black italic tracking-wider uppercase font-sans ${mainTextColor} flex items-baseline`}
+          className={`${currentDim.title} font-black italic tracking-wider uppercase font-sans ${mainTextColor} flex items-baseline`}
         >
-          TOT<span className="text-[#ff6b00]">ER</span>
+          TOT<span className="text-[#FF6B00]">ER</span>
         </span>
         <span
-          className={`${currentDim.sub} uppercase font-bold tracking-widest ${subTextColor} mt-0.5`}
+          className={`${currentDim.subtitle} uppercase font-extrabold tracking-[0.2em] ${subTextColor} mt-1`}
         >
-          Packers &amp; Movers
+          PACKERS &amp; MOVERS
         </span>
       </div>
     </div>
