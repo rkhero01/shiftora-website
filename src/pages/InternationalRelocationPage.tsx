@@ -12,16 +12,16 @@ import { ServicePageLayout } from '../components/common/ServicePageLayout';
 export const InternationalRelocationPage: React.FC = () => {
   return (
     <ServicePageLayout
-      pageTitle="International Relocation Services | Shiftora Packers & Movers"
+      pageTitle="International Relocation Services | Toter Packers & Movers"
       categoryLabel="Cross-Border Global Relocations"
       heading="Global Relocation With Full"
       headingAccent="Customs Clearance"
-      subheading="Move across borders with absolute confidence. Shiftora provides export-standard wooden crating, international customs documentation, marine cargo insurance, and door-to-door delivery worldwide."
+      subheading="Move across borders with absolute confidence. Toter provides export-standard wooden crating, international customs documentation, marine cargo insurance, and door-to-door delivery worldwide."
       heroImage="/images/container-palletized-cargo.jpg"
       heroImageAlt="Palletized cargo secured inside a freight container for international shipping"
       galleryImage="/images/freight-container-loading.jpg"
       galleryImageAlt="Relocation cargo arranged inside a maritime shipping container"
-      whatsappMessage="Hi Shiftora, I would like to get a quote for International Relocation."
+      whatsappMessage="Hi Toter, I would like to get a quote for International Relocation."
       highlights={[
         'ISPM-15 certified heat-treated wooden crates for fragile & high-value goods',
         'End-to-end customs documentation, bill of lading & transfer-of-residence advisory',
@@ -95,3 +95,4 @@ export const InternationalRelocationPage: React.FC = () => {
     />
   );
 };
+

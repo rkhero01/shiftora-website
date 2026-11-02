@@ -9,12 +9,12 @@ export const HeroSection: React.FC = () => {
   return (
     <section
       className="relative overflow-hidden text-white"
-      aria-label="Hero – Shiftora Packers and Movers"
+      aria-label="Hero – Toter Packers and Movers"
     >
       {/* Full-width background image with layered dark overlay */}
       <div className="absolute inset-0 z-0">
         <img
-          src={getAssetUrl('/shiftora-hero-truck.jpg')}
+          src={getAssetUrl('/toter-hero-truck.jpg')}
           alt=""
           aria-hidden="true"
           className="w-full h-full object-cover object-center"
@@ -50,7 +50,7 @@ export const HeroSection: React.FC = () => {
             {/* Supporting Copy */}
             <p className="text-base sm:text-lg text-white/75 max-w-2xl mx-auto lg:mx-0 leading-relaxed">
               Whether relocating your home across town or transitioning a corporate office to a new
-              city, Shiftora delivers dependable moving services, multi-layer protective packing,
+              city, Toter delivers dependable moving services, multi-layer protective packing,
               upfront transparent quotes, and dedicated transit coordination.
             </p>
 
@@ -100,7 +100,7 @@ export const HeroSection: React.FC = () => {
               <div className="relative aspect-[4/3] overflow-hidden">
                 <img
                   src={getAssetUrl('/images/loaded-moving-truck.jpg')}
-                  alt="Shiftora relocation – packed cartons and furniture loaded in a transport truck"
+                  alt="Toter relocation – packed cartons and furniture loaded in a transport truck"
                   className="w-full h-full object-cover object-center"
                   loading="eager"
                 />

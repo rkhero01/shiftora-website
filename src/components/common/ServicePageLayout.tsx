@@ -249,7 +249,7 @@ export const ServicePageLayout: React.FC<ServicePageLayoutProps> = ({
             <div className="absolute bottom-0 left-0 w-72 h-72 bg-[#4F8FF7]/8 rounded-full blur-3xl pointer-events-none" />
             <div className="relative z-10">
               <h2 className="text-3xl sm:text-4xl font-extrabold text-white mb-4 tracking-tight">
-                Ready to Move with <span className="text-[#FF641A]">Shiftora</span>?
+                Ready to Move with <span className="text-[#FF641A]">Toter</span>?
               </h2>
               <p className="text-white/60 text-base mb-10 max-w-xl mx-auto leading-relaxed">
                 Get a transparent, no-obligation quote. Our team will call you within 30 minutes.

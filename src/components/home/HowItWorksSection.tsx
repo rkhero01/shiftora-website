@@ -50,7 +50,7 @@ export const HowItWorksSection: React.FC = () => {
             Simple 4-Step Process
           </div>
           <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
-            How Shiftora Works
+            How Toter Works
           </h2>
           <p className="mt-3 text-base text-slate-600 leading-relaxed">
             Our straightforward relocation workflow ensures every move is organized, predictable,

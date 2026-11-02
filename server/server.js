@@ -31,7 +31,7 @@ app.use(
       if (!origin || allowedOrigins.includes(origin)) {
         return callback(null, true);
       }
-      return callback(new Error('Cross-Origin Request Blocked by Shiftora Security Policy'));
+      return callback(new Error('Cross-Origin Request Blocked by Toter Security Policy'));
     },
     methods: ['GET', 'POST'],
     allowedHeaders: ['Content-Type'],
@@ -57,7 +57,7 @@ const enquiryRateLimiter = rateLimit({
 app.get('/api/health', (req, res) => {
   res.status(200).json({
     status: 'ok',
-    service: 'shiftora-enquiry-api',
+    service: 'toter-enquiry-api',
     timestamp: new Date().toISOString(),
   });
 });
@@ -101,7 +101,7 @@ app.post('/api/enquiries', enquiryRateLimiter, (req, res) => {
     });
 
     // Safe logging without exposing customer phone number or personal details
-    console.log(`[Shiftora API] New enquiry stored securely. Ref: ${referenceCode}, Service: ${serviceType}`);
+    console.log(`[Toter API] New enquiry stored securely. Ref: ${referenceCode}, Service: ${serviceType}`);
 
     return res.status(201).json({
       success: true,
@@ -111,7 +111,7 @@ app.post('/api/enquiries', enquiryRateLimiter, (req, res) => {
     });
   } catch (error) {
     // Avoid exposing internal database details or stack trace
-    console.error('[Shiftora API Error] Error processing enquiry:', error.message);
+    console.error('[Toter API Error] Error processing enquiry:', error.message);
     return res.status(500).json({
       success: false,
       message: 'An unexpected error occurred while saving your enquiry. Please contact our support line directly.',
@@ -129,7 +129,7 @@ app.use('/api', (req, res) => {
 
 // 7. Global Error Handler
 app.use((err, req, res, next) => {
-  console.error('[Shiftora API Uncaught Error]:', err.message);
+  console.error('[Toter API Uncaught Error]:', err.message);
   res.status(500).json({
     success: false,
     message: 'Internal server error.',
@@ -140,8 +140,9 @@ app.use((err, req, res, next) => {
 let server;
 if (process.env.NODE_ENV !== 'test') {
   server = app.listen(PORT, '127.0.0.1', () => {
-    console.log(`[Shiftora Server] Running on http://127.0.0.1:${PORT}`);
+    console.log(`[Toter Server] Running on http://127.0.0.1:${PORT}`);
   });
 }
 
 export { app, server };
+

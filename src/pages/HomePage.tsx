@@ -3,7 +3,7 @@ import { useLocation } from 'react-router-dom';
 import { HeroSection } from '../components/home/HeroSection';
 import { TrustStrip } from '../components/home/TrustStrip';
 import { ServicesSection } from '../components/home/ServicesSection';
-import { WhyShiftoraSection } from '../components/home/WhyShiftoraSection';
+import { WhyToterSection } from '../components/home/WhyToterSection';
 import { HowItWorksSection } from '../components/home/HowItWorksSection';
 import { ServiceAreasSection } from '../components/home/ServiceAreasSection';
 import { QuoteCtaSection } from '../components/home/QuoteCtaSection';
@@ -35,8 +35,8 @@ export const HomePage: React.FC = () => {
       {/* Real relocation and freight work photos */}
       <WorkGallerySection />
 
-      {/* 4. Why Choose Shiftora */}
-      <WhyShiftoraSection />
+      {/* 4. Why Choose Toter */}
+      <WhyToterSection />
 
       {/* 5. How It Works */}
       <HowItWorksSection />
@@ -49,3 +49,4 @@ export const HomePage: React.FC = () => {
     </main>
   );
 };
+

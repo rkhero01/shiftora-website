@@ -12,7 +12,7 @@ import { ServicePageLayout } from '../components/common/ServicePageLayout';
 export const SeaFreightPage: React.FC = () => {
   return (
     <ServicePageLayout
-      pageTitle="Sea Freight Services | Shiftora Packers & Movers"
+      pageTitle="Sea Freight Services | Toter Packers & Movers"
       categoryLabel="Ocean Maritime Logistics"
       heading="Cost-Effective Ocean Cargo &"
       headingAccent="Container Shipping"
@@ -21,7 +21,7 @@ export const SeaFreightPage: React.FC = () => {
       heroImageAlt="Palletized cargo arranged inside a maritime shipping container"
       galleryImage="/images/container-shipment-boxes.jpg"
       galleryImageAlt="Organized cartons packed for maritime sea freight transport"
-      whatsappMessage="Hi Shiftora, I would like to get a quote for Sea Freight shipping."
+      whatsappMessage="Hi Toter, I would like to get a quote for Sea Freight shipping."
       highlights={[
         'Full Container Load (20ft, 40ft, 40ft HC) and cost-effective LCL consolidation',
         'Direct port handling at Nhava Sheva (JNPT), Mundra, Chennai, and Kolkata',
@@ -95,3 +95,4 @@ export const SeaFreightPage: React.FC = () => {
     />
   );
 };
+

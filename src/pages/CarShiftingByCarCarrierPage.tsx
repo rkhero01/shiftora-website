@@ -12,16 +12,16 @@ import { ServicePageLayout } from '../components/common/ServicePageLayout';
 export const CarShiftingByCarCarrierPage: React.FC = () => {
   return (
     <ServicePageLayout
-      pageTitle="Car Shifting by Car Carrier | Shiftora Packers & Movers"
+      pageTitle="Car Shifting by Car Carrier | Toter Packers & Movers"
       categoryLabel="Specialized Automobile Transit"
       heading="Enclosed & Hydraulic Ramp"
       headingAccent="Car Carrier Transport"
       subheading="Transport your sedan, SUV, electric vehicle, or luxury car across India in fully covered, multi-deck car carriers featuring hydraulic lift ramps, custom wheel locks, and end-to-end transit insurance."
-      heroImage="/shiftora-hero-truck.jpg"
-      heroImageAlt="Shiftora heavy transport vehicle and enclosed logistics carrier"
+      heroImage="/toter-hero-truck.jpg"
+      heroImageAlt="Toter heavy transport vehicle and enclosed logistics carrier"
       galleryImage="/images/truck-loaded-with-cartons.jpg"
       galleryImageAlt="Secured highway vehicle carrier prepared for long-distance transit"
-      whatsappMessage="Hi Shiftora, I would like to get a quote for Car Shifting by Car Carrier."
+      whatsappMessage="Hi Toter, I would like to get a quote for Car Shifting by Car Carrier."
       highlights={[
         'Covered multi-car carriers protecting against stones, dust, and weather',
         'Hydraulic ramps with shallow entry angles to prevent underbody scraping',
@@ -95,3 +95,4 @@ export const CarShiftingByCarCarrierPage: React.FC = () => {
     />
   );
 };
+

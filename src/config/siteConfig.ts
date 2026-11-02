@@ -1,16 +1,16 @@
 import type { SiteConfig } from '../types';
 
 export const siteConfig: SiteConfig = {
-  brandName: 'Shiftora',
-  legalEntityName: 'Shiftora Logistics & Relocations',
+  brandName: 'Toter',
+  legalEntityName: 'Toter Logistics & Relocations',
   tagline: 'Moving Made Simple. Every Step of the Way.',
   description:
-    'Shiftora provides dependable home and office relocation, careful multi-layer packing, transparent pricing, and planned transit coordination.',
+    'Toter provides dependable home and office relocation, careful multi-layer packing, transparent pricing, and planned transit coordination.',
   
   contact: {
     phoneDisplay: '+91 8368743974',
     phoneRaw: 'tel:+918368743974',
-    email: 'contact@shiftora.in',
+    email: 'contact@toter.in',
     operatingHours: 'Mon - Sun: 7:00 AM - 9:00 PM',
     addressSummary: 'Bharthal - Dada Mota Mandir, Dwarka Sector-26, Dwarka, New Delhi 110077',
   },
@@ -107,7 +107,7 @@ export const siteConfig: SiteConfig = {
   navigation: [
     { label: 'Home', href: '/' },
     { label: 'Services', href: '#services' },
-    { label: 'Why Shiftora', href: '/#why-us' },
+    { label: 'Why Toter', href: '/#why-us' },
     { label: 'How It Works', href: '/#how-it-works' },
     { label: 'Service Areas', href: '/#service-areas' },
     { label: 'Get Quote', href: '/#get-quote' },

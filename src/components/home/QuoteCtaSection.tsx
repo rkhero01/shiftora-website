@@ -194,7 +194,7 @@ export const QuoteCtaSection: React.FC = () => {
                   </div>
 
                   <p className="text-xs text-slate-600 leading-relaxed">
-                    A Shiftora move coordinator will review inventory logistics and contact you shortly
+                    A Toter move coordinator will review inventory logistics and contact you shortly
                     to confirm route feasibility and provide an itemized quote.
                   </p>
 

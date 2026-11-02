@@ -12,16 +12,16 @@ import { ServicePageLayout } from '../components/common/ServicePageLayout';
 export const OfficeRelocationPage: React.FC = () => {
   return (
     <ServicePageLayout
-      pageTitle="Office Relocation Services | Shiftora Packers & Movers"
+      pageTitle="Office Relocation Services | Toter Packers & Movers"
       categoryLabel="Commercial Workplace Moves"
       heading="Seamless Office Moves With"
       headingAccent="Minimal Disruption"
-      subheading="From agile startups to multi-story headquarters, Shiftora executes structured office relocations covering ergonomic furniture, conference audio-visual systems, pantry hardware, and departmental inventories."
+      subheading="From agile startups to multi-story headquarters, Toter executes structured office relocations covering ergonomic furniture, conference audio-visual systems, pantry hardware, and departmental inventories."
       heroImage="/images/stacked-freight-boxes.jpg"
       heroImageAlt="Labeled shipment cartons organized for office relocation transport"
       galleryImage="/images/container-shipment-boxes.jpg"
-      galleryImageAlt="Shiftora shipping container loaded with secure office cartons and equipment"
-      whatsappMessage="Hi Shiftora, I would like to get a quote for Office Relocation."
+      galleryImageAlt="Toter shipping container loaded with secure office cartons and equipment"
+      whatsappMessage="Hi Toter, I would like to get a quote for Office Relocation."
       highlights={[
         'Floor-plan mapping with color-coded desk assignment labels',
         'Anti-static bubble cushioning for desktop PCs, printers & monitors',
@@ -95,3 +95,4 @@ export const OfficeRelocationPage: React.FC = () => {
     />
   );
 };
+

@@ -12,7 +12,7 @@ import { ServicePageLayout } from '../components/common/ServicePageLayout';
 export const CorporateShiftingServicePage: React.FC = () => {
   return (
     <ServicePageLayout
-      pageTitle="Corporate Shifting Services | Shiftora Packers & Movers"
+      pageTitle="Corporate Shifting Services | Toter Packers & Movers"
       categoryLabel="Enterprise Relocation"
       heading="Zero-Downtime Corporate &"
       headingAccent="Branch Relocation"
@@ -20,8 +20,8 @@ export const CorporateShiftingServicePage: React.FC = () => {
       heroImage="/images/organized-shipping-cartons.jpg"
       heroImageAlt="Organized shipping cartons secured for a coordinated corporate shipment"
       galleryImage="/images/warehouse-carton-shipment.jpg"
-      galleryImageAlt="Corporate relocation assets organized in Shiftora storage warehouse"
-      whatsappMessage="Hi Shiftora, I would like to get a free corporate shifting quote for our company."
+      galleryImageAlt="Corporate relocation assets organized in Toter storage warehouse"
+      whatsappMessage="Hi Toter, I would like to get a free corporate shifting quote for our company."
       highlights={[
         'Weekend & overnight moving slots to prevent operational downtime',
         'Anti-static bubble wrap & padded flight cases for IT equipment',
@@ -95,3 +95,4 @@ export const CorporateShiftingServicePage: React.FC = () => {
     />
   );
 };
+

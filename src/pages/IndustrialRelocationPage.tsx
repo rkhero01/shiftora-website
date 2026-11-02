@@ -12,7 +12,7 @@ import { ServicePageLayout } from '../components/common/ServicePageLayout';
 export const IndustrialRelocationPage: React.FC = () => {
   return (
     <ServicePageLayout
-      pageTitle="Industrial Relocation Services | Shiftora Packers & Movers"
+      pageTitle="Industrial Relocation Services | Toter Packers & Movers"
       categoryLabel="Heavy Plant & Machinery Shifting"
       heading="Heavy Machinery & Plant"
       headingAccent="Industrial Relocation"
@@ -20,8 +20,8 @@ export const IndustrialRelocationPage: React.FC = () => {
       heroImage="/images/packed-industrial-cargo.jpg"
       heroImageAlt="Large packed industrial machinery cargo prepared for transport"
       galleryImage="/images/cargo-loading-team.jpg"
-      galleryImageAlt="Shiftora cargo handling team coordinating industrial equipment loading"
-      whatsappMessage="Hi Shiftora, I would like to get a quote for Industrial Relocation."
+      galleryImageAlt="Toter cargo handling team coordinating industrial equipment loading"
+      whatsappMessage="Hi Toter, I would like to get a quote for Industrial Relocation."
       highlights={[
         'Hydraulic crane lifting, forklift rigging & machinery skidding',
         'Low-bed, semi-lowbed & multi-axle trailers for Over-Dimensional Cargo (ODC)',
@@ -95,3 +95,4 @@ export const IndustrialRelocationPage: React.FC = () => {
     />
   );
 };
+

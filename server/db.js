@@ -12,7 +12,7 @@ if (!fs.existsSync(dataDir)) {
   fs.mkdirSync(dataDir, { recursive: true });
 }
 
-const dbPath = path.join(dataDir, 'shiftora.db');
+const dbPath = path.join(dataDir, 'toter.db');
 const db = new DatabaseSync(dbPath);
 
 // Enable WAL mode for concurrent performance and integrity
@@ -95,3 +95,4 @@ export function getEnquiryByRef(referenceCode) {
 }
 
 export { db, dbPath };
+

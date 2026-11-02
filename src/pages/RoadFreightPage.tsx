@@ -12,7 +12,7 @@ import { ServicePageLayout } from '../components/common/ServicePageLayout';
 export const RoadFreightPage: React.FC = () => {
   return (
     <ServicePageLayout
-      pageTitle="Road Freight Services | Shiftora Packers & Movers"
+      pageTitle="Road Freight Services | Toter Packers & Movers"
       categoryLabel="Pan-India Surface Transportation"
       heading="Pan-India Dedicated & Part"
       headingAccent="Road Freight Network"
@@ -20,8 +20,8 @@ export const RoadFreightPage: React.FC = () => {
       heroImage="/images/truck-loaded-with-cartons.jpg"
       heroImageAlt="Transport truck loaded with secured cartons for interstate road freight"
       galleryImage="/images/loaded-moving-truck.jpg"
-      galleryImageAlt="Shiftora container transport truck prepared for highway freight transit"
-      whatsappMessage="Hi Shiftora, I would like to get a quote for Road Freight services."
+      galleryImageAlt="Toter container transport truck prepared for highway freight transit"
+      whatsappMessage="Hi Toter, I would like to get a quote for Road Freight services."
       highlights={[
         'Full Truckload (FTL) and Part Truckload (PTL) across all 28 states & union territories',
         'Weatherproof closed-body container fleet (14ft, 19ft, 24ft, and 32ft MX/SXL)',
@@ -95,3 +95,4 @@ export const RoadFreightPage: React.FC = () => {
     />
   );
 };
+

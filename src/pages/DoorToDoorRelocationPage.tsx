@@ -12,16 +12,16 @@ import { ServicePageLayout } from '../components/common/ServicePageLayout';
 export const DoorToDoorRelocationPage: React.FC = () => {
   return (
     <ServicePageLayout
-      pageTitle="Door-to-Door Relocation Services | Shiftora Packers & Movers"
+      pageTitle="Door-to-Door Relocation Services | Toter Packers & Movers"
       categoryLabel="Turnkey Full-Service Moving"
       heading="Complete End-to-End"
       headingAccent="Door-to-Door Relocation"
-      subheading="From carefully packing the very first glass at your origin home to placing every couch and wardrobe at your destination, Shiftora manages every single step with zero third-party handoffs."
+      subheading="From carefully packing the very first glass at your origin home to placing every couch and wardrobe at your destination, Toter manages every single step with zero third-party handoffs."
       heroImage="/images/loaded-moving-truck.jpg"
-      heroImageAlt="Shiftora transport truck loaded with goods for direct door-to-door delivery"
+      heroImageAlt="Toter transport truck loaded with goods for direct door-to-door delivery"
       galleryImage="/images/truck-loaded-with-cartons.jpg"
       galleryImageAlt="Transport truck with cartons and furniture secured for nationwide transit"
-      whatsappMessage="Hi Shiftora, I would like to get a quote for Door-to-Door Relocation."
+      whatsappMessage="Hi Toter, I would like to get a quote for Door-to-Door Relocation."
       highlights={[
         'Hands-off moving experience — zero packing or heavy lifting required',
         'Direct vehicle dispatch from your old doorstep straight to your new home',
@@ -95,3 +95,4 @@ export const DoorToDoorRelocationPage: React.FC = () => {
     />
   );
 };
+

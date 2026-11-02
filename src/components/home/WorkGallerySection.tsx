@@ -98,7 +98,7 @@ export const WorkGallerySection: React.FC = () => (
 
       {/* Bottom note */}
       <p className="mt-10 text-center text-xs text-white/35 tracking-wide">
-        Photos are from actual Shiftora relocation and freight operations.
+        Photos are from actual Toter relocation and freight operations.
       </p>
     </Container>
   </section>

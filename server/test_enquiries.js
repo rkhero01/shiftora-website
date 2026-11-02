@@ -3,7 +3,7 @@ import { db } from './db.js';
 
 // Minimal test runner using native Node fetch against the in-memory/test server
 async function runTests() {
-  console.log('=== STARTING SHIFTORA BACKEND INTEGRATION TESTS ===\n');
+  console.log('=== STARTING TOTER BACKEND INTEGRATION TESTS ===\n');
 
   // Start test server on dynamic or port 5001
   const server = app.listen(5099, '127.0.0.1');
@@ -166,3 +166,5 @@ async function runTests() {
 }
 
 runTests();
+
+

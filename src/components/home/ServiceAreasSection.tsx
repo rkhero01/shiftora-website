@@ -16,7 +16,7 @@ export const ServiceAreasSection: React.FC = () => {
             Metropolitan Hubs &amp; Intercity Corridors
           </h2>
           <p className="mt-3 text-base text-slate-600 leading-relaxed">
-            Shiftora operates within verified regional hubs and intercity corridors connecting these
+            Toter operates within verified regional hubs and intercity corridors connecting these
             major commercial destinations.
           </p>
         </div>

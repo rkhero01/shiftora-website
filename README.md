@@ -1,6 +1,6 @@
-# Shiftora — Professional Packers & Movers
+# Toter — Professional Packers & Movers
 
-A modern, trustworthy, lead-generation-focused web application for **Shiftora**, a professional relocation and logistics service provider. Built with original branding, a clean component hierarchy, centralized configuration, and responsive mobile-first architecture.
+A modern, trustworthy, lead-generation-focused web application for **Toter**, a professional relocation and logistics service provider. Built with original branding, a clean component hierarchy, centralized configuration, and responsive mobile-first architecture.
 
 ---
 
@@ -26,10 +26,10 @@ A modern, trustworthy, lead-generation-focused web application for **Shiftora**,
 ## Project Structure
 
 ```text
-shiftora-website/
+toter-website/
 ├── public/
 │   ├── favicon.svg          # Custom brand SVG icon
-│   └── shiftora-hero-truck.jpg # Custom Shiftora branded logistics photography
+│   └── toter-hero-truck.jpg # Custom Toter branded logistics photography
 ├── src/
 │   ├── assets/              # Static media assets & icons
 │   ├── components/
@@ -42,7 +42,7 @@ shiftora-website/
 │   │       ├── HeroSection.tsx        # Hero with headline "Moving Made Simple. Every Step of the Way.", CTAs, and photography
 │   │       ├── TrustStrip.tsx         # 4 service benefits (Careful Packing, Transparent Quotes, Move Support, Planned Delivery)
 │   │       ├── ServicesSection.tsx    # 6 responsive cards (Household, Office, Domestic, Vehicle, Packing, Storage)
-│   │       ├── WhyShiftoraSection.tsx # Honest values (Careful Handling, Organized Planning, Clear Estimates, Communication)
+│   │       ├── WhyToterSection.tsx # Honest values (Careful Handling, Organized Planning, Clear Estimates, Communication)
 │   │       ├── HowItWorksSection.tsx  # 4-step workflow (Requirements, Quote, Packing & Pickup, Delivery & Placement)
 │   │       ├── ServiceAreasSection.tsx# Verified metropolitan hubs & route inquiries
 │   │       └── QuoteCtaSection.tsx    # High-conversion moving quote form with transparent backend notice
@@ -66,7 +66,7 @@ shiftora-website/
 
 ## Centralized Configuration
 
-All business contact details, operational hours, services, and geographic coverage areas are stored in a single source of truth at [`src/config/siteConfig.ts`](file:///c:/Users/Admin/Desktop/shiftora-website/src/config/siteConfig.ts):
+All business contact details, operational hours, services, and geographic coverage areas are stored in a single source of truth at [`src/config/siteConfig.ts`](file:///c:/Users/Admin/Desktop/toter-website/src/config/siteConfig.ts):
 
 - **Hotline & Tel Link**: `contact.phoneDisplay` and `contact.phoneRaw`
 - **Email**: `contact.email`
@@ -114,7 +114,7 @@ Individual service runners:
 
 ### 3. Backend API & Database
 
-- **Database**: Native `node:sqlite` in `server/data/shiftora.db` with WAL mode and prepared statements.
+- **Database**: Native `node:sqlite` in `server/data/toter.db` with WAL mode and prepared statements.
 - **Health Check**: `GET /api/health` -> `{ status: "ok", timestamp: ... }`
 - **Enquiry Endpoint**: `POST /api/enquiries`
   - Body: `{ customerName, originCity, destinationCity, serviceType, moveDate, phone, website_url }`
@@ -164,7 +164,7 @@ npm.cmd run preview
 - [x] Created centralized business contact & service area configuration (`siteConfig.ts`).
 - [x] Created shared responsive `Header` with phone hotlines, quote action, and mobile hamburger drawer.
 - [x] Created shared `Footer` with service links, operating hours, and location coverage.
-- [x] Built responsive homepage shell with original Shiftora branding, core services, 4-step process, trust pillars, and honest quote estimation preview (no simulated fake submissions).
+- [x] Built responsive homepage shell with original Toter branding, core services, 4-step process, trust pillars, and honest quote estimation preview (no simulated fake submissions).
 - [x] Verified zero security vulnerabilities (`npm audit`) and clean production build with 0 TypeScript/compilation errors.
 
 ---
@@ -175,3 +175,4 @@ npm.cmd run preview
 2. Interactive quote estimator / volumetric calculator.
 3. Production lead capture API integration with email/SMS notifications.
 4. Comprehensive SEO metadata & JSON-LD schema generation (LocalBusiness / MovingCompany).
+

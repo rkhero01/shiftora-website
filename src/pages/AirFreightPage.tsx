@@ -12,7 +12,7 @@ import { ServicePageLayout } from '../components/common/ServicePageLayout';
 export const AirFreightPage: React.FC = () => {
   return (
     <ServicePageLayout
-      pageTitle="Air Freight Services | Shiftora Packers & Movers"
+      pageTitle="Air Freight Services | Toter Packers & Movers"
       categoryLabel="Express Aviation Cargo"
       heading="Express Air Cargo With"
       headingAccent="Guaranteed Flight Space"
@@ -21,7 +21,7 @@ export const AirFreightPage: React.FC = () => {
       heroImageAlt="Wrapped and protected goods prepared for express air freight handling"
       galleryImage="/images/container-palletized-cargo.jpg"
       galleryImageAlt="Palletized air freight cargo prepared for aircraft container loading"
-      whatsappMessage="Hi Shiftora, I would like to get a quote for Air Freight services."
+      whatsappMessage="Hi Toter, I would like to get a quote for Air Freight services."
       highlights={[
         'Same-day and next-flight-out (NFO) booking on leading domestic & global airlines',
         'Airport-to-airport or full door-to-door expedited delivery models',
@@ -95,3 +95,4 @@ export const AirFreightPage: React.FC = () => {
     />
   );
 };
+

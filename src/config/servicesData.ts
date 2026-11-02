@@ -10,7 +10,7 @@ export const servicesData: Record<string, ServiceDetail> = {
     features: ['Multi-layer carton packing', 'Furniture wrapping & disassembly', 'Door-to-door transit care'],
     heroTagline: 'Safe, Organized Home Relocations with Multi-Layer Protection',
     overview: [
-      'Relocating your home involves more than simply transporting boxes—it requires meticulous handling of everyday possessions, sentimental items, and heavy furniture. Shiftora approaches household shifting with standardized packing protocols designed to minimize transit vibration, eliminate surface scratches, and prevent accidental damage.',
+      'Relocating your home involves more than simply transporting boxes—it requires meticulous handling of everyday possessions, sentimental items, and heavy furniture. Toter approaches household shifting with standardized packing protocols designed to minimize transit vibration, eliminate surface scratches, and prevent accidental damage.',
       'From apartment moves and independent houses to intercity home shifting, our crew brings all required packaging supplies directly to your doorstep. We catalog your belongings room-by-room so that unpacking at your destination is logical, fast, and structured.',
       'Our team coordinates directly with building management for elevator bookings, loading bay access, and society moving guidelines to ensure zero moving-day friction.',
     ],
@@ -87,7 +87,7 @@ export const servicesData: Record<string, ServiceDetail> = {
     features: ['IT equipment labeling', 'Weekend & overnight moving slots', 'Desk setup coordination'],
     heroTagline: 'Structured Corporate Transitions Engineered to Minimize Business Downtime',
     overview: [
-      'An office move must be executed with surgical precision to avoid lost revenue, data downtime, and operational confusion. Shiftora specializes in organized commercial relocations for startups, corporate offices, clinics, and professional firms.',
+      'An office move must be executed with surgical precision to avoid lost revenue, data downtime, and operational confusion. Toter specializes in organized commercial relocations for startups, corporate offices, clinics, and professional firms.',
       'We coordinate with your facilities and IT leadership to create a sequential floor-by-floor moving plan. Every workstation is color-coded and assigned to an individual employee number, ensuring computer towers, monitors, docks, and personal office items arrive at their exact new desk.',
       'To prevent business disruption, our crews operate during scheduled weekend windows, bank holidays, or evening hours so your staff can log off on Friday and resume work at the new facility on Monday.',
     ],
@@ -133,7 +133,7 @@ export const servicesData: Record<string, ServiceDetail> = {
     ],
     faqs: [
       {
-        question: 'Can Shiftora carry out our office relocation over a weekend?',
+        question: 'Can Toter carry out our office relocation over a weekend?',
         answer:
           'Yes. Weekend and after-hours relocations are standard practice for our corporate moving division to ensure zero interruption to normal working hours.',
       },
@@ -159,7 +159,7 @@ export const servicesData: Record<string, ServiceDetail> = {
     features: ['Direct interstate freight routes', 'Pre-transit inventory audit', 'Transit checkpoint updates'],
     heroTagline: 'Dependable Interstate Relocation Connecting Key Metropolitan Corridors',
     overview: [
-      'Intercity relocations demand specialized long-distance road logistics. Shiftora coordinates scheduled long-haul moves connecting our 8 verified metro hubs across India, including Mumbai, Bengaluru, Delhi NCR, Hyderabad, Pune, Chennai, Kolkata, and Ahmedabad.',
+      'Intercity relocations demand specialized long-distance road logistics. Toter coordinates scheduled long-haul moves connecting our 8 verified metro hubs across India, including Mumbai, Bengaluru, Delhi NCR, Hyderabad, Pune, Chennai, Kolkata, and Ahmedabad.',
       'Unlike piecemeal freight transport, our domestic moving service is organized around dedicated containerized trucks, reinforced protective packaging for highway vibration, and scheduled delivery commitments.',
       'Your assigned move coordinator monitors transit milestones and communicates departure, toll corridor progress, and estimated delivery dates so you can plan your family travel with confidence.',
     ],
@@ -205,7 +205,7 @@ export const servicesData: Record<string, ServiceDetail> = {
     ],
     faqs: [
       {
-        question: 'Which cities does Shiftora cover for domestic intercity moves?',
+        question: 'Which cities does Toter cover for domestic intercity moves?',
         answer:
           'We operate scheduled transit corridors between our 8 confirmed metropolitan hubs: Mumbai, Bengaluru, Delhi NCR, Hyderabad, Pune, Chennai, Kolkata, and Ahmedabad. If you require a move between unlisted hubs, contact our desk to check operational feasibility.',
       },
@@ -231,7 +231,7 @@ export const servicesData: Record<string, ServiceDetail> = {
     features: ['Hydraulic ramp loading', 'Condition inspection sign-off', 'Secure tie-down harnesses'],
     heroTagline: 'Purpose-Built Vehicle Carriers with Hydraulic Decks and Wheel-Lock Clamps',
     overview: [
-      'Driving your vehicle across hundreds of highway kilometers adds unnecessary wear, mileage, and travel fatigue. Shiftora provides specialized vehicle shipping for personal hatchbacks, sedans, SUVs, and two-wheelers using purpose-built automobile car carriers.',
+      'Driving your vehicle across hundreds of highway kilometers adds unnecessary wear, mileage, and travel fatigue. Toter provides specialized vehicle shipping for personal hatchbacks, sedans, SUVs, and two-wheelers using purpose-built automobile car carriers.',
       'Our carrier trucks feature hydraulic lifting decks, low-incline ramps, and four-point wheel tie-down clamps that secure the vehicle by its tires rather than its chassis, preventing suspension strain.',
       'Before loading, an authorized move inspector conducts a joint physical condition inspection with you, recording odometer readings, fuel status, and existing exterior marks on a written handover report.',
     ],
@@ -297,7 +297,7 @@ export const servicesData: Record<string, ServiceDetail> = {
     features: ['Fragile item boxing', 'Numbered box inventory', 'Debris & box removal options'],
     heroTagline: 'Professional Packing Labor, Export-Grade Materials, and Destination Setup',
     overview: [
-      'Proper packing is the single most critical factor in preventing damage during any move. Shiftora provides standalone packing and unpacking services for homeowners and businesses who want expert protection without compromising on materials.',
+      'Proper packing is the single most critical factor in preventing damage during any move. Toter provides standalone packing and unpacking services for homeowners and businesses who want expert protection without compromising on materials.',
       'Our packing specialists arrive equipped with 5-ply export-grade cartons, heavy-density bubble rolls, tissue paper, corrugated roll sheets, high-adhesion tapes, and foam edge protectors.',
       'We also offer full or partial unpacking services at your destination, unboxing items, setting up wardrobe contents, and taking away empty cartons and packing debris so your new home is immediately livable.',
     ],
@@ -343,7 +343,7 @@ export const servicesData: Record<string, ServiceDetail> = {
     ],
     faqs: [
       {
-        question: 'Can I hire Shiftora solely for packing without using your transport trucks?',
+        question: 'Can I hire Toter solely for packing without using your transport trucks?',
         answer:
           'Yes. We offer standalone packing services with our trained crew and materials if you have your own transport or are preparing goods for long-term storage.',
       },
@@ -369,7 +369,7 @@ export const servicesData: Record<string, ServiceDetail> = {
     features: ['24/7 monitored facility', 'Flexible monthly leasing', 'Clean moisture-controlled units'],
     heroTagline: 'Clean, Secure Storage Facilities for Temporary Relocations and Household Overflows',
     overview: [
-      'Whether you are renovating your home, facing a lease gap between residences, or traveling on an overseas assignment, Shiftora offers secure short-term and long-term storage solutions.',
+      'Whether you are renovating your home, facing a lease gap between residences, or traveling on an overseas assignment, Toter offers secure short-term and long-term storage solutions.',
       'Our storage warehouses feature 24/7 on-site security, continuous CCTV surveillance, regular pest control treatments, and elevated palletized stacking to prevent moisture seepage.',
       'Every item placed into our storage facility is pre-packed with storage-grade protective materials and logged on an inward warehouse receipt. You can retrieve individual items or schedule full destination delivery whenever you are ready.',
     ],
@@ -432,3 +432,4 @@ export const servicesData: Record<string, ServiceDetail> = {
     ],
   },
 };
+

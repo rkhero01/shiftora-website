@@ -1,5 +1,5 @@
 /**
- * Resolves static asset paths relative to the application's base URL (e.g. /shiftora-website/ for GitHub Pages)
+ * Resolves static asset paths relative to the application's base URL (e.g. / for custom domain)
  */
 export const getAssetUrl = (path: string): string => {
   if (!path) return '';

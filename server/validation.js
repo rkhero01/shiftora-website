@@ -1,6 +1,6 @@
 import crypto from 'node:crypto';
 
-// Explicit allowlist of verified Shiftora relocation services
+// Explicit allowlist of verified Toter relocation services
 export const ALLOWED_SERVICE_TYPES = [
   'household-shifting',
   'office-relocation',
@@ -153,3 +153,4 @@ export function validateEnquiryInput(body) {
     },
   };
 }
+

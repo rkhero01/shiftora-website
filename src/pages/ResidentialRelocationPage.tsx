@@ -12,7 +12,7 @@ import { ServicePageLayout } from '../components/common/ServicePageLayout';
 export const ResidentialRelocationPage: React.FC = () => {
   return (
     <ServicePageLayout
-      pageTitle="Residential Relocation Services | Shiftora Packers & Movers"
+      pageTitle="Residential Relocation Services | Toter Packers & Movers"
       categoryLabel="Household Moving"
       heading="Safe, Reliable & Stress-Free"
       headingAccent="Home Relocation"
@@ -20,8 +20,8 @@ export const ResidentialRelocationPage: React.FC = () => {
       heroImage="/images/packed-freight-cartons.jpg"
       heroImageAlt="Protected cartons prepared for a residential relocation shipment"
       galleryImage="/images/loaded-moving-truck.jpg"
-      galleryImageAlt="Shiftora transport truck loaded with cartons ready for dispatch"
-      whatsappMessage="Hi Shiftora, I would like to get a free quote for Residential Relocation."
+      galleryImageAlt="Toter transport truck loaded with cartons ready for dispatch"
+      whatsappMessage="Hi Toter, I would like to get a free quote for Residential Relocation."
       highlights={[
         'Multi-layer bubble & corrugated cushioning',
         'Specialized handling for fragile crockery & TV/appliances',
@@ -95,3 +95,4 @@ export const ResidentialRelocationPage: React.FC = () => {
     />
   );
 };
+

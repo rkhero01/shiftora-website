@@ -45,7 +45,7 @@ export const ServicesSection: React.FC = () => {
             Comprehensive Moving Solutions
           </h2>
           <p className="mt-3 text-base text-slate-600 leading-relaxed">
-            Shiftora manages each relocation with specialized packing materials, calibrated transport,
+            Toter manages each relocation with specialized packing materials, calibrated transport,
             and dedicated logistics coordination tailored to your inventory.
           </p>
         </div>
