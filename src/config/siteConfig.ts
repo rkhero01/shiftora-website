@@ -1,9 +1,9 @@
 import type { SiteConfig } from '../types';
 
 export const siteConfig: SiteConfig = {
-  brandName: 'Toter',
-  legalEntityName: 'Toter Logistics & Relocations',
-  tagline: 'Moving Made Simple. Every Step of the Way.',
+  brandName: 'TOTER',
+  legalEntityName: 'TOTER Packers & Movers',
+  tagline: 'Moving Beyond Borders, Delivering With Care.',
   description:
     'Toter provides dependable home and office relocation, careful multi-layer packing, transparent pricing, and planned transit coordination.',
   
