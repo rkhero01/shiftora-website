@@ -14,6 +14,9 @@ import { IndustrialRelocationPage } from './pages/IndustrialRelocationPage';
 import { AirFreightPage } from './pages/AirFreightPage';
 import { SeaFreightPage } from './pages/SeaFreightPage';
 import { RoadFreightPage } from './pages/RoadFreightPage';
+import { PrivacyPolicyPage } from './pages/PrivacyPolicyPage';
+import { TermsOfServicePage } from './pages/TermsOfServicePage';
+import { MovingFaqPage } from './pages/MovingFaqPage';
 
 export const App: React.FC = () => {
   const basename =
@@ -48,6 +51,12 @@ export const App: React.FC = () => {
             <Route path="/services/sea-freight.html" element={<SeaFreightPage />} />
             <Route path="/services/road-freight" element={<RoadFreightPage />} />
             <Route path="/services/road-freight.html" element={<RoadFreightPage />} />
+            <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
+            <Route path="/privacy-policy.html" element={<PrivacyPolicyPage />} />
+            <Route path="/terms-of-service" element={<TermsOfServicePage />} />
+            <Route path="/terms-of-service.html" element={<TermsOfServicePage />} />
+            <Route path="/moving-faq" element={<MovingFaqPage />} />
+            <Route path="/moving-faq.html" element={<MovingFaqPage />} />
             <Route path="*" element={<HomePage />} />
           </Routes>
         </div>

@@ -111,9 +111,27 @@ export const Footer: React.FC = () => {
             &copy; {currentYear} {siteConfig.legalEntityName}. All rights reserved.
           </div>
           <div className="flex items-center gap-6">
-            <span className="hover:text-slate-300 transition-colors">Privacy Policy</span>
-            <span className="hover:text-slate-300 transition-colors">Terms of Service</span>
-            <span className="hover:text-slate-300 transition-colors">Moving FAQ</span>
+            <Link
+              to="/privacy-policy"
+              className="hover:text-amber-400 transition-colors"
+              id="footer-privacy-policy-link"
+            >
+              Privacy Policy
+            </Link>
+            <Link
+              to="/terms-of-service"
+              className="hover:text-amber-400 transition-colors"
+              id="footer-terms-of-service-link"
+            >
+              Terms of Service
+            </Link>
+            <Link
+              to="/moving-faq"
+              className="hover:text-amber-400 transition-colors"
+              id="footer-moving-faq-link"
+            >
+              Moving FAQ
+            </Link>
           </div>
         </div>
       </Container>

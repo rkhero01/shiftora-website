@@ -15,6 +15,9 @@ const serviceRoutes = [
   'services/air-freight',
   'services/sea-freight',
   'services/road-freight',
+  'privacy-policy',
+  'terms-of-service',
+  'moving-faq',
 ]
 
 function githubPagesSpa() {
