@@ -4,9 +4,11 @@ import { siteConfig } from '../../config/siteConfig';
 import { Container } from '../common/Container';
 import { Button } from '../common/Button';
 import { getAssetUrl } from '../../utils/assetUrl';
+import { useVisitorCity } from '../../hooks/useVisitorCity';
 
 export const HeroSection: React.FC = () => {
   const heroBgUrl = getAssetUrl('/images/toter-international-moving-day.png');
+  const { locationLabel, isLoading } = useVisitorCity();
 
   return (
     <section
@@ -41,9 +43,23 @@ export const HeroSection: React.FC = () => {
           {/* Left Column: Content */}
           <div className="lg:col-span-7 space-y-6 text-center lg:text-left">
             {/* Trust Badge */}
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#081426]/75 backdrop-blur-md border border-white/20 text-orange-300 text-xs sm:text-sm font-bold tracking-wide shadow-lg">
+            <div
+              className="inline-flex flex-wrap items-center justify-center lg:justify-start gap-2 px-3.5 py-1.5 rounded-full bg-[#081426]/75 backdrop-blur-md border border-white/20 text-orange-300 text-xs sm:text-sm font-bold tracking-wide shadow-lg max-w-full"
+              aria-live="polite"
+            >
               <ShieldCheck className="w-4 h-4 text-[#FF641A] shrink-0" />
-              <span>TOTER Packers &amp; Movers · Delhi NCR &amp; Worldwide</span>
+              <span>
+                TOTER Packers &amp; Movers &middot;{' '}
+                {isLoading ? (
+                  <span className="inline-flex items-center gap-1.5 text-white/80 animate-pulse" data-testid="location-loading">
+                    Locating city...
+                  </span>
+                ) : (
+                  <span className="text-orange-300" data-testid="location-label">
+                    {locationLabel}
+                  </span>
+                )}
+              </span>
             </div>
 
             {/* Main Headline */}
