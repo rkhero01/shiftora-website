@@ -1,0 +1,16 @@
+{
+  "name": "Toter Packers & Movers",
+  "short_name": "Toter",
+  "description": "Toter provides reliable, stress-free household relocation, corporate office shifting, and vehicle transport services with transparent pricing and standardized 4-layer packaging.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0b1329",
+  "theme_color": "#0b1329",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}
