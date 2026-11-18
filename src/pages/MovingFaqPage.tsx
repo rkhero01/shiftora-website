@@ -224,7 +224,7 @@ export const MovingFaqPage: React.FC = () => {
   };
 
   const whatsappUrl =
-    'https://wa.me/917428614678?text=' +
+    'https://wa.me/917575096349?text=' +
     encodeURIComponent('Hi Toter, I have a question about planning my upcoming move.');
 
   return (
@@ -512,3 +512,4 @@ export const MovingFaqPage: React.FC = () => {
 };
 
 export default MovingFaqPage;
+

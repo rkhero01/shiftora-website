@@ -8,8 +8,8 @@ export const siteConfig: SiteConfig = {
     'Toter provides dependable home and office relocation, careful multi-layer packing, transparent pricing, and planned transit coordination.',
   
   contact: {
-    phoneDisplay: '+91 8368743974',
-    phoneRaw: 'tel:+918368743974',
+    phoneDisplay: '7575096349',
+    phoneRaw: 'tel:+917575096349',
     email: 'contact@toter.in',
     operatingHours: 'Mon - Sun: 7:00 AM - 9:00 PM',
     addressSummary: 'Bharthal - Dada Mota Mandir, Dwarka Sector-26, Dwarka, New Delhi 110077',

@@ -202,7 +202,7 @@ export const TermsOfServicePage: React.FC = () => {
   }, []);
 
   const whatsappUrl =
-    'https://wa.me/917428614678?text=' +
+    'https://wa.me/917575096349?text=' +
     encodeURIComponent('Hi Toter, I would like to clarify booking terms and get a moving quotation.');
 
   return (
@@ -458,3 +458,4 @@ export const TermsOfServicePage: React.FC = () => {
 };
 
 export default TermsOfServicePage;
+

@@ -77,7 +77,7 @@ export const Footer: React.FC = () => {
                   <Phone className="w-4 h-4 text-amber-500 shrink-0 mt-0.5 group-hover:scale-110 transition-transform" />
                   <span className="font-medium text-white">{siteConfig.contact.phoneDisplay}</span>
                 </a>
-                <a href="https://wa.me/917428614678" className="flex items-center gap-3 text-slate-300 hover:text-amber-400 transition-colors group">
+                <a href="https://wa.me/917575096349" className="flex items-center gap-3 text-slate-300 hover:text-amber-400 transition-colors group">
                   <MessageCircle className="w-4 h-4 text-emerald-500 shrink-0 mt-0.5" />
                   <span className="font-medium text-white">WhatsApp</span>
                 </a>

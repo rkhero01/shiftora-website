@@ -67,7 +67,7 @@ export const ServicePageLayout: React.FC<ServicePageLayoutProps> = ({
   }, [pageTitle]);
 
   const whatsappUrl =
-    'https://wa.me/917428614678?text=' + encodeURIComponent(whatsappMessage);
+    'https://wa.me/917575096349?text=' + encodeURIComponent(whatsappMessage);
 
   return (
     <main className="flex-1 bg-[#081426] text-white">

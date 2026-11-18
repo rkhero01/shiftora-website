@@ -159,7 +159,7 @@ export const PrivacyPolicyPage: React.FC = () => {
   }, []);
 
   const whatsappUrl =
-    'https://wa.me/917428614678?text=' +
+    'https://wa.me/917575096349?text=' +
     encodeURIComponent('Hi Toter, I have a question regarding your services and privacy policy.');
 
   return (
@@ -414,3 +414,4 @@ export const PrivacyPolicyPage: React.FC = () => {
   );
 };
 export default PrivacyPolicyPage;
+
