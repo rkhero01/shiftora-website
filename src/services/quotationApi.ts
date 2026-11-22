@@ -40,10 +40,18 @@ function loadFallbackDb(): FallbackDatabase {
     const raw = localStorage.getItem(FALLBACK_DB_KEY);
     if (!raw) return getDefaultFallbackDb();
     const parsed = JSON.parse(raw) as Partial<FallbackDatabase>;
+    const mergedBusiness: BusinessInfoSettings = {
+      ...DEFAULT_BUSINESS_INFO,
+      ...(parsed.settings?.businessInfo ?? {}),
+    };
+    if (!mergedBusiness.fullAddress || !mergedBusiness.fullAddress.trim()) {
+      mergedBusiness.shopNumber = DEFAULT_BUSINESS_INFO.shopNumber;
+      mergedBusiness.fullAddress = DEFAULT_BUSINESS_INFO.fullAddress;
+    }
     return {
       settings: {
         bankDetails: { ...DEFAULT_BANK_DETAILS, ...(parsed.settings?.bankDetails ?? {}) },
-        businessInfo: { ...DEFAULT_BUSINESS_INFO, ...(parsed.settings?.businessInfo ?? {}) },
+        businessInfo: mergedBusiness,
         termsConditions:
           Array.isArray(parsed.settings?.termsConditions) && parsed.settings.termsConditions.length > 0
             ? parsed.settings.termsConditions

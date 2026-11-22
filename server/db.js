@@ -107,11 +107,14 @@ export const DEFAULT_BANK_SETTINGS = {
   ifscCode: 'PUNB0211600',
 };
 
+export const CONFIRMED_BUSINESS_ADDRESS =
+  'Shop No. 27, Rishid Residency, Near Pooja Farm, Lamba Turning, Narolgam, Ahmedabad, Gujarat – 382405, India.';
+
 export const DEFAULT_BUSINESS_SETTINGS = {
   brandName: 'TOTER',
   legalName: 'TOTER PACKERS & MOVERS',
-  shopNumber: 'Shop No 27',
-  fullAddress: '',
+  shopNumber: 'Shop No. 27',
+  fullAddress: CONFIRMED_BUSINESS_ADDRESS,
   gstNumber: '',
   phone: '7575096349',
   email: 'contact.toter@gmail.com',
@@ -211,8 +214,20 @@ function ensureDefaultSettings() {
   if (!getSettingStmt.get('bank_details')) {
     upsertSettingStmt.run('bank_details', JSON.stringify(DEFAULT_BANK_SETTINGS));
   }
-  if (!getSettingStmt.get('business_info')) {
+  const existingBizRow = getSettingStmt.get('business_info');
+  if (!existingBizRow) {
     upsertSettingStmt.run('business_info', JSON.stringify(DEFAULT_BUSINESS_SETTINGS));
+  } else {
+    try {
+      const parsedBiz = JSON.parse(existingBizRow.value_json);
+      if (!parsedBiz.fullAddress || !String(parsedBiz.fullAddress).trim()) {
+        parsedBiz.shopNumber = 'Shop No. 27';
+        parsedBiz.fullAddress = CONFIRMED_BUSINESS_ADDRESS;
+        upsertSettingStmt.run('business_info', JSON.stringify(parsedBiz));
+      }
+    } catch {
+      upsertSettingStmt.run('business_info', JSON.stringify(DEFAULT_BUSINESS_SETTINGS));
+    }
   }
   if (!getSettingStmt.get('terms_conditions')) {
     upsertSettingStmt.run('terms_conditions', JSON.stringify(DEFAULT_TERMS_CONDITIONS));

@@ -578,7 +578,7 @@ export const QuotationDashboardPage: React.FC = () => {
             <Link to="/" className="hover:text-white transition-colors inline-flex items-center gap-1">
               &larr; Return to Public Website
             </Link>
-            <span>Shop No 27 &bull; TOTER</span>
+            <span>Shop No. 27, Narolgam, Ahmedabad</span>
           </div>
         </div>
       </div>
@@ -775,10 +775,13 @@ export const QuotationDashboardPage: React.FC = () => {
                   Active Business Profile
                 </div>
                 <div className="mt-2 text-sm font-extrabold text-slate-900">
-                  {settings.businessInfo.brandName} ({settings.businessInfo.shopNumber || 'Shop 27'})
+                  {settings.businessInfo.legalName}
                 </div>
-                <div className="mt-1 text-xs text-slate-600">
-                  Mob: {settings.businessInfo.phone} &bull; {settings.termsConditions.length} Terms
+                <div className="mt-1 text-xs text-slate-600 line-clamp-2">
+                  {settings.businessInfo.fullAddress}
+                </div>
+                <div className="mt-1 text-xs font-semibold text-[#FF641A]">
+                  Call / WhatsApp: {settings.businessInfo.phone}
                 </div>
               </div>
             </div>
@@ -2195,7 +2198,7 @@ export const QuotationDashboardPage: React.FC = () => {
                 Business Information Settings
               </h1>
               <p className="text-xs text-slate-500 mt-1">
-                Pre-filled with confirmed TOTER business details. Unconfirmed street address and GST Number remain blank by default until supplied.
+                Pre-filled with confirmed TOTER business details and official Ahmedabad address.
               </p>
             </div>
 
@@ -2249,7 +2252,7 @@ export const QuotationDashboardPage: React.FC = () => {
 
                 <div>
                   <label htmlFor="biz-gst" className="block text-xs font-bold text-slate-700 mb-1">
-                    GST Number (Blank if unconfirmed)
+                    GST Number (Optional)
                   </label>
                   <input
                     id="biz-gst"
@@ -2265,23 +2268,23 @@ export const QuotationDashboardPage: React.FC = () => {
 
                 <div className="sm:col-span-2">
                   <label htmlFor="biz-address" className="block text-xs font-bold text-slate-700 mb-1">
-                    Full Street Address (Blank if unconfirmed)
+                    Confirmed Business Address <span className="text-red-600">*</span>
                   </label>
                   <input
                     id="biz-address"
                     type="text"
-                    placeholder="Leave blank until confirmed; appended after Shop No 27 when entered"
+                    required
                     value={businessForm.fullAddress}
                     onChange={(e) =>
                       setBusinessForm({ ...businessForm, fullAddress: e.target.value })
                     }
-                    className="w-full px-3.5 py-2 rounded-xl border border-slate-300 text-sm"
+                    className="w-full px-3.5 py-2 rounded-xl border border-slate-300 text-sm font-semibold"
                   />
                 </div>
 
                 <div>
                   <label htmlFor="biz-phone" className="block text-xs font-bold text-slate-700 mb-1">
-                    Phone Number <span className="text-red-600">*</span>
+                    Phone / Call / WhatsApp Number <span className="text-red-600">*</span>
                   </label>
                   <input
                     id="biz-phone"
@@ -2289,7 +2292,12 @@ export const QuotationDashboardPage: React.FC = () => {
                     required
                     value={businessForm.phone}
                     onChange={(e) =>
-                      setBusinessForm({ ...businessForm, phone: e.target.value })
+                      setBusinessForm({
+                        ...businessForm,
+                        phone: e.target.value,
+                        paymentPhonePe: e.target.value,
+                        paymentGooglePay: e.target.value,
+                      })
                     }
                     className="w-full px-3.5 py-2 rounded-xl border border-slate-300 text-sm font-semibold"
                   />
@@ -2328,22 +2336,26 @@ export const QuotationDashboardPage: React.FC = () => {
                 </div>
 
                 <div>
-                  <label htmlFor="biz-phonepe" className="block text-xs font-bold text-slate-700 mb-1">
-                    PhonePe / Google Pay Number
-                  </label>
-                  <input
-                    id="biz-phonepe"
-                    type="text"
-                    value={businessForm.paymentPhonePe}
-                    onChange={(e) =>
-                      setBusinessForm({
-                        ...businessForm,
-                        paymentPhonePe: e.target.value,
-                        paymentGooglePay: e.target.value,
-                      })
-                    }
-                    className="w-full px-3.5 py-2 rounded-xl border border-slate-300 text-sm font-semibold"
-                  />
+                  <span className="block text-xs font-bold text-slate-700 mb-1">
+                    Footer Call &amp; WhatsApp Links Preview
+                  </span>
+                  <div className="px-3.5 py-2 rounded-xl bg-amber-50/70 border border-amber-200 text-xs font-extrabold text-[#081426] flex items-center justify-between gap-2">
+                    <a
+                      href={`tel:+91${(businessForm.phone || '7575096349').replace(/\D/g, '').slice(-10)}`}
+                      className="hover:text-[#FF641A] underline"
+                    >
+                      CALL NOW: {businessForm.phone || '7575096349'}
+                    </a>
+                    <span className="text-[#FF641A]">|</span>
+                    <a
+                      href={`https://wa.me/91${(businessForm.phone || '7575096349').replace(/\D/g, '').slice(-10)}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="hover:text-[#FF641A] underline"
+                    >
+                      WHATSAPP NOW: {businessForm.phone || '7575096349'}
+                    </a>
+                  </div>
                 </div>
               </div>
 

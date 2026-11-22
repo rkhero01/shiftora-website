@@ -23,11 +23,14 @@ export const DEFAULT_BANK_DETAILS: BankDetailsSettings = {
   ifscCode: 'PUNB0211600',
 };
 
+export const CONFIRMED_TOTER_ADDRESS =
+  'Shop No. 27, Rishid Residency, Near Pooja Farm, Lamba Turning, Narolgam, Ahmedabad, Gujarat – 382405, India.';
+
 export const DEFAULT_BUSINESS_INFO: BusinessInfoSettings = {
   brandName: 'TOTER',
   legalName: 'TOTER PACKERS & MOVERS',
-  shopNumber: 'Shop No 27',
-  fullAddress: '',
+  shopNumber: 'Shop No. 27',
+  fullAddress: CONFIRMED_TOTER_ADDRESS,
   gstNumber: '',
   phone: '7575096349',
   email: 'contact.toter@gmail.com',
@@ -37,6 +40,22 @@ export const DEFAULT_BUSINESS_INFO: BusinessInfoSettings = {
   logoUrl: '/images/dynamic-t-logistics-logo.png',
   signatureImageUrl: '',
 };
+
+/**
+ * Formats the business address for the quotation header without duplicating Shop No. 27
+ * when fullAddress already starts with the shop number.
+ */
+export function formatBusinessHeaderAddress(businessInfo: BusinessInfoSettings): string {
+  const full = (businessInfo.fullAddress || '').trim();
+  const shop = (businessInfo.shopNumber || '').trim();
+  if (!full) {
+    return shop || CONFIRMED_TOTER_ADDRESS;
+  }
+  if (!shop || full.toLowerCase().startsWith(shop.toLowerCase()) || full.toLowerCase().startsWith('shop no')) {
+    return full;
+  }
+  return `${shop}, ${full}`;
+}
 
 export const DEFAULT_TERMS_ITEMS: TermsConditionItem[] = [
   {
