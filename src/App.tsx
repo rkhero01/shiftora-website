@@ -3,7 +3,7 @@ import { Header } from './components/common/Header';
 import { Footer } from './components/common/Footer';
 import { HomePage } from './pages/HomePage';
 
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import { ResidentialRelocationPage } from './pages/ResidentialRelocationPage';
 import { CorporateShiftingServicePage } from './pages/CorporateShiftingServicePage';
 import { OfficeRelocationPage } from './pages/OfficeRelocationPage';
@@ -17,6 +17,60 @@ import { RoadFreightPage } from './pages/RoadFreightPage';
 import { PrivacyPolicyPage } from './pages/PrivacyPolicyPage';
 import { TermsOfServicePage } from './pages/TermsOfServicePage';
 import { MovingFaqPage } from './pages/MovingFaqPage';
+import { QuotationDashboardPage } from './pages/QuotationDashboardPage';
+
+const AppLayout: React.FC = () => {
+  const location = useLocation();
+  const isAdminRoute = location.pathname.startsWith('/admin/quotations');
+
+  if (isAdminRoute) {
+    return (
+      <Routes>
+        <Route path="/admin/quotations" element={<QuotationDashboardPage />} />
+        <Route path="/admin/quotations.html" element={<QuotationDashboardPage />} />
+      </Routes>
+    );
+  }
+
+  return (
+    <div className="min-h-screen flex flex-col bg-white text-slate-900 antialiased selection:bg-amber-100 selection:text-amber-900">
+      <Header />
+      <div className="flex-1">
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/services/residential-relocation" element={<ResidentialRelocationPage />} />
+          <Route path="/services/residential-relocation.html" element={<ResidentialRelocationPage />} />
+          <Route path="/services/corporate-shifting-service" element={<CorporateShiftingServicePage />} />
+          <Route path="/services/corporate-shifting-service.html" element={<CorporateShiftingServicePage />} />
+          <Route path="/services/office-relocation" element={<OfficeRelocationPage />} />
+          <Route path="/services/office-relocation.html" element={<OfficeRelocationPage />} />
+          <Route path="/services/door-to-door-relocation" element={<DoorToDoorRelocationPage />} />
+          <Route path="/services/door-to-door-relocation.html" element={<DoorToDoorRelocationPage />} />
+          <Route path="/services/international-relocation" element={<InternationalRelocationPage />} />
+          <Route path="/services/international-relocation.html" element={<InternationalRelocationPage />} />
+          <Route path="/services/car-shifting-by-car-carrier" element={<CarShiftingByCarCarrierPage />} />
+          <Route path="/services/car-shifting-by-car-carrier.html" element={<CarShiftingByCarCarrierPage />} />
+          <Route path="/services/industrial-relocation" element={<IndustrialRelocationPage />} />
+          <Route path="/services/industrial-relocation.html" element={<IndustrialRelocationPage />} />
+          <Route path="/services/air-freight" element={<AirFreightPage />} />
+          <Route path="/services/air-freight.html" element={<AirFreightPage />} />
+          <Route path="/services/sea-freight" element={<SeaFreightPage />} />
+          <Route path="/services/sea-freight.html" element={<SeaFreightPage />} />
+          <Route path="/services/road-freight" element={<RoadFreightPage />} />
+          <Route path="/services/road-freight.html" element={<RoadFreightPage />} />
+          <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
+          <Route path="/privacy-policy.html" element={<PrivacyPolicyPage />} />
+          <Route path="/terms-of-service" element={<TermsOfServicePage />} />
+          <Route path="/terms-of-service.html" element={<TermsOfServicePage />} />
+          <Route path="/moving-faq" element={<MovingFaqPage />} />
+          <Route path="/moving-faq.html" element={<MovingFaqPage />} />
+          <Route path="*" element={<HomePage />} />
+        </Routes>
+      </div>
+      <Footer />
+    </div>
+  );
+};
 
 export const App: React.FC = () => {
   const basename =
@@ -26,42 +80,7 @@ export const App: React.FC = () => {
 
   return (
     <Router basename={basename}>
-      <div className="min-h-screen flex flex-col bg-white text-slate-900 antialiased selection:bg-amber-100 selection:text-amber-900">
-        <Header />
-        <div className="flex-1">
-          <Routes>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/services/residential-relocation" element={<ResidentialRelocationPage />} />
-            <Route path="/services/residential-relocation.html" element={<ResidentialRelocationPage />} />
-            <Route path="/services/corporate-shifting-service" element={<CorporateShiftingServicePage />} />
-            <Route path="/services/corporate-shifting-service.html" element={<CorporateShiftingServicePage />} />
-            <Route path="/services/office-relocation" element={<OfficeRelocationPage />} />
-            <Route path="/services/office-relocation.html" element={<OfficeRelocationPage />} />
-            <Route path="/services/door-to-door-relocation" element={<DoorToDoorRelocationPage />} />
-            <Route path="/services/door-to-door-relocation.html" element={<DoorToDoorRelocationPage />} />
-            <Route path="/services/international-relocation" element={<InternationalRelocationPage />} />
-            <Route path="/services/international-relocation.html" element={<InternationalRelocationPage />} />
-            <Route path="/services/car-shifting-by-car-carrier" element={<CarShiftingByCarCarrierPage />} />
-            <Route path="/services/car-shifting-by-car-carrier.html" element={<CarShiftingByCarCarrierPage />} />
-            <Route path="/services/industrial-relocation" element={<IndustrialRelocationPage />} />
-            <Route path="/services/industrial-relocation.html" element={<IndustrialRelocationPage />} />
-            <Route path="/services/air-freight" element={<AirFreightPage />} />
-            <Route path="/services/air-freight.html" element={<AirFreightPage />} />
-            <Route path="/services/sea-freight" element={<SeaFreightPage />} />
-            <Route path="/services/sea-freight.html" element={<SeaFreightPage />} />
-            <Route path="/services/road-freight" element={<RoadFreightPage />} />
-            <Route path="/services/road-freight.html" element={<RoadFreightPage />} />
-            <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
-            <Route path="/privacy-policy.html" element={<PrivacyPolicyPage />} />
-            <Route path="/terms-of-service" element={<TermsOfServicePage />} />
-            <Route path="/terms-of-service.html" element={<TermsOfServicePage />} />
-            <Route path="/moving-faq" element={<MovingFaqPage />} />
-            <Route path="/moving-faq.html" element={<MovingFaqPage />} />
-            <Route path="*" element={<HomePage />} />
-          </Routes>
-        </div>
-        <Footer />
-      </div>
+      <AppLayout />
     </Router>
   );
 };

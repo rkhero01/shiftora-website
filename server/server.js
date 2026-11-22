@@ -2,16 +2,32 @@ import express from 'express';
 import cors from 'cors';
 import rateLimit from 'express-rate-limit';
 import dotenv from 'dotenv';
-import path from 'node:path';
-import { fileURLToPath } from 'node:url';
-import { insertEnquiry } from './db.js';
+import {
+  insertEnquiry,
+  verifyAdminLogin,
+  verifyAdminToken,
+  revokeAdminToken,
+  updateAdminPassword,
+  getQuotationSettings,
+  saveQuotationSetting,
+  peekNextQuotationNumber,
+  listQuotations,
+  getQuotationById,
+  createQuotationRecord,
+  updateQuotationRecord,
+  duplicateQuotationRecord,
+  deleteQuotationRecord,
+} from './db.js';
 import { validateEnquiryInput, generateReferenceCode } from './validation.js';
+import {
+  validateQuotationPayload,
+  validateBankSettings,
+  validateBusinessSettings,
+  validateTermsSettings,
+} from './quotationValidation.js';
 
 // Load environment variables if present
 dotenv.config();
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -27,47 +43,57 @@ const allowedOrigins = (process.env.CORS_ORIGIN || 'http://localhost:5173,http:/
 app.use(
   cors({
     origin: (origin, callback) => {
-      // Allow requests with no origin (e.g. mobile apps, curl, or same-origin requests)
       if (!origin || allowedOrigins.includes(origin)) {
         return callback(null, true);
       }
       return callback(new Error('Cross-Origin Request Blocked by Toter Security Policy'));
     },
-    methods: ['GET', 'POST'],
-    allowedHeaders: ['Content-Type'],
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
   })
 );
 
-// 2. Body Parser with Strict 10kb Size Limit (Prevents payload attacks)
-app.use(express.json({ limit: '10kb' }));
+// 2. Body Parser (500kb limit to support optional signature image data URLs in admin settings)
+app.use(express.json({ limit: '500kb' }));
 
-// 3. Rate Limiter for Enquiry Submissions (Spam prevention)
+// 3. Rate Limiters
 const enquiryRateLimiter = rateLimit({
-  windowMs: 15 * 60 * 1000, // 15 minutes
-  max: 10, // Max 10 submissions per IP in 15 minutes
+  windowMs: 15 * 60 * 1000,
+  max: 10,
   standardHeaders: true,
   legacyHeaders: false,
   message: {
     success: false,
-    message: 'Too many moving enquiries submitted from your network. Please call our hotline directly for immediate assistance.',
+    message:
+      'Too many moving enquiries submitted from your network. Please call our hotline directly for immediate assistance.',
   },
 });
 
-// 4. Health Check Endpoint (Safe, does not expose internal paths or credentials)
+const adminAuthRateLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000,
+  max: 25,
+  standardHeaders: true,
+  legacyHeaders: false,
+  message: {
+    success: false,
+    message: 'Too many login attempts. Please wait 15 minutes before retrying.',
+  },
+});
+
+// 4. Health Check Endpoint
 app.get('/api/health', (req, res) => {
   res.status(200).json({
     status: 'ok',
-    service: 'toter-enquiry-api',
+    service: 'toter-enquiry-and-quotation-api',
     timestamp: new Date().toISOString(),
   });
 });
 
-// 5. POST /api/enquiries Endpoint
+// 5. POST /api/enquiries Endpoint (Public website enquiry form - unchanged)
 app.post('/api/enquiries', enquiryRateLimiter, (req, res) => {
   try {
     const validation = validateEnquiryInput(req.body);
 
-    // Bot detection check
     if (validation.isBot) {
       return res.status(400).json({
         success: false,
@@ -84,11 +110,8 @@ app.post('/api/enquiries', enquiryRateLimiter, (req, res) => {
     }
 
     const { customerName, phone, originCity, destinationCity, serviceType, moveDate } = validation.data;
-
-    // Generate unguessable public reference code
     const referenceCode = generateReferenceCode();
 
-    // Insert into SQLite database via prepared statement
     const record = insertEnquiry({
       referenceCode,
       customerName,
@@ -100,7 +123,6 @@ app.post('/api/enquiries', enquiryRateLimiter, (req, res) => {
       status: 'new',
     });
 
-    // Safe logging without exposing customer phone number or personal details
     console.log(`[Toter API] New enquiry stored securely. Ref: ${referenceCode}, Service: ${serviceType}`);
 
     return res.status(201).json({
@@ -110,13 +132,284 @@ app.post('/api/enquiries', enquiryRateLimiter, (req, res) => {
       receivedAt: record.created_at,
     });
   } catch (error) {
-    // Avoid exposing internal database details or stack trace
     console.error('[Toter API Error] Error processing enquiry:', error.message);
     return res.status(500).json({
       success: false,
-      message: 'An unexpected error occurred while saving your enquiry. Please contact our support line directly.',
+      message:
+        'An unexpected error occurred while saving your enquiry. Please contact our support line directly.',
     });
   }
+});
+
+// ── Admin Authentication Middleware ──────────────────────────────────
+function extractBearerToken(req) {
+  const authHeader = req.headers.authorization || '';
+  if (authHeader.startsWith('Bearer ')) {
+    return authHeader.slice(7).trim();
+  }
+  return null;
+}
+
+function requireAdminAuth(req, res, next) {
+  const token = extractBearerToken(req);
+  const session = verifyAdminToken(token);
+  if (!session) {
+    return res.status(401).json({
+      success: false,
+      message: 'Unauthorized. Please log in to the TOTER Quotation Dashboard.',
+    });
+  }
+  req.adminSession = session;
+  req.adminToken = token;
+  return next();
+}
+
+// ── Admin Authentication Endpoints ───────────────────────────────────
+app.post('/api/admin/auth/login', adminAuthRateLimiter, (req, res) => {
+  try {
+    const { username, password } = req.body || {};
+    const session = verifyAdminLogin(username || 'admin', password);
+    if (!session) {
+      return res.status(401).json({
+        success: false,
+        message: 'Invalid administrator username or password.',
+      });
+    }
+    return res.status(200).json({
+      success: true,
+      token: session.token,
+      username: session.username,
+      expiresAt: session.expiresAt,
+    });
+  } catch (error) {
+    console.error('[Toter Admin Auth Error]:', error.message);
+    return res.status(500).json({
+      success: false,
+      message: 'Failed to process administrator login.',
+    });
+  }
+});
+
+app.get('/api/admin/auth/session', requireAdminAuth, (req, res) => {
+  return res.status(200).json({
+    success: true,
+    username: req.adminSession.username,
+    expiresAt: req.adminSession.expires_at,
+  });
+});
+
+app.post('/api/admin/auth/logout', requireAdminAuth, (req, res) => {
+  revokeAdminToken(req.adminToken);
+  return res.status(200).json({
+    success: true,
+    message: 'Logged out successfully.',
+  });
+});
+
+app.put('/api/admin/auth/password', requireAdminAuth, (req, res) => {
+  const { currentPassword, newPassword } = req.body || {};
+  if (!newPassword || String(newPassword).length < 8) {
+    return res.status(400).json({
+      success: false,
+      message: 'New password must be at least 8 characters.',
+    });
+  }
+  const result = updateAdminPassword(req.adminSession.username, currentPassword, newPassword);
+  if (!result.success) {
+    return res.status(400).json(result);
+  }
+  return res.status(200).json({
+    success: true,
+    message: 'Administrator password updated successfully.',
+  });
+});
+
+// ── Quotation Settings Endpoints ─────────────────────────────────────
+app.get('/api/admin/settings', requireAdminAuth, (req, res) => {
+  return res.status(200).json({
+    success: true,
+    settings: getQuotationSettings(),
+  });
+});
+
+app.put('/api/admin/settings/bank', requireAdminAuth, (req, res) => {
+  const validation = validateBankSettings(req.body);
+  if (!validation.valid) {
+    return res.status(400).json({
+      success: false,
+      message: 'Please correct the highlighted bank details errors.',
+      errors: validation.errors,
+    });
+  }
+  const settings = saveQuotationSetting('bank_details', validation.data);
+  return res.status(200).json({
+    success: true,
+    message: 'Bank details saved successfully.',
+    settings,
+  });
+});
+
+app.put('/api/admin/settings/business', requireAdminAuth, (req, res) => {
+  const validation = validateBusinessSettings(req.body);
+  if (!validation.valid) {
+    return res.status(400).json({
+      success: false,
+      message: 'Please correct the highlighted business information errors.',
+      errors: validation.errors,
+    });
+  }
+  const settings = saveQuotationSetting('business_info', validation.data);
+  return res.status(200).json({
+    success: true,
+    message: 'Business information settings saved successfully.',
+    settings,
+  });
+});
+
+app.put('/api/admin/settings/terms', requireAdminAuth, (req, res) => {
+  const validation = validateTermsSettings(req.body);
+  if (!validation.valid) {
+    return res.status(400).json({
+      success: false,
+      message: 'Please provide at least one valid Terms & Conditions clause.',
+      errors: validation.errors,
+    });
+  }
+  const settings = saveQuotationSetting('terms_conditions', validation.data);
+  return res.status(200).json({
+    success: true,
+    message: 'Terms & Conditions saved successfully.',
+    settings,
+  });
+});
+
+// ── Quotation CRUD Endpoints ─────────────────────────────────────────
+app.get('/api/admin/quotations/next-number', requireAdminAuth, (req, res) => {
+  const year = req.query.year ? parseInt(String(req.query.year), 10) : new Date().getFullYear();
+  return res.status(200).json({
+    success: true,
+    nextQuotationNumber: peekNextQuotationNumber(year),
+  });
+});
+
+app.get('/api/admin/quotations', requireAdminAuth, (req, res) => {
+  const { search = '', movingType = '', dateFrom = '', dateTo = '' } = req.query;
+  const quotations = listQuotations({ search, movingType, dateFrom, dateTo });
+  return res.status(200).json({
+    success: true,
+    quotations,
+  });
+});
+
+app.get('/api/admin/quotations/:id', requireAdminAuth, (req, res) => {
+  const quotation = getQuotationById(req.params.id);
+  if (!quotation) {
+    return res.status(404).json({
+      success: false,
+      message: 'Quotation not found.',
+    });
+  }
+  return res.status(200).json({
+    success: true,
+    quotation,
+  });
+});
+
+app.post('/api/admin/quotations', requireAdminAuth, (req, res) => {
+  try {
+    const validation = validateQuotationPayload(req.body);
+    if (!validation.valid) {
+      return res.status(400).json({
+        success: false,
+        message: 'Validation failed. Please check the highlighted fields.',
+        errors: validation.errors,
+      });
+    }
+
+    const created = createQuotationRecord(validation.data);
+    return res.status(201).json({
+      success: true,
+      message: `Quotation ${created.quotationNumber} created and saved.`,
+      quotation: created,
+    });
+  } catch (error) {
+    console.error('[Toter Quotation Create Error]:', error.message);
+    return res.status(500).json({
+      success: false,
+      message: 'Failed to save quotation.',
+    });
+  }
+});
+
+app.put('/api/admin/quotations/:id', requireAdminAuth, (req, res) => {
+  try {
+    const existing = getQuotationById(req.params.id);
+    if (!existing) {
+      return res.status(404).json({
+        success: false,
+        message: 'Quotation not found.',
+      });
+    }
+
+    const validation = validateQuotationPayload(req.body);
+    if (!validation.valid) {
+      return res.status(400).json({
+        success: false,
+        message: 'Validation failed. Please check the highlighted fields.',
+        errors: validation.errors,
+      });
+    }
+
+    const updated = updateQuotationRecord(req.params.id, validation.data);
+    return res.status(200).json({
+      success: true,
+      message: `Quotation ${updated.quotationNumber} updated.`,
+      quotation: updated,
+    });
+  } catch (error) {
+    console.error('[Toter Quotation Update Error]:', error.message);
+    return res.status(500).json({
+      success: false,
+      message: 'Failed to update quotation.',
+    });
+  }
+});
+
+app.post('/api/admin/quotations/:id/duplicate', requireAdminAuth, (req, res) => {
+  try {
+    const duplicated = duplicateQuotationRecord(req.params.id);
+    if (!duplicated) {
+      return res.status(404).json({
+        success: false,
+        message: 'Original quotation not found.',
+      });
+    }
+    return res.status(201).json({
+      success: true,
+      message: `Duplicated as new Quotation ${duplicated.quotationNumber}.`,
+      quotation: duplicated,
+    });
+  } catch (error) {
+    console.error('[Toter Quotation Duplicate Error]:', error.message);
+    return res.status(500).json({
+      success: false,
+      message: 'Failed to duplicate quotation.',
+    });
+  }
+});
+
+app.delete('/api/admin/quotations/:id', requireAdminAuth, (req, res) => {
+  const deleted = deleteQuotationRecord(req.params.id);
+  if (!deleted) {
+    return res.status(404).json({
+      success: false,
+      message: 'Quotation not found.',
+    });
+  }
+  return res.status(200).json({
+    success: true,
+    message: 'Quotation deleted successfully.',
+  });
 });
 
 // 6. 404 Route Handler
@@ -128,7 +421,7 @@ app.use('/api', (req, res) => {
 });
 
 // 7. Global Error Handler
-app.use((err, req, res, next) => {
+app.use((err, req, res, _next) => {
   console.error('[Toter API Uncaught Error]:', err.message);
   res.status(500).json({
     success: false,
@@ -145,4 +438,3 @@ if (process.env.NODE_ENV !== 'test') {
 }
 
 export { app, server };
-

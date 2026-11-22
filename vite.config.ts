@@ -18,6 +18,7 @@ const serviceRoutes = [
   'privacy-policy',
   'terms-of-service',
   'moving-faq',
+  'admin/quotations',
 ]
 
 function githubPagesSpa() {
