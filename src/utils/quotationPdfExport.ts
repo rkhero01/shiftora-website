@@ -82,8 +82,8 @@ function wrapCanvasText(
 
 /**
  * Renders Page 1 and Page 2 of the TOTER Quotation onto two high-DPI A4 canvases
- * matching the TOTER website theme (Navy Blue #081426, Brand Orange #FF641A, White #FFFFFF)
- * and records clickable URI link rectangles for the PDF 1.4 binary stream.
+ * with the reversed Navy Blue (#081426) background / White (#FFFFFF) text & header bar scheme
+ * and Brand Orange (#FF641A) accents.
  */
 async function renderQuotationPagesToJpegDataUrls(
   payload: PdfExportPayload
@@ -119,35 +119,35 @@ async function renderQuotationPagesToJpegDataUrls(
   const H = 1754;
   const ORANGE = '#FF641A';
   const NAVY = '#081426';
-  const LIGHT_TINT = '#fff7f2';
-  const RED = '#b91c1c';
-  const DARK = '#0f172a';
+  const NAVY_PANEL = '#0b1b33';
+  const WHITE = '#ffffff';
+  const MUTED_LIGHT = '#cbd5e1';
   const page1Links: PdfClickableLinkRect[] = [];
 
-  // ── PAGE 1 CANVAS ──────────────────────────────────────────────────
+  // ── PAGE 1 CANVAS (NAVY BACKGROUND, WHITE TEXT) ────────────────────
   const canvas1 = document.createElement('canvas');
   canvas1.width = W;
   canvas1.height = H;
   const ctx1 = canvas1.getContext('2d')!;
 
-  ctx1.fillStyle = '#ffffff';
+  ctx1.fillStyle = NAVY;
   ctx1.fillRect(0, 0, W, H);
 
   const marginX = 48;
   const contentW = W - marginX * 2;
   let y = 40;
 
-  // Top Brand Orange bar + Navy Blue accent rule
+  // Top Brand Orange bar + White accent rule
   ctx1.fillStyle = ORANGE;
   ctx1.fillRect(marginX, y, contentW, 10);
   y += 13;
-  ctx1.fillStyle = NAVY;
+  ctx1.fillStyle = WHITE;
   ctx1.fillRect(marginX, y, contentW, 3);
   y += 6;
 
   // A. Company Header Box
   const headerH = 192;
-  ctx1.fillStyle = LIGHT_TINT;
+  ctx1.fillStyle = NAVY_PANEL;
   ctx1.fillRect(marginX, y, contentW, headerH);
   ctx1.strokeStyle = ORANGE;
   ctx1.lineWidth = 2;
@@ -157,18 +157,18 @@ async function renderQuotationPagesToJpegDataUrls(
   let hy = y + 36;
   const hx = marginX + 22;
   ctx1.font = 'bold 34px Inter, Arial, sans-serif';
-  ctx1.fillStyle = NAVY;
+  ctx1.fillStyle = WHITE;
   ctx1.fillText('TOT', hx, hy);
   const totHeaderW = ctx1.measureText('TOT').width;
   ctx1.fillStyle = ORANGE;
   ctx1.fillText('ER', hx + totHeaderW, hy);
   const erHeaderW = ctx1.measureText('ER').width;
-  ctx1.fillStyle = NAVY;
+  ctx1.fillStyle = WHITE;
   ctx1.font = 'bold 21px Inter, Arial, sans-serif';
   ctx1.fillText(' PACKERS & MOVERS', hx + totHeaderW + erHeaderW, hy);
   hy += 27;
 
-  ctx1.fillStyle = '#1e293b';
+  ctx1.fillStyle = '#f8fafc';
   ctx1.font = 'bold 17.5px Inter, Arial, sans-serif';
   if (shopAddressLine) {
     const addrLines = wrapCanvasText(ctx1, shopAddressLine, contentW * 0.63);
@@ -178,53 +178,70 @@ async function renderQuotationPagesToJpegDataUrls(
     }
   }
   if (businessInfo.gstNumber?.trim()) {
-    ctx1.fillStyle = NAVY;
+    ctx1.fillStyle = ORANGE;
     ctx1.font = 'bold 17.5px Inter, Arial, sans-serif';
-    ctx1.fillText(`GST No.: ${businessInfo.gstNumber.trim()}`, hx, hy);
+    ctx1.fillText('GST No.: ', hx, hy);
+    const gw = ctx1.measureText('GST No.: ').width;
+    ctx1.fillStyle = WHITE;
+    ctx1.fillText(businessInfo.gstNumber.trim(), hx + gw, hy);
     hy += 22;
   }
 
-  ctx1.fillStyle = NAVY;
   ctx1.font = 'bold 18px Inter, Arial, sans-serif';
-  ctx1.fillText(`Phone: ${displayPhone}`, hx, hy);
+  ctx1.fillStyle = ORANGE;
+  ctx1.fillText('Phone: ', hx, hy);
+  const pw = ctx1.measureText('Phone: ').width;
+  ctx1.fillStyle = WHITE;
+  ctx1.fillText(displayPhone, hx + pw, hy);
   page1Links.push({ xPx: hx, yPx: hy - 18, wPx: 260, hPx: 22, uri: telHref });
   hy += 24;
 
+  ctx1.font = 'bold 17.5px Inter, Arial, sans-serif';
+  ctx1.fillStyle = ORANGE;
+  ctx1.fillText('Website: ', hx, hy);
+  const ww = ctx1.measureText('Website: ').width;
+  ctx1.fillStyle = WHITE;
   ctx1.font = '17.5px Inter, Arial, sans-serif';
-  ctx1.fillText(`Website: ${businessInfo.website}`, hx, hy);
+  ctx1.fillText(businessInfo.website, hx + ww, hy);
   page1Links.push({ xPx: hx, yPx: hy - 18, wPx: 300, hPx: 22, uri: businessInfo.website });
   hy += 22;
 
-  ctx1.fillText(`Email: ${businessInfo.email}`, hx, hy);
+  ctx1.font = 'bold 17.5px Inter, Arial, sans-serif';
+  ctx1.fillStyle = ORANGE;
+  ctx1.fillText('Email: ', hx, hy);
+  const ew = ctx1.measureText('Email: ').width;
+  ctx1.fillStyle = WHITE;
+  ctx1.font = '17.5px Inter, Arial, sans-serif';
+  ctx1.fillText(businessInfo.email, hx + ew, hy);
   page1Links.push({ xPx: hx, yPx: hy - 18, wPx: 340, hPx: 22, uri: `mailto:${businessInfo.email}` });
 
-  // Right Logo Box inside Header
+  // Right Logo Box inside Header (Navy Background, Orange Border, White + Orange Text)
   const logoBoxW = 345;
   const logoBoxH = 112;
   const logoBoxX = marginX + contentW - logoBoxW - 22;
   const logoBoxY = y + Math.round((headerH - logoBoxH) / 2);
-  ctx1.fillStyle = '#ffffff';
+  ctx1.fillStyle = NAVY;
   ctx1.fillRect(logoBoxX, logoBoxY, logoBoxW, logoBoxH);
-  ctx1.strokeStyle = NAVY;
+  ctx1.strokeStyle = ORANGE;
   ctx1.lineWidth = 2;
   ctx1.strokeRect(logoBoxX, logoBoxY, logoBoxW, logoBoxH);
 
   if (logoImg) {
     ctx1.drawImage(logoImg, logoBoxX + 26, logoBoxY + 18, 76, 76);
   }
-  ctx1.fillStyle = NAVY;
+  ctx1.fillStyle = WHITE;
   ctx1.font = 'italic bold 38px Inter, Arial, sans-serif';
   ctx1.fillText('TOT', logoBoxX + 116, logoBoxY + 58);
   const totW = ctx1.measureText('TOT').width;
   ctx1.fillStyle = ORANGE;
   ctx1.fillText('ER', logoBoxX + 116 + totW, logoBoxY + 58);
-  ctx1.fillStyle = '#334155';
+  ctx1.fillStyle = '#e2e8f0';
   ctx1.font = 'bold 13px Inter, Arial, sans-serif';
   ctx1.fillText('PACKERS & MOVERS', logoBoxX + 116, logoBoxY + 82);
 
   y += headerH + 5;
-  // Double rule below header (Navy + Orange)
-  ctx1.fillStyle = NAVY;
+  // Double rule below header (White + Orange)
+  ctx1.fillStyle = WHITE;
   ctx1.fillRect(marginX, y, contentW, 2.5);
   y += 5;
   ctx1.fillStyle = ORANGE;
@@ -249,18 +266,18 @@ async function renderQuotationPagesToJpegDataUrls(
   let ly = bodyStartY + 26;
   const lx = marginX + 16;
 
-  ctx1.fillStyle = NAVY;
+  ctx1.fillStyle = ORANGE;
   ctx1.font = 'bold 19px Inter, Arial, sans-serif';
   ctx1.fillText('TO', lx, ly);
   ly += 28;
 
   const drawLabelValue = (label: string, val: string, xPos: number, yPos: number, maxW: number) => {
     ctx1.font = 'bold 18px Inter, Arial, sans-serif';
-    ctx1.fillStyle = NAVY;
+    ctx1.fillStyle = MUTED_LIGHT;
     ctx1.fillText(label, xPos, yPos);
     const lw = ctx1.measureText(label).width;
     ctx1.font = 'bold 18px Inter, Arial, sans-serif';
-    ctx1.fillStyle = DARK;
+    ctx1.fillStyle = WHITE;
     const lines = wrapCanvasText(ctx1, val, maxW - lw);
     lines.forEach((ln, idx) => {
       ctx1.fillText(ln, idx === 0 ? xPos + lw : xPos, yPos + idx * 22);
@@ -276,12 +293,12 @@ async function renderQuotationPagesToJpegDataUrls(
 
   // Dear sir/madam + Intro
   ctx1.font = 'bold 21px Inter, Arial, sans-serif';
-  ctx1.fillStyle = NAVY;
+  ctx1.fillStyle = WHITE;
   ctx1.fillText('Dear sir/madam', lx, ly);
   ly += 24;
 
   ctx1.font = '18px Inter, Arial, sans-serif';
-  ctx1.fillStyle = DARK;
+  ctx1.fillStyle = '#f8fafc';
   const introDisplay = (
     form.introText.trim() ||
     'We thank you for your valuable enquiry regarding the packing and shifting of your moving items from [Moving From] to [Moving To]. We are pleased to quote the rates for the same as follows:'
@@ -309,7 +326,7 @@ async function renderQuotationPagesToJpegDataUrls(
   ctx1.lineTo(marginX + halfLeftW, ly + qBannerH);
   ctx1.stroke();
 
-  ctx1.fillStyle = '#ffffff';
+  ctx1.fillStyle = WHITE;
   ctx1.font = 'bold 31px Inter, Arial, sans-serif';
   ctx1.textAlign = 'center';
   ctx1.fillText('QUOTATION', marginX + halfLeftW / 2, ly + 35);
@@ -321,19 +338,19 @@ async function renderQuotationPagesToJpegDataUrls(
   ctx1.textAlign = 'left';
   ly += qBannerH;
 
-  // Move From | Move To Navy Blue Sub-header
+  // Move From | Move To Sub-header (WHITE background, NAVY text)
   const subBarH = 30;
-  ctx1.fillStyle = NAVY;
+  ctx1.fillStyle = WHITE;
   ctx1.fillRect(marginX, ly, leftColW, subBarH);
   ctx1.strokeStyle = ORANGE;
   ctx1.strokeRect(marginX, ly, leftColW, subBarH);
-  ctx1.fillStyle = '#ffffff';
+  ctx1.fillStyle = NAVY;
   ctx1.font = 'bold 18px Inter, Arial, sans-serif';
   ctx1.fillText('Move From', marginX + 12, ly + 21);
   ctx1.fillText('Move To', marginX + halfLeftW + 12, ly + 21);
   ly += subBarH;
 
-  // F. Move From | Move To Details
+  // F. Move From | Move To Details (Navy background, White text)
   const locStartY = ly;
   let fromY = locStartY + 24;
   let toY = locStartY + 24;
@@ -365,7 +382,7 @@ async function renderQuotationPagesToJpegDataUrls(
   ctx1.stroke();
   ly = locEndY;
 
-  // H. 6 Moving Information Rows
+  // H. 6 Moving Information Rows (Navy background, White text)
   const infoRows = [
     {
       label: 'Is there easy access for loading & unloading at Location Move From & Move To: ',
@@ -400,7 +417,7 @@ async function renderQuotationPagesToJpegDataUrls(
   for (const row of infoRows) {
     const rowTop = ly;
     ctx1.font = row.boldLabel ? 'bold 17.5px Inter, Arial, sans-serif' : '17.5px Inter, Arial, sans-serif';
-    ctx1.fillStyle = row.boldLabel ? NAVY : DARK;
+    ctx1.fillStyle = WHITE;
     const combined = `${row.label}${row.val}`;
     const lines = wrapCanvasText(ctx1, combined, leftColW - 24);
     let textY = rowTop + 23;
@@ -417,12 +434,12 @@ async function renderQuotationPagesToJpegDataUrls(
     ctx1.stroke();
   }
 
-  // I. Signature Section
+  // I. Signature Section (Navy background, White text)
   const sigTopY = ly;
   const sigH = 180;
   const sigSplitX = marginX + Math.round(leftColW * 0.46);
 
-  ctx1.fillStyle = NAVY;
+  ctx1.fillStyle = WHITE;
   ctx1.font = 'bold 21px Inter, Arial, sans-serif';
   ctx1.fillText(businessInfo.brandName || 'TOTER', marginX + 26, sigTopY + 32);
 
@@ -440,7 +457,7 @@ async function renderQuotationPagesToJpegDataUrls(
   ctx1.lineTo(sigSplitX, sigTopY + sigH);
   ctx1.stroke();
 
-  ctx1.fillStyle = NAVY;
+  ctx1.fillStyle = WHITE;
   ctx1.font = 'bold 17.5px Inter, Arial, sans-serif';
   ctx1.textAlign = 'center';
   const rightSigCenterX = sigSplitX + Math.round((marginX + leftColW - sigSplitX) / 2);
@@ -456,7 +473,7 @@ async function renderQuotationPagesToJpegDataUrls(
   const bankBoxW = rightColW - 28;
   const bankBoxH = 122;
 
-  ctx1.fillStyle = LIGHT_TINT;
+  ctx1.fillStyle = NAVY_PANEL;
   ctx1.fillRect(bankBoxX, ry, bankBoxW, bankBoxH);
   ctx1.strokeStyle = ORANGE;
   ctx1.lineWidth = 1.5;
@@ -486,7 +503,7 @@ async function renderQuotationPagesToJpegDataUrls(
   ) => {
     ctx1.fillStyle = bgColor;
     ctx1.fillRect(rightColX, ry, rightColW, pRowH);
-    ctx1.strokeStyle = bgColor === ORANGE || bgColor === NAVY ? ORANGE : '#cbd5e1';
+    ctx1.strokeStyle = bgColor === ORANGE || bgColor === WHITE ? ORANGE : 'rgba(255,255,255,0.22)';
     ctx1.lineWidth = 1;
     ctx1.strokeRect(rightColX, ry, rightColW, pRowH);
 
@@ -497,15 +514,15 @@ async function renderQuotationPagesToJpegDataUrls(
 
     ctx1.fillStyle = textColor;
     ctx1.font =
-      bgColor === ORANGE || bgColor === NAVY
+      bgColor === ORANGE || bgColor === WHITE
         ? 'bold 17.5px Inter, Arial, sans-serif'
         : '17.5px Inter, Arial, sans-serif';
     ctx1.textAlign = 'right';
     ctx1.fillText(partLabel, pSplitX - 10, ry + 24);
 
-    ctx1.fillStyle = bgColor === '#ffffff' ? NAVY : textColor;
+    ctx1.fillStyle = textColor;
     ctx1.font =
-      isBoldAmt || bgColor === ORANGE || bgColor === NAVY
+      isBoldAmt || bgColor === ORANGE || bgColor === WHITE
         ? 'bold 17.5px Inter, Arial, sans-serif'
         : '17.5px Inter, Arial, sans-serif';
     ctx1.textAlign = 'left';
@@ -513,30 +530,30 @@ async function renderQuotationPagesToJpegDataUrls(
     ry += pRowH;
   };
 
-  // Header (Navy Blue matching Website Header Theme)
-  drawPricingRow('Particulars', 'Amount (Rs.)', NAVY, '#ffffff', true);
+  // Header (WHITE background, NAVY text)
+  drawPricingRow('Particulars', 'Amount (Rs.)', WHITE, NAVY, true);
 
   for (const def of PRICING_ROW_DEFINITIONS) {
     const row = form.pricing[def.key];
     const displayVal = formatChargeCellForPdf(row, def.compactZeroInPdf);
-    drawPricingRow(def.pdfLabel, displayVal, '#ffffff', DARK, true);
+    drawPricingRow(def.pdfLabel, displayVal, NAVY, WHITE, true);
   }
 
   // Sub Total (Brand Orange)
-  drawPricingRow('Sub Total', formatPdfTableAmount(totals.subTotal), ORANGE, '#ffffff', true);
+  drawPricingRow('Sub Total', formatPdfTableAmount(totals.subTotal), ORANGE, WHITE, true);
 
-  // Insurance Charge
-  drawPricingRow('Insurance Charge', totals.insuranceDisplayForPdf, '#ffffff', DARK, true);
+  // Insurance Charge (Navy background, White text)
+  drawPricingRow('Insurance Charge', totals.insuranceDisplayForPdf, NAVY, WHITE, true);
 
   // Total Amount (Brand Orange)
-  drawPricingRow('Total Amount', formatPdfTableAmount(totals.totalAmount), ORANGE, '#ffffff', true);
+  drawPricingRow('Total Amount', formatPdfTableAmount(totals.totalAmount), ORANGE, WHITE, true);
 
-  // Reverse Charge
-  ctx1.fillStyle = '#ffffff';
+  // Reverse Charge (Navy background, White text)
+  ctx1.fillStyle = NAVY;
   ctx1.fillRect(rightColX, ry, rightColW, pRowH);
   ctx1.strokeStyle = ORANGE;
   ctx1.strokeRect(rightColX, ry, rightColW, pRowH);
-  ctx1.fillStyle = NAVY;
+  ctx1.fillStyle = WHITE;
   ctx1.font = 'bold 17.5px Inter, Arial, sans-serif';
   ctx1.textAlign = 'right';
   const revLabel = form.pricing.reverseCharge
@@ -562,12 +579,12 @@ async function renderQuotationPagesToJpegDataUrls(
   let fy = twoColBottomY;
 
   // J. Full-Width Footer inside Main Frame
-  // 1. Note Box
+  // 1. Note Box (Navy background, Orange heading + White warning text)
   const noteH = 66;
   ctx1.fillStyle = ORANGE;
   ctx1.font = 'bold 17px Inter, Arial, sans-serif';
   ctx1.fillText('Note:', marginX + 10, fy + 21);
-  ctx1.fillStyle = RED;
+  ctx1.fillStyle = WHITE;
   ctx1.font = 'bold 16.5px Inter, Arial, sans-serif';
   ctx1.fillText(
     'Please keep your Cash/Jewelery and all important documents in your Custody/Lock carrying',
@@ -586,19 +603,18 @@ async function renderQuotationPagesToJpegDataUrls(
   ctx1.lineTo(marginX + contentW, fy);
   ctx1.stroke();
 
-  // 2. CALL NOW | WHATSAPP NOW Strip (Replaces old PhonePe / Google Pay footer)
+  // 2. CALL NOW | WHATSAPP NOW Strip (Navy Panel background, White text)
   const callStripH = 36;
-  ctx1.fillStyle = LIGHT_TINT;
+  ctx1.fillStyle = NAVY_PANEL;
   ctx1.fillRect(marginX, fy, contentW, callStripH);
   ctx1.strokeStyle = ORANGE;
   ctx1.strokeRect(marginX, fy, contentW, callStripH);
-  ctx1.fillStyle = NAVY;
+  ctx1.fillStyle = WHITE;
   ctx1.font = 'bold 19px Inter, Arial, sans-serif';
   ctx1.textAlign = 'center';
   const callNowText = `CALL NOW: ${displayPhone} | WHATSAPP NOW: ${displayPhone}`;
   ctx1.fillText(callNowText, marginX + contentW / 2, fy + 24);
 
-  // Add clickable URI link rectangles for CALL NOW (left half) and WHATSAPP NOW (right half)
   const centerX = marginX + contentW / 2;
   page1Links.push({
     xPx: centerX - 310,
@@ -616,13 +632,13 @@ async function renderQuotationPagesToJpegDataUrls(
   });
   fy += callStripH;
 
-  // 3. Navy Blue Computer-Generated Eco Strip
+  // 3. Computer-Generated Eco Strip (Previously Navy -> Now WHITE background, NAVY text)
   const ecoH = 32;
-  ctx1.fillStyle = NAVY;
+  ctx1.fillStyle = WHITE;
   ctx1.fillRect(marginX, fy, contentW, ecoH);
   ctx1.strokeStyle = ORANGE;
   ctx1.strokeRect(marginX, fy, contentW, ecoH);
-  ctx1.fillStyle = '#ffffff';
+  ctx1.fillStyle = NAVY;
   ctx1.font = 'bold 17px Inter, Arial, sans-serif';
   ctx1.fillText(
     'This is a computer-generated document. SAVE PAPER - SAVE TREES | BE DIGITAL - GO GREEN',
@@ -637,7 +653,7 @@ async function renderQuotationPagesToJpegDataUrls(
   ctx1.fillRect(marginX, fy, contentW, queryH);
   ctx1.strokeStyle = ORANGE;
   ctx1.strokeRect(marginX, fy, contentW, queryH);
-  ctx1.fillStyle = '#ffffff';
+  ctx1.fillStyle = WHITE;
   ctx1.font = 'bold 21px Inter, Arial, sans-serif';
   ctx1.fillText(`For Any Query contact us: Mob.: ${displayPhone}`, marginX + contentW / 2, fy + 26);
   page1Links.push({
@@ -656,30 +672,30 @@ async function renderQuotationPagesToJpegDataUrls(
   ctx1.strokeRect(marginX, tableTopY, contentW, fy - tableTopY);
 
   // Page 1 Footer Page Number
-  ctx1.fillStyle = '#475569';
+  ctx1.fillStyle = '#e2e8f0';
   ctx1.font = 'bold 17px Inter, Arial, sans-serif';
   ctx1.textAlign = 'right';
   ctx1.fillText('1 of 2', marginX + contentW, H - 34);
   ctx1.textAlign = 'left';
 
-  // ── PAGE 2 CANVAS (TERMS & CONDITIONS) ─────────────────────────────
+  // ── PAGE 2 CANVAS (TERMS & CONDITIONS — NAVY BACKGROUND, WHITE TEXT)
   const canvas2 = document.createElement('canvas');
   canvas2.width = W;
   canvas2.height = H;
   const ctx2 = canvas2.getContext('2d')!;
 
-  ctx2.fillStyle = '#ffffff';
+  ctx2.fillStyle = NAVY;
   ctx2.fillRect(0, 0, W, H);
 
   let y2 = 64;
   ctx2.fillStyle = ORANGE;
   ctx2.fillRect(marginX, y2, contentW, 6);
   y2 += 9;
-  ctx2.fillStyle = NAVY;
+  ctx2.fillStyle = WHITE;
   ctx2.fillRect(marginX, y2, contentW, 2.5);
   y2 += 34;
 
-  ctx2.fillStyle = NAVY;
+  ctx2.fillStyle = WHITE;
   ctx2.font = 'bold 22px Inter, Arial, sans-serif';
   ctx2.fillText('Term & Conditions:', marginX, y2);
   y2 += 36;
@@ -696,7 +712,7 @@ async function renderQuotationPagesToJpegDataUrls(
     }
     ctx2.fillStyle = ORANGE;
     ctx2.fillText('•', bulletIndent, y2);
-    ctx2.fillStyle = DARK;
+    ctx2.fillStyle = WHITE;
     for (const ln of lines) {
       ctx2.fillText(ln, textIndent, y2);
       y2 += 28;
@@ -705,7 +721,7 @@ async function renderQuotationPagesToJpegDataUrls(
   }
 
   // Page 2 Footer Page Number
-  ctx2.fillStyle = NAVY;
+  ctx2.fillStyle = WHITE;
   ctx2.font = 'bold 17px Inter, Arial, sans-serif';
   ctx2.textAlign = 'right';
   ctx2.fillText('2 of 2', marginX + contentW, H - 34);
@@ -775,7 +791,6 @@ function buildTwoPageA4PdfBinary(
 
   pushText('%PDF-1.4\n%\xFF\xFF\xFF\xFF\n');
 
-  // Allocate object IDs for link annotations on Page 1 (starting at obj 9)
   const annotObjIds = page1Links.map((_, idx) => 9 + idx);
   const annotsEntry =
     annotObjIds.length > 0
@@ -841,7 +856,6 @@ function buildTwoPageA4PdfBinary(
     const objId = 9 + idx;
     const x1 = ((lnk.xPx / canvasW) * pageWidthPt).toFixed(2);
     const x2 = (((lnk.xPx + lnk.wPx) / canvasW) * pageWidthPt).toFixed(2);
-    // PDF Y coordinates originate from bottom-left
     const y2 = (pageHeightPt - (lnk.yPx / canvasH) * pageHeightPt).toFixed(2);
     const y1 = (pageHeightPt - ((lnk.yPx + lnk.hPx) / canvasH) * pageHeightPt).toFixed(2);
     const safeUri = lnk.uri.replace(/[()\\]/g, '');
@@ -932,7 +946,8 @@ export function printQuotationDocument(containerId = 'toter-quotation-a4-root', 
       html, body {
         margin: 0;
         padding: 0;
-        background: #ffffff;
+        background: #081426;
+        color: #ffffff;
         font-family: 'Inter', Arial, Helvetica, sans-serif;
         -webkit-print-color-adjust: exact !important;
         print-color-adjust: exact !important;

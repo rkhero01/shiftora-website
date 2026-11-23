@@ -24,9 +24,9 @@ export interface QuotationPdfDocumentProps {
 }
 
 const BRAND_NAVY = '#081426';
+const BRAND_NAVY_PANEL = '#0b1b33';
 const BRAND_ORANGE = '#FF641A';
 const BRAND_ORANGE_DARK = '#d95312';
-const BRAND_LIGHT_TINT = '#fff7f2';
 
 export const QuotationPdfDocument: React.FC<QuotationPdfDocumentProps> = ({
   form,
@@ -91,12 +91,12 @@ export const QuotationPdfDocument: React.FC<QuotationPdfDocumentProps> = ({
       className="toter-pdf-wrapper"
       style={{
         fontFamily: "'Inter', Arial, Helvetica, sans-serif",
-        color: '#0f172a',
+        color: '#ffffff',
         lineHeight: 1.35,
       }}
     >
       {/* ════════════════════════════════════════════════════════════════
-          PAGE 1 — ORIGINAL QUOTATION LAYOUT WITH WEBSITE THEME (A4)
+          PAGE 1 — ORIGINAL QUOTATION LAYOUT (NAVY BACKGROUND, WHITE TEXT)
       ════════════════════════════════════════════════════════════════ */}
       <div
         className="toter-a4-page toter-a4-page-1"
@@ -104,26 +104,27 @@ export const QuotationPdfDocument: React.FC<QuotationPdfDocumentProps> = ({
         style={{
           width: '210mm',
           minHeight: '296mm',
-          backgroundColor: '#ffffff',
+          backgroundColor: BRAND_NAVY,
+          color: '#ffffff',
           margin: '0 auto 24px auto',
           padding: '7mm 8mm 7mm 8mm',
           boxSizing: 'border-box',
           display: 'flex',
           flexDirection: 'column',
           justifyContent: 'space-between',
-          boxShadow: '0 8px 30px rgba(0,0,0,0.18)',
+          boxShadow: '0 8px 30px rgba(0,0,0,0.28)',
           position: 'relative',
         }}
       >
         <div>
-          {/* Top solid Brand Orange bar + Navy Blue accent rule */}
+          {/* Top solid Brand Orange bar + White accent rule */}
           <div style={{ height: '6px', backgroundColor: BRAND_ORANGE, marginBottom: '2px' }} />
-          <div style={{ height: '2px', backgroundColor: BRAND_NAVY, marginBottom: '3px' }} />
+          <div style={{ height: '2px', backgroundColor: '#ffffff', marginBottom: '3px' }} />
 
           {/* A. Company Header Box */}
           <div
             style={{
-              backgroundColor: BRAND_LIGHT_TINT,
+              backgroundColor: BRAND_NAVY_PANEL,
               border: `1.5px solid ${BRAND_ORANGE}`,
               padding: '10px 14px',
               display: 'flex',
@@ -133,20 +134,20 @@ export const QuotationPdfDocument: React.FC<QuotationPdfDocumentProps> = ({
             }}
           >
             {/* Left: Company Details */}
-            <div style={{ flex: '1 1 65%', fontSize: '11.5px', color: '#0f172a' }}>
+            <div style={{ flex: '1 1 65%', fontSize: '11.5px', color: '#ffffff' }}>
               <div
                 style={{
                   fontFamily: "'Inter', Arial, Helvetica, sans-serif",
                   fontSize: '22px',
                   fontWeight: 900,
-                  color: BRAND_NAVY,
+                  color: '#ffffff',
                   letterSpacing: '0.6px',
                   lineHeight: 1.15,
                   marginBottom: '4px',
                 }}
               >
                 TOT<span style={{ color: BRAND_ORANGE }}>ER</span>{' '}
-                <span style={{ fontSize: '13px', fontWeight: 800, color: BRAND_NAVY }}>
+                <span style={{ fontSize: '13px', fontWeight: 800, color: '#ffffff' }}>
                   PACKERS &amp; MOVERS
                 </span>
               </div>
@@ -156,7 +157,7 @@ export const QuotationPdfDocument: React.FC<QuotationPdfDocumentProps> = ({
                   data-testid="pdf-business-address"
                   style={{
                     fontWeight: 600,
-                    color: '#1e293b',
+                    color: '#f8fafc',
                     marginBottom: '3px',
                     wordBreak: 'break-word',
                     lineHeight: 1.35,
@@ -168,18 +169,20 @@ export const QuotationPdfDocument: React.FC<QuotationPdfDocumentProps> = ({
 
               {businessInfo.gstNumber?.trim() && (
                 <div style={{ marginBottom: '2px' }}>
-                  <span style={{ fontWeight: 700, color: BRAND_NAVY }}>GST No.: </span>
-                  <span style={{ fontWeight: 600 }}>{businessInfo.gstNumber.trim()}</span>
+                  <span style={{ fontWeight: 700, color: BRAND_ORANGE }}>GST No.: </span>
+                  <span style={{ fontWeight: 600, color: '#ffffff' }}>
+                    {businessInfo.gstNumber.trim()}
+                  </span>
                 </div>
               )}
 
               <div style={{ marginBottom: '5px' }}>
-                <span style={{ fontWeight: 700, color: BRAND_NAVY }}>Phone: </span>
+                <span style={{ fontWeight: 700, color: BRAND_ORANGE }}>Phone: </span>
                 <a
                   href={telHref}
                   style={{
                     fontWeight: 700,
-                    color: '#0f172a',
+                    color: '#ffffff',
                     textDecoration: 'none',
                   }}
                 >
@@ -188,35 +191,35 @@ export const QuotationPdfDocument: React.FC<QuotationPdfDocumentProps> = ({
               </div>
 
               <div style={{ marginBottom: '1px' }}>
-                <span style={{ fontWeight: 700, color: BRAND_NAVY }}>Website: </span>
+                <span style={{ fontWeight: 700, color: BRAND_ORANGE }}>Website: </span>
                 <a
                   href={businessInfo.website}
                   target="_blank"
                   rel="noopener noreferrer"
-                  style={{ color: '#0f172a', textDecoration: 'none', fontWeight: 500 }}
+                  style={{ color: '#ffffff', textDecoration: 'none', fontWeight: 500 }}
                 >
                   {businessInfo.website}
                 </a>
               </div>
 
               <div>
-                <span style={{ fontWeight: 700, color: BRAND_NAVY }}>Email: </span>
+                <span style={{ fontWeight: 700, color: BRAND_ORANGE }}>Email: </span>
                 <a
                   href={`mailto:${businessInfo.email}`}
-                  style={{ color: '#0f172a', textDecoration: 'none', fontWeight: 500 }}
+                  style={{ color: '#ffffff', textDecoration: 'none', fontWeight: 500 }}
                 >
                   {businessInfo.email}
                 </a>
               </div>
             </div>
 
-            {/* Right: Official Website TOTER Logo Box */}
+            {/* Right: Official Website TOTER Logo Box (Navy Background, White + Orange Text) */}
             <div
               style={{
                 width: '225px',
                 minHeight: '68px',
-                backgroundColor: '#ffffff',
-                border: `1.5px solid ${BRAND_NAVY}`,
+                backgroundColor: BRAND_NAVY,
+                border: `1.5px solid ${BRAND_ORANGE}`,
                 borderRadius: '4px',
                 padding: '8px 12px',
                 display: 'flex',
@@ -244,7 +247,7 @@ export const QuotationPdfDocument: React.FC<QuotationPdfDocumentProps> = ({
                     fontSize: '24px',
                     fontWeight: 900,
                     fontStyle: 'italic',
-                    color: BRAND_NAVY,
+                    color: '#ffffff',
                     letterSpacing: '0.8px',
                   }}
                 >
@@ -255,7 +258,7 @@ export const QuotationPdfDocument: React.FC<QuotationPdfDocumentProps> = ({
                     fontSize: '8.5px',
                     fontWeight: 800,
                     letterSpacing: '1.6px',
-                    color: '#334155',
+                    color: '#e2e8f0',
                     marginTop: '3px',
                   }}
                 >
@@ -265,8 +268,8 @@ export const QuotationPdfDocument: React.FC<QuotationPdfDocumentProps> = ({
             </div>
           </div>
 
-          {/* Double separator lines below Company Header (Navy + Orange) */}
-          <div style={{ height: '2px', backgroundColor: BRAND_NAVY, marginTop: '3px' }} />
+          {/* Double separator lines below Company Header (White + Orange) */}
+          <div style={{ height: '2px', backgroundColor: '#ffffff', marginTop: '3px' }} />
           <div style={{ height: '1.5px', backgroundColor: BRAND_ORANGE, marginTop: '2px' }} />
 
           {/* ── MAIN FRAMED QUOTATION TABLE ────────────────────────────── */}
@@ -274,7 +277,8 @@ export const QuotationPdfDocument: React.FC<QuotationPdfDocumentProps> = ({
             style={{
               border: `1.5px solid ${BRAND_ORANGE}`,
               marginTop: '2px',
-              backgroundColor: '#ffffff',
+              backgroundColor: BRAND_NAVY,
+              color: '#ffffff',
             }}
           >
             {/* Top spacer strip inside outer frame */}
@@ -298,13 +302,13 @@ export const QuotationPdfDocument: React.FC<QuotationPdfDocumentProps> = ({
                 }}
               >
                 {/* B. Customer Information + D. Quotation Introduction */}
-                <div style={{ padding: '7px 10px 9px 10px', fontSize: '12px' }}>
+                <div style={{ padding: '7px 10px 9px 10px', fontSize: '12px', color: '#ffffff' }}>
                   <div
                     style={{
                       fontWeight: 800,
                       marginBottom: '7px',
                       fontSize: '12.5px',
-                      color: BRAND_NAVY,
+                      color: BRAND_ORANGE,
                       letterSpacing: '0.4px',
                     }}
                   >
@@ -312,26 +316,26 @@ export const QuotationPdfDocument: React.FC<QuotationPdfDocumentProps> = ({
                   </div>
 
                   <div style={{ marginBottom: '2px', wordBreak: 'break-word' }}>
-                    <span style={{ color: BRAND_NAVY, fontWeight: 600 }}>Name: </span>
-                    <strong style={{ fontWeight: 700, color: '#0f172a' }}>
+                    <span style={{ color: '#e2e8f0', fontWeight: 600 }}>Name: </span>
+                    <strong style={{ fontWeight: 700, color: '#ffffff' }}>
                       {form.customerName || '—'}
                     </strong>
                   </div>
                   <div style={{ marginBottom: '2px' }}>
-                    <span style={{ color: BRAND_NAVY, fontWeight: 600 }}>Phone: </span>
-                    <strong style={{ fontWeight: 700, color: '#0f172a' }}>
+                    <span style={{ color: '#e2e8f0', fontWeight: 600 }}>Phone: </span>
+                    <strong style={{ fontWeight: 700, color: '#ffffff' }}>
                       {form.customerPhone || '—'}
                     </strong>
                   </div>
                   <div style={{ marginBottom: '2px', wordBreak: 'break-word' }}>
-                    <span style={{ color: BRAND_NAVY, fontWeight: 600 }}>Email: </span>
-                    <strong style={{ fontWeight: 700, color: '#0f172a' }}>
+                    <span style={{ color: '#e2e8f0', fontWeight: 600 }}>Email: </span>
+                    <strong style={{ fontWeight: 700, color: '#ffffff' }}>
                       {form.customerEmail || ''}
                     </strong>
                   </div>
                   <div style={{ marginBottom: '11px' }}>
-                    <span style={{ color: BRAND_NAVY, fontWeight: 600 }}>Moving Type: </span>
-                    <strong style={{ fontWeight: 700, color: '#0f172a' }}>
+                    <span style={{ color: '#e2e8f0', fontWeight: 600 }}>Moving Type: </span>
+                    <strong style={{ fontWeight: 700, color: '#ffffff' }}>
                       {effectiveMovingType || ''}
                     </strong>
                   </div>
@@ -342,17 +346,24 @@ export const QuotationPdfDocument: React.FC<QuotationPdfDocumentProps> = ({
                       fontWeight: 800,
                       fontSize: '13.5px',
                       marginBottom: '3px',
-                      color: BRAND_NAVY,
+                      color: '#ffffff',
                     }}
                   >
                     Dear sir/madam
                   </div>
-                  <div style={{ fontSize: '12px', lineHeight: 1.4, textAlign: 'left' }}>
+                  <div
+                    style={{
+                      fontSize: '12px',
+                      lineHeight: 1.4,
+                      textAlign: 'left',
+                      color: '#f8fafc',
+                    }}
+                  >
                     {renderIntroParagraph()}
                   </div>
                 </div>
 
-                {/* E. Orange QUOTATION Header & Move From / Move To Bar */}
+                {/* E. Orange QUOTATION Header & White Move From / Move To Bar */}
                 <div>
                   <div
                     style={{
@@ -408,13 +419,13 @@ export const QuotationPdfDocument: React.FC<QuotationPdfDocumentProps> = ({
                     </div>
                   </div>
 
-                  {/* Move From | Move To Navy/Orange Sub-header */}
+                  {/* Move From | Move To Sub-header (Previously Navy -> Now WHITE background with NAVY text) */}
                   <div
                     style={{
                       display: 'grid',
                       gridTemplateColumns: '50% 50%',
-                      backgroundColor: BRAND_NAVY,
-                      color: '#ffffff',
+                      backgroundColor: '#ffffff',
+                      color: BRAND_NAVY,
                       fontWeight: 800,
                       fontSize: '12px',
                       borderBottom: `1px solid ${BRAND_ORANGE}`,
@@ -423,7 +434,7 @@ export const QuotationPdfDocument: React.FC<QuotationPdfDocumentProps> = ({
                     <div
                       style={{
                         padding: '4px 8px',
-                        borderRight: '1px solid rgba(255,255,255,0.2)',
+                        borderRight: `1px solid ${BRAND_ORANGE}`,
                       }}
                     >
                       Move From
@@ -431,14 +442,15 @@ export const QuotationPdfDocument: React.FC<QuotationPdfDocumentProps> = ({
                     <div style={{ padding: '4px 8px' }}>Move To</div>
                   </div>
 
-                  {/* F. Move From | Move To Details Grid */}
+                  {/* F. Move From | Move To Details Grid (Navy background, White text) */}
                   <div
                     style={{
                       display: 'grid',
                       gridTemplateColumns: '50% 50%',
                       borderBottom: `1px solid ${BRAND_ORANGE}`,
                       fontSize: '11.5px',
-                      backgroundColor: '#ffffff',
+                      backgroundColor: BRAND_NAVY,
+                      color: '#ffffff',
                     }}
                   >
                     {/* Move From Column */}
@@ -450,87 +462,99 @@ export const QuotationPdfDocument: React.FC<QuotationPdfDocumentProps> = ({
                       }}
                     >
                       <div style={{ marginBottom: '2px' }}>
-                        <span style={{ color: BRAND_NAVY, fontWeight: 600 }}>City: </span>
-                        <strong>{form.moveFrom.city || '—'}</strong>
+                        <span style={{ color: '#cbd5e1', fontWeight: 600 }}>City: </span>
+                        <strong style={{ color: '#ffffff' }}>{form.moveFrom.city || '—'}</strong>
                       </div>
                       <div style={{ marginBottom: '2px' }}>
-                        <span style={{ color: BRAND_NAVY, fontWeight: 600 }}>State: </span>
-                        <strong>{form.moveFrom.state || 'N/A'}</strong>
+                        <span style={{ color: '#cbd5e1', fontWeight: 600 }}>State: </span>
+                        <strong style={{ color: '#ffffff' }}>{form.moveFrom.state || 'N/A'}</strong>
                       </div>
                       <div style={{ marginBottom: '2px' }}>
-                        <span style={{ color: BRAND_NAVY, fontWeight: 600 }}>Country: </span>
-                        <strong>{form.moveFrom.country || 'India'}</strong>
+                        <span style={{ color: '#cbd5e1', fontWeight: 600 }}>Country: </span>
+                        <strong style={{ color: '#ffffff' }}>
+                          {form.moveFrom.country || 'India'}
+                        </strong>
                       </div>
                       <div style={{ marginBottom: '2px' }}>
-                        <span style={{ color: BRAND_NAVY, fontWeight: 600 }}>Address: </span>
-                        <strong>{form.moveFrom.address || '—'}</strong>
+                        <span style={{ color: '#cbd5e1', fontWeight: 600 }}>Address: </span>
+                        <strong style={{ color: '#ffffff' }}>{form.moveFrom.address || '—'}</strong>
                       </div>
                       <div style={{ marginBottom: '2px' }}>
-                        <span style={{ color: BRAND_NAVY, fontWeight: 600 }}>Floor: </span>
-                        <strong>{form.moveFrom.floor || 'Ground Floor'}</strong>
+                        <span style={{ color: '#cbd5e1', fontWeight: 600 }}>Floor: </span>
+                        <strong style={{ color: '#ffffff' }}>
+                          {form.moveFrom.floor || 'Ground Floor'}
+                        </strong>
                       </div>
                       <div>
-                        <span style={{ color: BRAND_NAVY, fontWeight: 600 }}>
+                        <span style={{ color: '#cbd5e1', fontWeight: 600 }}>
                           Is Lift Available:{' '}
                         </span>
-                        <strong>{form.moveFrom.liftAvailable || 'Yes'}</strong>
+                        <strong style={{ color: '#ffffff' }}>
+                          {form.moveFrom.liftAvailable || 'Yes'}
+                        </strong>
                       </div>
                     </div>
 
                     {/* Move To Column */}
                     <div style={{ padding: '6px 8px', wordBreak: 'break-word' }}>
                       <div style={{ marginBottom: '2px' }}>
-                        <span style={{ color: BRAND_NAVY, fontWeight: 600 }}>City: </span>
-                        <strong>{form.moveTo.city || '—'}</strong>
+                        <span style={{ color: '#cbd5e1', fontWeight: 600 }}>City: </span>
+                        <strong style={{ color: '#ffffff' }}>{form.moveTo.city || '—'}</strong>
                       </div>
                       <div style={{ marginBottom: '2px' }}>
-                        <span style={{ color: BRAND_NAVY, fontWeight: 600 }}>State: </span>
-                        <strong>{form.moveTo.state || 'N/A'}</strong>
+                        <span style={{ color: '#cbd5e1', fontWeight: 600 }}>State: </span>
+                        <strong style={{ color: '#ffffff' }}>{form.moveTo.state || 'N/A'}</strong>
                       </div>
                       <div style={{ marginBottom: '2px' }}>
-                        <span style={{ color: BRAND_NAVY, fontWeight: 600 }}>Country: </span>
-                        <strong>{form.moveTo.country || 'India'}</strong>
+                        <span style={{ color: '#cbd5e1', fontWeight: 600 }}>Country: </span>
+                        <strong style={{ color: '#ffffff' }}>
+                          {form.moveTo.country || 'India'}
+                        </strong>
                       </div>
                       <div style={{ marginBottom: '2px' }}>
-                        <span style={{ color: BRAND_NAVY, fontWeight: 600 }}>Address: </span>
-                        <strong>{form.moveTo.address || '—'}</strong>
+                        <span style={{ color: '#cbd5e1', fontWeight: 600 }}>Address: </span>
+                        <strong style={{ color: '#ffffff' }}>{form.moveTo.address || '—'}</strong>
                       </div>
                       <div style={{ marginBottom: '2px' }}>
-                        <span style={{ color: BRAND_NAVY, fontWeight: 600 }}>Floor: </span>
-                        <strong>{form.moveTo.floor || 'Ground Floor'}</strong>
+                        <span style={{ color: '#cbd5e1', fontWeight: 600 }}>Floor: </span>
+                        <strong style={{ color: '#ffffff' }}>
+                          {form.moveTo.floor || 'Ground Floor'}
+                        </strong>
                       </div>
                       <div>
-                        <span style={{ color: BRAND_NAVY, fontWeight: 600 }}>
+                        <span style={{ color: '#cbd5e1', fontWeight: 600 }}>
                           Is Lift Available:{' '}
                         </span>
-                        <strong>{form.moveTo.liftAvailable || 'Yes'}</strong>
+                        <strong style={{ color: '#ffffff' }}>
+                          {form.moveTo.liftAvailable || 'Yes'}
+                        </strong>
                       </div>
                     </div>
                   </div>
 
-                  {/* H. Moving Information Rows */}
-                  <div style={{ fontSize: '11.5px', backgroundColor: '#ffffff' }}>
+                  {/* H. Moving Information Rows (Navy background, White text) */}
+                  <div style={{ fontSize: '11.5px', backgroundColor: BRAND_NAVY, color: '#ffffff' }}>
                     <div style={{ padding: '4px 8px', borderBottom: `1px solid ${BRAND_ORANGE}` }}>
                       Is there easy access for loading &amp; unloading at Location Move From &amp; Move To:{' '}
-                      <strong style={{ color: BRAND_NAVY }}>
+                      <strong style={{ color: BRAND_ORANGE }}>
                         {form.movingInfo.easyAccess || 'Yes'}
                       </strong>
                     </div>
                     <div style={{ padding: '4px 8px', borderBottom: `1px solid ${BRAND_ORANGE}` }}>
                       Should any items be got down through balcony etc. :{' '}
-                      <strong style={{ color: BRAND_NAVY }}>
+                      <strong style={{ color: BRAND_ORANGE }}>
                         {form.movingInfo.balconyItems || 'N/A'}
                       </strong>
                     </div>
                     <div style={{ padding: '4px 8px', borderBottom: `1px solid ${BRAND_ORANGE}` }}>
                       Are there any restrictions for loading/unloading at Location Move From/Move To :{' '}
-                      <strong style={{ color: BRAND_NAVY }}>
+                      <strong style={{ color: BRAND_ORANGE }}>
                         {form.movingInfo.restrictions || 'N/A'}
                       </strong>
                     </div>
                     <div style={{ padding: '4px 8px', borderBottom: `1px solid ${BRAND_ORANGE}` }}>
                       Does you have any special needs or concerns:{' '}
-                      <strong style={{ color: BRAND_NAVY }}>
+                      <strong style={{ color: BRAND_ORANGE }}>
                         {form.movingInfo.specialNeeds || 'N/A'}
                       </strong>
                     </div>
@@ -539,7 +563,7 @@ export const QuotationPdfDocument: React.FC<QuotationPdfDocumentProps> = ({
                         padding: '4px 8px',
                         borderBottom: `1px solid ${BRAND_ORANGE}`,
                         fontWeight: 700,
-                        color: BRAND_NAVY,
+                        color: '#ffffff',
                       }}
                     >
                       Insurance charge @{form.movingInfo.insurancePercentage ?? 3}% on declaration value of goods
@@ -558,22 +582,23 @@ export const QuotationPdfDocument: React.FC<QuotationPdfDocumentProps> = ({
                         style={{
                           textDecoration: 'underline',
                           fontWeight: 700,
-                          color: BRAND_NAVY,
+                          color: BRAND_ORANGE,
                         }}
                       >
                         Remark:
                       </span>{' '}
-                      <strong>{form.movingInfo.remarks || 'N/A'}</strong>
+                      <strong style={{ color: '#ffffff' }}>{form.movingInfo.remarks || 'N/A'}</strong>
                     </div>
                   </div>
 
-                  {/* I. Signature Section */}
+                  {/* I. Signature Section (Navy background, White text) */}
                   <div
                     style={{
                       display: 'grid',
                       gridTemplateColumns: '46% 54%',
                       minHeight: '112px',
-                      backgroundColor: '#ffffff',
+                      backgroundColor: BRAND_NAVY,
+                      color: '#ffffff',
                     }}
                   >
                     {/* Left: TOTER Authorized Signatory */}
@@ -590,7 +615,7 @@ export const QuotationPdfDocument: React.FC<QuotationPdfDocumentProps> = ({
                         style={{
                           fontWeight: 800,
                           fontSize: '13px',
-                          color: BRAND_NAVY,
+                          color: '#ffffff',
                           paddingLeft: '8px',
                         }}
                       >
@@ -618,7 +643,7 @@ export const QuotationPdfDocument: React.FC<QuotationPdfDocumentProps> = ({
                         style={{
                           fontWeight: 800,
                           fontSize: '12.5px',
-                          color: BRAND_NAVY,
+                          color: '#ffffff',
                           textAlign: 'center',
                         }}
                       >
@@ -635,7 +660,7 @@ export const QuotationPdfDocument: React.FC<QuotationPdfDocumentProps> = ({
                         justifyContent: 'space-between',
                         textAlign: 'center',
                         fontSize: '11.5px',
-                        color: BRAND_NAVY,
+                        color: '#ffffff',
                         fontWeight: 600,
                       }}
                     >
@@ -651,8 +676,15 @@ export const QuotationPdfDocument: React.FC<QuotationPdfDocumentProps> = ({
               </div>
 
               {/* ── RIGHT COLUMN (33.5%): BANK BOX + PRICING TABLE ──────── */}
-              <div style={{ display: 'flex', flexDirection: 'column', backgroundColor: '#ffffff' }}>
-                {/* C. Bank Information Box */}
+              <div
+                style={{
+                  display: 'flex',
+                  flexDirection: 'column',
+                  backgroundColor: BRAND_NAVY,
+                  color: '#ffffff',
+                }}
+              >
+                {/* C. Bank Information Box (Navy Panel Background, White text) */}
                 <div style={{ padding: '10px 10px 8px 10px' }}>
                   <div
                     style={{
@@ -660,37 +692,38 @@ export const QuotationPdfDocument: React.FC<QuotationPdfDocumentProps> = ({
                       padding: '6px 8px',
                       fontSize: '11.5px',
                       lineHeight: 1.4,
-                      backgroundColor: BRAND_LIGHT_TINT,
+                      backgroundColor: BRAND_NAVY_PANEL,
+                      color: '#ffffff',
                     }}
                   >
                     <div>
-                      <span style={{ color: BRAND_NAVY, fontWeight: 600 }}>Beneficiary Name : </span>
-                      <strong>{bankDetails.beneficiaryName}</strong>
+                      <span style={{ color: '#cbd5e1', fontWeight: 600 }}>Beneficiary Name : </span>
+                      <strong style={{ color: '#ffffff' }}>{bankDetails.beneficiaryName}</strong>
                     </div>
                     <div>
-                      <span style={{ color: BRAND_NAVY, fontWeight: 600 }}>Bank Name : </span>
-                      <strong>{bankDetails.bankName}</strong>
+                      <span style={{ color: '#cbd5e1', fontWeight: 600 }}>Bank Name : </span>
+                      <strong style={{ color: '#ffffff' }}>{bankDetails.bankName}</strong>
                     </div>
                     <div>
-                      <span style={{ color: BRAND_NAVY, fontWeight: 600 }}>Bank A/C No. : </span>
-                      <strong>{bankDetails.accountNumber}</strong>
+                      <span style={{ color: '#cbd5e1', fontWeight: 600 }}>Bank A/C No. : </span>
+                      <strong style={{ color: '#ffffff' }}>{bankDetails.accountNumber}</strong>
                     </div>
                     <div>
-                      <span style={{ color: BRAND_NAVY, fontWeight: 600 }}>Bank IFSC Code : </span>
-                      <strong>{bankDetails.ifscCode}</strong>
+                      <span style={{ color: '#cbd5e1', fontWeight: 600 }}>Bank IFSC Code : </span>
+                      <strong style={{ color: '#ffffff' }}>{bankDetails.ifscCode}</strong>
                     </div>
                   </div>
                 </div>
 
                 {/* G. Pricing Table */}
                 <div style={{ borderTop: `1px solid ${BRAND_ORANGE}`, fontSize: '11.5px' }}>
-                  {/* Pricing Table Header (Navy Blue to match website header theme) */}
+                  {/* Pricing Table Header (Previously Navy -> Now WHITE background with NAVY text) */}
                   <div
                     style={{
                       display: 'grid',
                       gridTemplateColumns: '60% 40%',
-                      backgroundColor: BRAND_NAVY,
-                      color: '#ffffff',
+                      backgroundColor: '#ffffff',
+                      color: BRAND_NAVY,
                       fontWeight: 800,
                       borderBottom: `1px solid ${BRAND_ORANGE}`,
                     }}
@@ -699,7 +732,7 @@ export const QuotationPdfDocument: React.FC<QuotationPdfDocumentProps> = ({
                       style={{
                         padding: '5px 8px',
                         textAlign: 'right',
-                        borderRight: '1px solid rgba(255,255,255,0.2)',
+                        borderRight: `1px solid ${BRAND_ORANGE}`,
                       }}
                     >
                       Particulars
@@ -707,7 +740,7 @@ export const QuotationPdfDocument: React.FC<QuotationPdfDocumentProps> = ({
                     <div style={{ padding: '5px 8px', textAlign: 'left' }}>Amount (Rs.)</div>
                   </div>
 
-                  {/* 7 Standard Pricing Rows */}
+                  {/* 7 Standard Pricing Rows (Navy background, White text) */}
                   {PRICING_ROW_DEFINITIONS.map((def) => {
                     const row = form.pricing[def.key];
                     const displayVal = formatChargeCellForPdf(row, def.compactZeroInPdf);
@@ -717,16 +750,17 @@ export const QuotationPdfDocument: React.FC<QuotationPdfDocumentProps> = ({
                         style={{
                           display: 'grid',
                           gridTemplateColumns: '60% 40%',
-                          borderBottom: '1px solid #cbd5e1',
-                          backgroundColor: '#ffffff',
+                          borderBottom: '1px solid rgba(255,255,255,0.2)',
+                          backgroundColor: BRAND_NAVY,
+                          color: '#ffffff',
                         }}
                       >
                         <div
                           style={{
                             padding: '5px 8px',
                             textAlign: 'right',
-                            borderRight: '1px solid #cbd5e1',
-                            color: '#1e293b',
+                            borderRight: '1px solid rgba(255,255,255,0.2)',
+                            color: '#e2e8f0',
                             fontWeight: 500,
                           }}
                         >
@@ -737,7 +771,7 @@ export const QuotationPdfDocument: React.FC<QuotationPdfDocumentProps> = ({
                             padding: '5px 8px',
                             fontWeight: 700,
                             textAlign: 'left',
-                            color: BRAND_NAVY,
+                            color: '#ffffff',
                           }}
                         >
                           {displayVal}
@@ -771,21 +805,22 @@ export const QuotationPdfDocument: React.FC<QuotationPdfDocumentProps> = ({
                     </div>
                   </div>
 
-                  {/* Insurance Charge Row */}
+                  {/* Insurance Charge Row (Navy background, White text) */}
                   <div
                     style={{
                       display: 'grid',
                       gridTemplateColumns: '60% 40%',
-                      borderBottom: '1px solid #cbd5e1',
-                      backgroundColor: '#ffffff',
+                      borderBottom: '1px solid rgba(255,255,255,0.2)',
+                      backgroundColor: BRAND_NAVY,
+                      color: '#ffffff',
                     }}
                   >
                     <div
                       style={{
                         padding: '5px 8px',
                         textAlign: 'right',
-                        borderRight: '1px solid #cbd5e1',
-                        color: '#1e293b',
+                        borderRight: '1px solid rgba(255,255,255,0.2)',
+                        color: '#e2e8f0',
                         fontWeight: 500,
                       }}
                     >
@@ -796,7 +831,7 @@ export const QuotationPdfDocument: React.FC<QuotationPdfDocumentProps> = ({
                         padding: '5px 8px',
                         fontWeight: 700,
                         textAlign: 'left',
-                        color: BRAND_NAVY,
+                        color: '#ffffff',
                       }}
                     >
                       {totals.insuranceDisplayForPdf}
@@ -828,15 +863,16 @@ export const QuotationPdfDocument: React.FC<QuotationPdfDocumentProps> = ({
                     </div>
                   </div>
 
-                  {/* Reverse Charge Row */}
+                  {/* Reverse Charge Row (Navy background, White text) */}
                   <div
                     style={{
                       padding: '5px 8px',
                       textAlign: 'right',
                       borderBottom: `1px solid ${BRAND_ORANGE}`,
                       fontSize: '11.5px',
-                      color: BRAND_NAVY,
+                      color: '#ffffff',
                       fontWeight: 600,
+                      backgroundColor: BRAND_NAVY,
                     }}
                   >
                     Reverse Charge :{' '}
@@ -849,41 +885,41 @@ export const QuotationPdfDocument: React.FC<QuotationPdfDocumentProps> = ({
             </div>
 
             {/* ── J. FULL-WIDTH FOOTER SECTION INSIDE MAIN FRAME ────────── */}
-            {/* Note Warning Box */}
+            {/* Note Warning Box (Navy background, Orange heading + White text) */}
             <div
               style={{
                 padding: '5px 8px',
                 borderBottom: `1px solid ${BRAND_ORANGE}`,
                 fontSize: '11px',
                 lineHeight: 1.35,
-                backgroundColor: '#ffffff',
+                backgroundColor: BRAND_NAVY,
               }}
             >
               <div style={{ color: BRAND_ORANGE, fontWeight: 800 }}>Note:</div>
-              <div style={{ color: '#b91c1c', fontWeight: 700 }}>
+              <div style={{ color: '#ffffff', fontWeight: 700 }}>
                 Please keep your Cash/Jewelery and all important documents in your Custody/Lock carrying
                 Liquor, Gas Cylinder, Acid of any type of Liquids (like Ghee Tin, Oil, etc.) is totally prohibited.
               </div>
             </div>
 
-            {/* CALL NOW | WHATSAPP NOW Strip (Replaces old PhonePe / Google Pay footer) */}
+            {/* CALL NOW | WHATSAPP NOW Strip (Navy Panel background, White text) */}
             <div
               data-testid="pdf-call-whatsapp-footer"
               style={{
-                backgroundColor: BRAND_LIGHT_TINT,
+                backgroundColor: BRAND_NAVY_PANEL,
                 padding: '5px 10px',
                 textAlign: 'center',
                 fontWeight: 800,
                 fontSize: '12.5px',
                 borderBottom: `1px solid ${BRAND_ORANGE}`,
-                color: BRAND_NAVY,
+                color: '#ffffff',
               }}
             >
               <a
                 href={telHref}
                 data-testid="pdf-call-now-link"
                 style={{
-                  color: BRAND_NAVY,
+                  color: '#ffffff',
                   textDecoration: 'none',
                   fontWeight: 800,
                 }}
@@ -897,7 +933,7 @@ export const QuotationPdfDocument: React.FC<QuotationPdfDocumentProps> = ({
                 rel="noopener noreferrer"
                 data-testid="pdf-whatsapp-now-link"
                 style={{
-                  color: BRAND_NAVY,
+                  color: '#ffffff',
                   textDecoration: 'none',
                   fontWeight: 800,
                 }}
@@ -906,19 +942,20 @@ export const QuotationPdfDocument: React.FC<QuotationPdfDocumentProps> = ({
               </a>
             </div>
 
-            {/* Computer-Generated Eco Bar (Navy Blue matching Website Theme) */}
+            {/* Computer-Generated Eco Bar (Previously Navy -> Now WHITE background with NAVY text) */}
             <div
               style={{
-                backgroundColor: BRAND_NAVY,
-                color: '#ffffff',
+                backgroundColor: '#ffffff',
+                color: BRAND_NAVY,
                 padding: '4px 8px',
                 textAlign: 'center',
                 fontSize: '11px',
+                fontWeight: 600,
                 borderBottom: `1px solid ${BRAND_ORANGE}`,
               }}
             >
               This is a computer-generated document.{' '}
-              <strong style={{ fontWeight: 800, color: '#fdba74' }}>
+              <strong style={{ fontWeight: 800, color: BRAND_ORANGE }}>
                 SAVE PAPER - SAVE TREES | BE DIGITAL - GO GREEN
               </strong>
             </div>
@@ -950,7 +987,7 @@ export const QuotationPdfDocument: React.FC<QuotationPdfDocumentProps> = ({
           style={{
             textAlign: 'right',
             fontSize: '11px',
-            color: '#475569',
+            color: '#e2e8f0',
             fontWeight: 600,
             paddingTop: '6px',
           }}
@@ -960,7 +997,7 @@ export const QuotationPdfDocument: React.FC<QuotationPdfDocumentProps> = ({
       </div>
 
       {/* ════════════════════════════════════════════════════════════════
-          PAGE 2 — TERMS & CONDITIONS (A4 PORTRAIT, WEBSITE THEME)
+          PAGE 2 — TERMS & CONDITIONS (NAVY BACKGROUND, WHITE TEXT)
       ════════════════════════════════════════════════════════════════ */}
       <div
         className="toter-a4-page toter-a4-page-2"
@@ -968,27 +1005,28 @@ export const QuotationPdfDocument: React.FC<QuotationPdfDocumentProps> = ({
         style={{
           width: '210mm',
           minHeight: '296mm',
-          backgroundColor: '#ffffff',
+          backgroundColor: BRAND_NAVY,
+          color: '#ffffff',
           margin: '0 auto',
           padding: '12mm 12mm 10mm 12mm',
           boxSizing: 'border-box',
           display: 'flex',
           flexDirection: 'column',
           justifyContent: 'space-between',
-          boxShadow: '0 8px 30px rgba(0,0,0,0.18)',
+          boxShadow: '0 8px 30px rgba(0,0,0,0.28)',
           position: 'relative',
         }}
       >
         <div>
-          {/* Top Brand Orange & Navy Blue Accent Rules */}
+          {/* Top Brand Orange & White Accent Rules */}
           <div style={{ height: '5px', backgroundColor: BRAND_ORANGE, marginBottom: '2px' }} />
-          <div style={{ height: '2px', backgroundColor: BRAND_NAVY, marginBottom: '16px' }} />
+          <div style={{ height: '2px', backgroundColor: '#ffffff', marginBottom: '16px' }} />
 
           <h2
             style={{
               fontSize: '14.5px',
               fontWeight: 800,
-              color: BRAND_NAVY,
+              color: '#ffffff',
               margin: '0 0 12px 0',
               letterSpacing: '0.3px',
             }}
@@ -1002,7 +1040,7 @@ export const QuotationPdfDocument: React.FC<QuotationPdfDocumentProps> = ({
               paddingLeft: '24px',
               fontSize: '12.5px',
               lineHeight: 1.58,
-              color: '#0f172a',
+              color: '#ffffff',
               listStyleType: 'disc',
             }}
           >
@@ -1012,6 +1050,7 @@ export const QuotationPdfDocument: React.FC<QuotationPdfDocumentProps> = ({
                 style={{
                   marginBottom: '6px',
                   wordBreak: 'break-word',
+                  color: '#ffffff',
                 }}
               >
                 {term.text}
@@ -1025,7 +1064,7 @@ export const QuotationPdfDocument: React.FC<QuotationPdfDocumentProps> = ({
           style={{
             textAlign: 'right',
             fontSize: '11px',
-            color: BRAND_NAVY,
+            color: '#ffffff',
             fontWeight: 700,
             paddingTop: '12px',
           }}
